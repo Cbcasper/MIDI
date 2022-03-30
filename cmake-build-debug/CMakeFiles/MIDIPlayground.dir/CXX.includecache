@@ -1,0 +1,100 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/libremidi/api.hpp
+vector
+-
+
+../include/libremidi/libremidi.hpp
+libremidi/message.hpp
+-
+libremidi/api.hpp
+-
+algorithm
+-
+cassert
+-
+chrono
+-
+functional
+-
+iostream
+-
+memory
+-
+optional
+-
+stdexcept
+-
+string
+-
+string_view
+-
+vector
+-
+span
+-
+libremidi/libremidi.cpp
+-
+
+../include/libremidi/message.hpp
+algorithm
+-
+cinttypes
+-
+memory
+-
+stdexcept
+-
+vector
+-
+boost/container/small_vector.hpp
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Director.cpp
+Director.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Director.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Director.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Manager.cpp
+Manager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.cpp
+Processor.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MusicRules/Manager.cpp
+Manager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MusicRules/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MusicRules/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.cpp
+Sequencer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/Manager.cpp
+Manager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/Manager.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/main.cpp
+iostream
+-
+libremidi/libremidi.hpp
+-
+

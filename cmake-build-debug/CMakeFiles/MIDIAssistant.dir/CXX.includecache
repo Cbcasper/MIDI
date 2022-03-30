@@ -1,0 +1,370 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../MIDI/IO/Port.h
+string
+-
+libremidi/message.hpp
+-
+
+../Utilities/Utilities.h
+vector
+-
+string
+-
+map
+-
+future
+-
+../MIDI/IO/Port.h
+../MIDI/IO/Port.h
+
+../include/libremidi/api.hpp
+vector
+-
+
+../include/libremidi/libremidi.hpp
+libremidi/message.hpp
+-
+libremidi/api.hpp
+-
+algorithm
+-
+cassert
+-
+chrono
+-
+functional
+-
+iostream
+-
+memory
+-
+optional
+-
+stdexcept
+-
+string
+-
+string_view
+-
+vector
+-
+span
+-
+libremidi/libremidi.cpp
+-
+
+../include/libremidi/message.hpp
+algorithm
+-
+cinttypes
+-
+memory
+-
+stdexcept
+-
+vector
+-
+boost/container/small_vector.hpp
+-
+
+../include/libremidi/reader.hpp
+libremidi/libremidi.hpp
+-
+libremidi/reader.cpp
+-
+
+../include/libremidi/writer.hpp
+cstdint
+-
+libremidi/message.hpp
+-
+vector
+-
+libremidi/writer.cpp
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+list
+-
+mutex
+-
+Track.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Track.h
+../MIDI/Processor.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+../MIDI/Messages/Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+../MIDI/Messages/Instrument.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
+../Director/Harmonies/ModulationHarmony.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Track.h
+../MIDI/Processor.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+../MIDI/AudioPlayer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+../MIDI/Messages/Instrument.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
+../Director/Harmonies/Harmony.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
+../../Theory/NoteFilter.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
+../../MIDI/Messages/Messages/NoteMessage.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+../../MIDI/AudioPlayer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+../../MIDI/Messages/Instrument.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h
+Harmony.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.h
+memory
+-
+../Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+AudioToolbox/AudioToolbox.h
+-
+libremidi/message.hpp
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/FileManager.h
+libremidi/reader.hpp
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/libremidi/reader.hpp
+libremidi/writer.hpp
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/libremidi/writer.hpp
+Processor.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/IOManager.h
+thread
+-
+set
+-
+libremidi/libremidi.hpp
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/libremidi/libremidi.hpp
+../../Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+../AudioPlayer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+../Processor.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+InputPort.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/InputPort.h
+OutputPort.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/OutputPort.h
+../Utilities/Utilities.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Utilities/Utilities.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/InputPort.h
+memory
+-
+libremidi/libremidi.hpp
+-
+Port.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/OutputPort.h
+memory
+-
+libremidi/libremidi.hpp
+-
+Port.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
+string
+-
+libremidi/message.hpp
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
+vector
+-
+Messages/Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
+string
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+libremidi/message.hpp
+-
+string
+-
+../../Theory/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+../Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
+NoteMessage.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+../Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+../../../Theory/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
+../Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+../../../Theory/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+NoteMessage.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
+Messages/Message.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
+Messages/Instrument.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.h
+memory
+-
+vector
+-
+future
+-
+chrono
+-
+shared_mutex
+-
+condition_variable
+-
+../Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+./Timer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Timer.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Timer.h
+vector
+-
+chrono
+-
+future
+-
+shared_mutex
+-
+condition_variable
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+map
+-
+vector
+-
+mutex
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
+map
+-
+Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/MessageFilterCheckboxes.h
+../MIDI/MessageFilter.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.cpp
+sstream
+-
+iostream
+-
+cmath
+-
+../imgui/imgui_internal.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_internal.h
+../imgui/Renderer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/Renderer.h
+UserInterface.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.h
+../MIDI/Messages/Messages/NoteOn.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
+../MIDI/Messages/Messages/NoteOff.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.h
+libremidi/message.hpp
+-
+../imgui/imgui.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui.h
+../imgui/imgui_internal.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_internal.h
+../Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+../MIDI/IO/IOManager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/IOManager.h
+../Sequencer/Sequencer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.h
+MessageFilterCheckboxes.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/MessageFilterCheckboxes.h
+../MIDI/FileManager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/FileManager.h
+../Director/Quantizer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/Renderer.h
+functional
+-
+utility
+-
+string
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imconfig.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui.h
+imconfig.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imconfig.h
+float.h
+-
+stdarg.h
+-
+stddef.h
+-
+string.h
+-
+assert.h
+-
+imgui_user.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_user.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_internal.h
+imgui.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui.h
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+limits.h
+-
+immintrin.h
+-
+imstb_textedit.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imstb_textedit.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imstb_textedit.h
+string.h
+-
+
