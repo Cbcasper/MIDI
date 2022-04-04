@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o"
+  "CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.o"
@@ -28,6 +29,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o"
+  "CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Utilities/Utilities.cpp.o"

@@ -28,5 +28,26 @@ namespace MIDI
     using InstrumentPointer = std::shared_ptr<Instrument>;
 }
 
+namespace std
+{
+    template <>
+    struct hash<MIDI::InstrumentPointer>
+    {
+        std::size_t operator()(const MIDI::InstrumentPointer& instrument) const
+        {
+            return hash<string>()(instrument->port) ^ (hash<int>()(instrument->channel) << 1);
+        }
+    };
+
+    template <>
+    struct equal_to<MIDI::InstrumentPointer>
+    {
+        constexpr bool operator()(const MIDI::InstrumentPointer& firstInstrument, const MIDI::InstrumentPointer& secondInstrument) const
+        {
+            return *firstInstrument == *secondInstrument;
+        }
+    };
+}
+
 
 #endif //MIDIASSISTANT_INSTRUMENT_H

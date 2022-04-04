@@ -13,13 +13,15 @@ namespace System
     Timer::Timer()
     {
         // TODO: decide tick length
+        tickLength = std::chrono::microseconds(500000 / 960);
         ticks = 0;
-        running = false;
+        running = true;
         timerFuture = Utilities::makeThread([=] { return timerThread(); });
     }
 
     Timer::~Timer()
     {
+        running = false;
         timerFuture.wait();
     }
 

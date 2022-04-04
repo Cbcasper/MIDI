@@ -34,12 +34,17 @@ namespace UI
         MIDI::InstrumentPointer pianoInput;
         MIDI::InstrumentPointer pianoOutput;
 
-        float divisionWidth;
         float scroll;
+        float measureWidth;
+        float divisionsPerBeat;
+        float measureLength;
+
         float keyWidth;
         float keyLength;
         ImVec2 keyTopLeft;
         ImVec2 keySize;
+
+        ImColor background;
 
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
                       const std::shared_ptr<System::Sequencer>& sequencer,
@@ -51,9 +56,12 @@ namespace UI
         void renderMessageMonitor();
         void renderMainWindow();
         void renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize);
+        void renderControl(const ImVec2& controlPosition, const ImVec2& controlSize);
         void renderPiano();
         void renderHarmonyModel();
 
+        void computeMeasureLength();
+        float computePosition(float ticks);
         MIDI::MessagePointer getLastMessage() const;
         void drawKeys(int numberOfKeys, int keyIndex, const ImColor& keyColor,
                       const ImColor& pressedColor, const ImColor& borderColor);

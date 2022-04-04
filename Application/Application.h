@@ -8,8 +8,10 @@
 #include <list>
 #include <mutex>
 
+#include "Song.h"
 #include "Track.h"
 #include "../MIDI/Processor.h"
+#include "../MIDI/MessageFilter.h"
 #include "../MIDI/Messages/Message.h"
 #include "../MIDI/Messages/Instrument.h"
 #include "../Director/Harmonies/ModulationHarmony.h"
@@ -27,9 +29,14 @@ namespace State
         std::list<MIDI::MessageOnInstrument> messages;
         std::vector<TrackPointer> tracks;
 
+        MIDI::MessageFilter displayMessageFilter;
+
         Music::ModulationHarmony modulationHarmony;
 
-        int currentTime = 0;
+        SongPointer song;
+
+        int currentTime = -1;
+        int ticksPerDivision = 240;
 
         Application();
 

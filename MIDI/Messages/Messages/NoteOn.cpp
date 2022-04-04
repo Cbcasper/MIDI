@@ -9,11 +9,11 @@
 namespace MIDI
 {
     NoteOn::NoteOn(const libremidi::message& message):
-            NoteMessage(message, "Note On")
+            NoteMessage(message, "Note On"), noteEnd(nullptr)
     {}
 
     NoteOn::NoteOn(const Music::NotePointer& note, int velocity):
-            NoteMessage("Note On", MessageType::NOTE_ON, note, velocity)
+            NoteMessage("Note On", MessageType::NOTE_ON, note, velocity), noteEnd(nullptr)
     {}
 
     libremidi::message NoteOn::rawMessage(int channel)

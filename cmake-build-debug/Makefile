@@ -169,6 +169,33 @@ Application/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.s
 .PHONY : Application/Application.cpp.s
 
+Application/Song.o: Application/Song.cpp.o
+
+.PHONY : Application/Song.o
+
+# target to build an object file
+Application/Song.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o
+.PHONY : Application/Song.cpp.o
+
+Application/Song.i: Application/Song.cpp.i
+
+.PHONY : Application/Song.i
+
+# target to preprocess a source file
+Application/Song.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.i
+.PHONY : Application/Song.cpp.i
+
+Application/Song.s: Application/Song.cpp.s
+
+.PHONY : Application/Song.s
+
+# target to generate assembly for a file
+Application/Song.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.s
+.PHONY : Application/Song.cpp.s
+
 Application/Track.o: Application/Track.cpp.o
 
 .PHONY : Application/Track.o
@@ -925,6 +952,33 @@ Theory/Theory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.s
 .PHONY : Theory/Theory.cpp.s
 
+Theory/TimeDivision.o: Theory/TimeDivision.cpp.o
+
+.PHONY : Theory/TimeDivision.o
+
+# target to build an object file
+Theory/TimeDivision.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o
+.PHONY : Theory/TimeDivision.cpp.o
+
+Theory/TimeDivision.i: Theory/TimeDivision.cpp.i
+
+.PHONY : Theory/TimeDivision.i
+
+# target to preprocess a source file
+Theory/TimeDivision.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.i
+.PHONY : Theory/TimeDivision.cpp.i
+
+Theory/TimeDivision.s: Theory/TimeDivision.cpp.s
+
+.PHONY : Theory/TimeDivision.s
+
+# target to generate assembly for a file
+Theory/TimeDivision.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.s
+.PHONY : Theory/TimeDivision.cpp.s
+
 UI/MessageFilterCheckboxes.o: UI/MessageFilterCheckboxes.cpp.o
 
 .PHONY : UI/MessageFilterCheckboxes.o
@@ -1261,6 +1315,9 @@ help:
 	@echo "... Application/Application.o"
 	@echo "... Application/Application.i"
 	@echo "... Application/Application.s"
+	@echo "... Application/Song.o"
+	@echo "... Application/Song.i"
+	@echo "... Application/Song.s"
 	@echo "... Application/Track.o"
 	@echo "... Application/Track.i"
 	@echo "... Application/Track.s"
@@ -1345,6 +1402,9 @@ help:
 	@echo "... Theory/Theory.o"
 	@echo "... Theory/Theory.i"
 	@echo "... Theory/Theory.s"
+	@echo "... Theory/TimeDivision.o"
+	@echo "... Theory/TimeDivision.i"
+	@echo "... Theory/TimeDivision.s"
 	@echo "... UI/MessageFilterCheckboxes.o"
 	@echo "... UI/MessageFilterCheckboxes.i"
 	@echo "... UI/MessageFilterCheckboxes.s"

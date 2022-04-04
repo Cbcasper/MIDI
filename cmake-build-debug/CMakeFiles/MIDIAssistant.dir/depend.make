@@ -4,6 +4,7 @@
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Application.cpp
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Director/Harmonies/ModulationHarmony.h
@@ -11,14 +12,24 @@ CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/AudioPlayer.
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
+CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
+CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteOn.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Theory/NoteFilter.h
+CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Theory/TimeDivision.h
+
+CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o: ../Application/Song.cpp
+CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o: ../Application/Song.h
+CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../include/libremidi/message.hpp
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Track.cpp
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Director/Harmonies/Harmony.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Director/Harmonies/ModulationHarmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/AudioPlayer.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Message.h
@@ -26,6 +37,7 @@ CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Messages/
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Theory/NoteFilter.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../MIDI/IO/Port.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Utilities/Utilities.h
@@ -33,6 +45,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../include/libremidi/api.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../include/libremidi/libremidi.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Director/Director.cpp
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Director/Director.h
@@ -53,6 +66,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Theory/NoteFilter.h
 CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Theory/Theory.h
+CMakeFiles/MIDIAssistant.dir/Director/Director.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.o: ../Director/Harmonies/Harmony.cpp
@@ -70,6 +84,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../incl
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../include/libremidi/libremidi.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Director/Harmonies/ModulationHarmony.cpp
@@ -88,9 +103,11 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Theory/NoteFilter.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Theory/Theory.h
+CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Director/Harmonies/ModulationHarmony.h
@@ -103,6 +120,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Messages/Messages
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Theory/NoteFilter.h
+CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/MIDI/AudioPlayer.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/AudioPlayer.cpp.o: ../MIDI/AudioPlayer.cpp
@@ -126,6 +144,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../include/libremidi/api.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../include/libremidi/libremidi.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Director/Harmonies/ModulationHarmony.h
@@ -141,6 +160,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Messages/Messages/
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Theory/NoteFilter.h
+CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/InputPort.cpp.o: ../include/libremidi/api.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/InputPort.cpp.o: ../include/libremidi/libremidi.hpp
@@ -230,6 +250,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../include/libremidi/api.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../include/libremidi/libremidi.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Director/Director.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Director/Harmonies/Harmony.h
@@ -255,6 +276,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Theory/NoteFilter.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Theory/Theory.h
+CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../MIDI/IO/Port.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Utilities/Utilities.h
@@ -262,6 +284,7 @@ CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../include/libremidi/api
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../include/libremidi/libremidi.hpp
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Director/Director.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Director/Harmonies/Harmony.h
@@ -284,6 +307,7 @@ CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Sequencer/Timer.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Theory/NoteFilter.h
 CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Theory/Theory.h
+CMakeFiles/MIDIAssistant.dir/Sequencer/Sequencer.cpp.o: ../Theory/TimeDivision.h
 
 CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.o: ../MIDI/IO/Port.h
@@ -302,6 +326,9 @@ CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o: ../Theory/Theory.cpp
 CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o: ../Theory/Theory.h
 
+CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o: ../Theory/TimeDivision.cpp
+CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o: ../Theory/TimeDivision.h
+
 CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o: ../MIDI/Messages/Message.h
@@ -319,6 +346,7 @@ CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../include/libremidi/messag
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../include/libremidi/reader.hpp
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../include/libremidi/writer.hpp
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Director/Harmonies/ModulationHarmony.h
@@ -340,6 +368,7 @@ CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Sequencer/Sequencer.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Sequencer/Timer.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Theory/NoteFilter.h
+CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../Theory/TimeDivision.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../UI/MessageFilterCheckboxes.h
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../UI/UserInterface.cpp
 CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.o: ../UI/UserInterface.h
@@ -475,6 +504,7 @@ CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../include/libremidi/reader.hpp
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../include/libremidi/writer.hpp
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Application/Application.h
+CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Application/Song.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Director/Director.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Director/Harmonies/Harmony.h
@@ -498,6 +528,7 @@ CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Sequencer/Timer.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Theory/NoteFilter.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Theory/Theory.h
+CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../Theory/TimeDivision.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../UI/MessageFilterCheckboxes.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../UI/UserInterface.h
 CMakeFiles/MIDIAssistant.dir/main.cpp.o: ../imgui/imconfig.h

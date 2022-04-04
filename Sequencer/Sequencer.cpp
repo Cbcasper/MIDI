@@ -32,7 +32,7 @@ namespace System
         timer->signalCV.wait(lock, [&]{ return status; });
         while (running)
         {
-            if (applicationState->currentTime) applicationState->currentTime++;
+            applicationState->currentTime++;
 
             trackStatusOn();
             tracksCV.notify_all();
@@ -41,9 +41,11 @@ namespace System
             timer->signalCV.wait(lock, [&]{ return status; });
         }
         timer->unsubscribe(&status);
+        trackStatusOn();
+        tracksCV.notify_all();
     }
 
-    void Sequencer::trackThread()
+    void Sequencer::trackThread(const State::TrackPointer& track)
     {
         bool status = false;
         trackStatuses.emplace_back(&status);
@@ -51,6 +53,9 @@ namespace System
         tracksCV.wait(lock, [&]{ return status; });
         while (running)
         {
+            for (const MIDI::MessagePointer& message: track->midiMessages[applicationState->currentTime])
+                track->playMIDIMessage(std::make_pair(message, track->input));
+
             status = false;
             tracksCV.wait(lock, [&]{ return status; });
         }
@@ -66,8 +71,8 @@ namespace System
     {
         running = true;
         masterFuture = Utilities::makeThread([=] { return masterThread(); });
-        for (int i = 0; i < applicationState->tracks.size(); ++i)
-            trackFutures.push_back(Utilities::makeThread([=] { return trackThread(); }));
+        for (const State::TrackPointer& track: applicationState->tracks)
+            trackFutures.push_back(Utilities::makeThread([=] { return trackThread(track); }));
     }
 
     void Sequencer::stop()
@@ -77,12 +82,13 @@ namespace System
         for (const std::future<void>& future: trackFutures)
             future.wait();
         trackFutures.clear();
-        masterFuture.wait();
         trackStatuses.clear();
+
+        masterFuture.wait();
     }
 
     void Sequencer::reset()
     {
-        applicationState->currentTime = 0;
+        applicationState->currentTime = -1;
     }
 }

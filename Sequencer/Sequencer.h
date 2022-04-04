@@ -42,7 +42,7 @@ namespace System
         ~Sequencer();
 
         void masterThread();
-        void trackThread();
+        void trackThread(const State::TrackPointer& track);
 
         void trackStatusOn();
 

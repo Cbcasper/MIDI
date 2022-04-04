@@ -21,6 +21,8 @@ namespace MIDI
 
     bool Instrument::operator==(const Instrument& instrument)
     {
-        return false;
+        bool portsEqual = allPorts || instrument.allPorts || port == instrument.port;
+        bool channelsEqual = allChannels || instrument.allChannels || channel == instrument.channel;
+        return portsEqual && channelsEqual;
     }
 }

@@ -54,7 +54,10 @@ set(SOURCES
         Theory/NoteFilter.cpp Theory/NoteFilter.h
         Application/Track.cpp Application/Track.h
         Director/Harmonies/ModulationHarmony.cpp Director/Harmonies/ModulationHarmony.h
-        Utilities/Utilities.cpp Utilities/Utilities.h Sequencer/Timer.cpp Sequencer/Timer.h)
+        Utilities/Utilities.cpp Utilities/Utilities.h
+        Sequencer/Timer.cpp Sequencer/Timer.h
+        Application/Song.cpp Application/Song.h
+        Theory/TimeDivision.h Theory/TimeDivision.cpp)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h

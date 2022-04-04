@@ -5,15 +5,18 @@
 #ifndef MIDIASSISTANT_NOTEON_H
 #define MIDIASSISTANT_NOTEON_H
 
+#include "NoteOff.h"
+#include "NoteMessage.h"
 #include "../Message.h"
 #include "../../../Theory/Note.h"
-#include "NoteMessage.h"
 
 namespace MIDI
 {
     class NoteOn: public NoteMessage
     {
     public:
+        NoteOffPointer noteEnd;
+
         NoteOn(const libremidi::message& message);
         NoteOn(const Music::NotePointer& note, int velocity);
 
