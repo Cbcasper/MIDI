@@ -22,11 +22,13 @@ namespace State
     public:
         Application* application;
 
+        std::mutex mutex;
+
         MIDI::InstrumentPointer input;
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayer audioPlayer;
 
-        std::unordered_map<MIDI::InstrumentPointer, SoundingNotes> soundingNotes;
+        std::unordered_map<MIDI::InstrumentPointer, SoundingNotes> instrumentSoundingNotes;
         std::map<int, std::vector<MIDI::MessagePointer>> midiMessages;
 
         std::vector<Music::HarmonyPointer> harmonies;
@@ -35,6 +37,8 @@ namespace State
 
         void incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
+        void recordMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
+        void cleanupNotes();
     };
 
     using TrackPointer = std::shared_ptr<Track>;

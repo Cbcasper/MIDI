@@ -8,7 +8,7 @@
 #include "NoteOff.h"
 #include "NoteMessage.h"
 #include "../Message.h"
-#include "../../../Theory/Note.h"
+#include "../../../Theory/Note/Note.h"
 
 namespace MIDI
 {

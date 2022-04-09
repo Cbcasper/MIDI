@@ -244,16 +244,28 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Timer.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.cpp">
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h">
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.cpp">
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h">
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Theory.cpp">

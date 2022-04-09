@@ -6,7 +6,7 @@
 #define MIDIASSISTANT_AFTERTOUCH_H
 
 #include "../Message.h"
-#include "../../../Theory/Note.h"
+#include "../../../Theory/Note/Note.h"
 
 namespace MIDI
 {

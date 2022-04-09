@@ -620,9 +620,9 @@ CODE
  - 2016/10/15 (1.50) - avoid 'void* user_data' parameter to io.SetClipboardTextFn/io.GetClipboardTextFn pointers. We pass io.ClipboardUserData to it.
  - 2016/09/25 (1.50) - style.WindowTitleAlign is now a ImVec2 (ImGuiAlign enum was removed). set to (0.5f,0.5f) for horizontal+vertical centering, (0.0f,0.0f) for upper-left, etc.
  - 2016/07/30 (1.50) - SameLine(x) with x>0.0f is now relative to left of column/group if any, and not always to left of window. This was sort of always the intent and hopefully, breakage should be minimal.
- - 2016/05/12 (1.49) - title bar (using ImGuiCol_TitleBg/ImGuiCol_TitleBgActive colors) isn't rendered over a window background (ImGuiCol_WindowBg color) anymore.
-                       If your TitleBg/TitleBgActive alpha was 1.0f or you are using the default theme it will not affect you, otherwise if <1.0f you need to tweak your custom theme to readjust for the fact that we don't draw a WindowBg background behind the title bar.
-                       This helper function will convert an old TitleBg/TitleBgActive color into a new one with the same visual output, given the OLD color and the OLD WindowBg color:
+ - 2016/05/12 (1.49) - title bar (using ImGuiCol_TitleBg/ImGuiCol_TitleBgActive colors) isn't rendered over a window mainBackground (ImGuiCol_WindowBg color) anymore.
+                       If your TitleBg/TitleBgActive alpha was 1.0f or you are using the default theme it will not affect you, otherwise if <1.0f you need to tweak your custom theme to readjust for the fact that we don't draw a WindowBg mainBackground behind the title bar.
+                       This helper function will correct an old TitleBg/TitleBgActive color into a new one with the same visual output, given the OLD color and the OLD WindowBg color:
                        ImVec4 ConvertTitleBgCol(const ImVec4& win_bg_col, const ImVec4& title_bg_col) { float new_a = 1.0f - ((1.0f - win_bg_col.w) * (1.0f - title_bg_col.w)), k = title_bg_col.w / new_a; return ImVec4((win_bg_col.x * win_bg_col.w + title_bg_col.x) * k, (win_bg_col.y * win_bg_col.w + title_bg_col.y) * k, (win_bg_col.z * win_bg_col.w + title_bg_col.z) * k, new_a); }
                        If this is confusing, pick the RGB value from title bar from an old screenshot and apply this as TitleBg/TitleBgActive. Or you may just create TitleBgActive from a tweaked TitleBg color.
  - 2016/05/07 (1.49) - removed confusing set of GetInternalState(), GetInternalStateSize(), SetInternalState() functions. Now using CreateContext(), DestroyContext(), GetCurrentContext(), SetCurrentContext().
@@ -4887,7 +4887,7 @@ void ImGui::Render()
 
     CallContextHooks(&g, ImGuiContextHookType_RenderPre);
 
-    // Add background ImDrawList (for each active viewport)
+    // Add mainBackground ImDrawList (for each active viewport)
     for (int n = 0; n != g.Viewports.Size; n++)
     {
         ImGuiViewportP* viewport = g.Viewports[n];
@@ -5743,7 +5743,7 @@ static void ImGui::RenderWindowOuterBorders(ImGuiWindow* window)
     }
 }
 
-// Draw background and borders
+// Draw mainBackground and borders
 // Draw and handle scrollbars
 void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar_rect, bool title_bar_is_highlight, int resize_grip_count, const ImU32 resize_grip_col[4], float resize_grip_draw_size)
 {
@@ -5770,7 +5770,7 @@ void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar
     }
     else
     {
-        // Window background
+        // Window mainBackground
         if (!(flags & ImGuiWindowFlags_NoBackground))
         {
             ImU32 bg_col = GetColorU32(GetWindowBgColorIdx(window));
@@ -6382,7 +6382,7 @@ bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
         // Outer rectangle
         // Not affected by window border size. Used by:
         // - FindHoveredWindow() (w/ extra padding when border resize is enabled)
-        // - Begin() initial clipping rect for drawing window background and borders.
+        // - Begin() initial clipping rect for drawing window mainBackground and borders.
         // - Begin() clipping whole child
         const ImRect host_rect = ((flags & ImGuiWindowFlags_ChildWindow) && !(flags & ImGuiWindowFlags_Popup) && !window_is_child_tooltip) ? parent_window->ClipRect : viewport_rect;
         const ImRect outer_rect = window->Rect();

@@ -284,18 +284,18 @@ CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/Controller.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/Controller.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/Controller.cpp" -o CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/Controller.cpp.s
 
-CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
-CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o: ../Theory/Note.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.cpp"
+CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
+CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o: ../Theory/Note/Note.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.cpp"
 
-CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.i
+CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.i
 
-CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.s
+CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.s
 
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Application.cpp
@@ -427,18 +427,18 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.cpp" -o CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.s
 
-CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
-CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o: ../Theory/NoteFilter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.cpp"
+CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
+CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o: ../Theory/Note/NoteFilter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.cpp"
 
-CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.i
+CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.i
 
-CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.s
+CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.s
 
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Track.cpp
@@ -518,9 +518,35 @@ CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/TimeDivision.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.s
 
+CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
+CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o: ../Theory/Note/RootNote.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.cpp"
+
+CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.i
+
+CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.s
+
+CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
+CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o: ../Theory/Key/Key.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.cpp"
+
+CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.cpp" > CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.i
+
+CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.cpp" -o CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.s
+
 CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o: ../imgui/imgui.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.i: cmake_force
@@ -533,7 +559,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o: ../imgui/imgui_draw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_draw.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.i: cmake_force
@@ -546,7 +572,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o: ../imgui/imgui_widgets.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_widgets.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.i: cmake_force
@@ -559,7 +585,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.o: ../imgui/imgui_tables.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_tables.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.i: cmake_force
@@ -572,7 +598,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_tables.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.o: ../imgui/imgui_demo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_demo.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.i: cmake_force
@@ -585,7 +611,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_demo.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.o: ../imgui/imgui_impl_glfw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_impl_glfw.cpp"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.i: cmake_force
@@ -598,7 +624,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_glfw.cpp.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.o: ../imgui/imgui_impl_metal.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_impl_metal.mm"
 
 CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.i: cmake_force
@@ -611,7 +637,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/imgui_impl_metal.mm.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.o: ../imgui/Renderer.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/Renderer.mm"
 
 CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.i: cmake_force
@@ -624,7 +650,7 @@ CMakeFiles/MIDIAssistant.dir/imgui/Renderer.mm.s: cmake_force
 
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o: ../MIDI/Messages/Instrument.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.cpp"
 
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.i: cmake_force
@@ -653,7 +679,7 @@ MIDIAssistant_OBJECTS = \
 "CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/ChannelPressure.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/PitchWheel.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/Controller.cpp.o" \
-"CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o" \
+"CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/MIDI/MessageFilter.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o" \
@@ -664,13 +690,15 @@ MIDIAssistant_OBJECTS = \
 "CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteMessage.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.o" \
-"CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o" \
+"CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Utilities/Utilities.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o" \
+"CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o" \
+"CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o" \
@@ -700,7 +728,7 @@ MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/ProgramChange
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/ChannelPressure.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/PitchWheel.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/Controller.cpp.o
-MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o
+MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/MessageFilter.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/UI/MessageFilterCheckboxes.cpp.o
@@ -711,13 +739,15 @@ MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/IO/OutputPort.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteMessage.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.o
-MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o
+MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Utilities/Utilities.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o
+MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o
+MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/imgui/imgui.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/imgui/imgui_draw.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/imgui/imgui_widgets.cpp.o
@@ -730,7 +760,7 @@ MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/build.make
 MIDIAssistant: /usr/local/lib/libglfw.3.3.dylib
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_44) "Linking CXX executable MIDIAssistant"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_46) "Linking CXX executable MIDIAssistant"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MIDIAssistant.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

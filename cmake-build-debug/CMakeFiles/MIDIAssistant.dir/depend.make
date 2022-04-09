@@ -9,11 +9,11 @@ CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Application/Track
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Director/Harmonies/ModulationHarmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/AudioPlayer.h
+CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
-CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Messages/Messages/NoteOn.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o: ../Theory/NoteFilter.h
@@ -31,9 +31,12 @@ CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Application/Track.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Director/Harmonies/Harmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Director/Harmonies/ModulationHarmony.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/AudioPlayer.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
+CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Messages/Messages/NoteOn.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o: ../Theory/NoteFilter.h
@@ -94,6 +97,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/IO/InputPort.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/IO/OutputPort.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/IO/Port.h
+CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
@@ -114,9 +118,11 @@ CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Director/Harmonies/Mod
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Director/Quantizer.cpp
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Director/Quantizer.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/AudioPlayer.h
+CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
+CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o: ../Theory/NoteFilter.h
@@ -154,9 +160,11 @@ CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/IO/IOManager.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/IO/InputPort.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/IO/OutputPort.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/IO/Port.h
+CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/MessageFilter.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Messages/Instrument.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
+CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../MIDI/Processor.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Theory/Note.h
 CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o: ../Theory/NoteFilter.h
@@ -228,6 +236,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOff.cpp.o: ../Theory/Not
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../include/libremidi/message.hpp
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../MIDI/Messages/Message.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../MIDI/Messages/Messages/NoteMessage.h
+CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../MIDI/Messages/Messages/NoteOff.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../MIDI/Messages/Messages/NoteOn.cpp
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../MIDI/Messages/Messages/NoteOn.h
 CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o: ../Theory/Note.h

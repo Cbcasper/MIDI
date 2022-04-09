@@ -40,7 +40,7 @@ set(SOURCES
         MIDI/Messages/Messages/ChannelPressure.cpp MIDI/Messages/Messages/ChannelPressure.h
         MIDI/Messages/Messages/PitchWheel.cpp MIDI/Messages/Messages/PitchWheel.h
         MIDI/Messages/Messages/Controller.cpp MIDI/Messages/Messages/Controller.h
-        Theory/Note.cpp Theory/Note.h
+        Theory/Note/Note.cpp Theory/Note/Note.h
         Application/Application.cpp Application/Application.h
         MIDI/MessageFilter.cpp MIDI/MessageFilter.h
         UI/MessageFilterCheckboxes.cpp UI/MessageFilterCheckboxes.h
@@ -51,13 +51,15 @@ set(SOURCES
         MIDI/Messages/Messages/NoteMessage.cpp MIDI/Messages/Messages/NoteMessage.h
         Director/Quantizer.cpp Director/Quantizer.h
         Director/Harmonies/Harmony.cpp Director/Harmonies/Harmony.h
-        Theory/NoteFilter.cpp Theory/NoteFilter.h
+        Theory/Note/NoteFilter.cpp Theory/Note/NoteFilter.h
         Application/Track.cpp Application/Track.h
         Director/Harmonies/ModulationHarmony.cpp Director/Harmonies/ModulationHarmony.h
         Utilities/Utilities.cpp Utilities/Utilities.h
         Sequencer/Timer.cpp Sequencer/Timer.h
         Application/Song.cpp Application/Song.h
-        Theory/TimeDivision.h Theory/TimeDivision.cpp)
+        Theory/TimeDivision.h Theory/TimeDivision.cpp
+        Theory/Note/RootNote.cpp Theory/Note/RootNote.h
+        Theory/Key/Key.cpp Theory/Key/Key.h)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h

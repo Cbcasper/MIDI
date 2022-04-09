@@ -535,7 +535,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
             ImGui::TableNextColumn(); ImGui::Checkbox("No collapse", &no_collapse);
             ImGui::TableNextColumn(); ImGui::Checkbox("No close", &no_close);
             ImGui::TableNextColumn(); ImGui::Checkbox("No nav", &no_nav);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No background", &no_background);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No mainBackground", &no_background);
             ImGui::TableNextColumn(); ImGui::Checkbox("No bring to front", &no_bring_to_front);
             ImGui::TableNextColumn(); ImGui::Checkbox("Unsaved document", &unsaved_document);
             ImGui::EndTable();
@@ -1056,7 +1056,7 @@ static void ShowDemoWindowWidgets()
             ImVec2 size = ImVec2(32.0f, 32.0f);                     // Size of the image we want to make visible
             ImVec2 uv0 = ImVec2(0.0f, 0.0f);                        // UV coordinates for lower-left
             ImVec2 uv1 = ImVec2(32.0f / my_tex_w, 32.0f / my_tex_h);// UV coordinates for (32,32) in our texture
-            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);         // Black background
+            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);         // Black mainBackground
             ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);       // No tint
             if (ImGui::ImageButton(my_tex_id, size, uv0, uv1, frame_padding, bg_col, tint_col))
                 pressed_count += 1;
@@ -3238,7 +3238,7 @@ static void ShowDemoWindowLayout()
                     "Using ImDrawList::AddText() with a fine ClipRect:\n"
                     "Will alter only this specific ImDrawList::AddText() rendering.\n"
                     "(this is often used internally to avoid altering the clipping rectangle and minimize draw calls)");
-                ImVec4 clip_rect(p0.x, p0.y, p1.x, p1.y); // AddText() takes a ImVec4* here so let's convert.
+                ImVec4 clip_rect(p0.x, p0.y, p1.x, p1.y); // AddText() takes a ImVec4* here so let's correct.
                 draw_list->AddRectFilled(p0, p1, IM_COL32(90, 90, 120, 255));
                 draw_list->AddText(ImGui::GetFont(), ImGui::GetFontSize(), text_pos, IM_COL32_WHITE, text_str, NULL, 0.0f, &clip_rect);
                 break;
@@ -3742,11 +3742,11 @@ static void ShowDemoWindowTables()
     // Most settings are configured on a per-table basis via the flags passed to BeginTable() and TableSetupColumns APIs.
     // There are however a few settings that a shared and part of the ImGuiStyle structure:
     //   style.CellPadding                          // Padding within each cell
-    //   style.Colors[ImGuiCol_TableHeaderBg]       // Table header background
+    //   style.Colors[ImGuiCol_TableHeaderBg]       // Table header mainBackground
     //   style.Colors[ImGuiCol_TableBorderStrong]   // Table outer and header borders
     //   style.Colors[ImGuiCol_TableBorderLight]    // Table inner borders
-    //   style.Colors[ImGuiCol_TableRowBg]          // Table row background when ImGuiTableFlags_RowBg is enabled (even rows)
-    //   style.Colors[ImGuiCol_TableRowBgAlt]       // Table row background when ImGuiTableFlags_RowBg is enabled (odds rows)
+    //   style.Colors[ImGuiCol_TableRowBg]          // Table row mainBackground when ImGuiTableFlags_RowBg is enabled (even rows)
+    //   style.Colors[ImGuiCol_TableRowBgAlt]       // Table row mainBackground when ImGuiTableFlags_RowBg is enabled (odds rows)
 
     // Demos
     if (open_action != -1)
@@ -3813,8 +3813,8 @@ static void ShowDemoWindowTables()
 
     if (open_action != -1)
         ImGui::SetNextItemOpen(open_action != 0);
-    IMGUI_DEMO_MARKER("Tables/Borders, background");
-    if (ImGui::TreeNode("Borders, background"))
+    IMGUI_DEMO_MARKER("Tables/Borders, mainBackground");
+    if (ImGui::TreeNode("Borders, mainBackground"))
     {
         // Expose a few Borders related flags interactively
         enum ContentsType { CT_Text, CT_FillButton };
@@ -4690,7 +4690,7 @@ static void ShowDemoWindowTables()
             {
                 ImGui::TableNextRow();
 
-                // Demonstrate setting a row background color with 'ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBgX, ...)'
+                // Demonstrate setting a row mainBackground color with 'ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBgX, ...)'
                 // We use a transparent color so we can see the one behind in case our target is RowBg1 and RowBg0 was already targeted by the ImGuiTableFlags_RowBg flag.
                 if (row_bg_type != 0)
                 {
@@ -4704,8 +4704,8 @@ static void ShowDemoWindowTables()
                     ImGui::TableSetColumnIndex(column);
                     ImGui::Text("%c%c", 'A' + row, '0' + column);
 
-                    // Change background of Cells B1->C2
-                    // Demonstrate setting a cell background color with 'ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, ...)'
+                    // Change mainBackground of Cells B1->C2
+                    // Demonstrate setting a cell mainBackground color with 'ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, ...)'
                     // (the CellBg color will be blended over the RowBg and ColumnBg colors)
                     // We can also pass a column number as a third parameter to TableSetBgColor() and do this outside the column loop.
                     if (row >= 1 && row <= 2 && column >= 1 && column <= 2 && cell_bg_type == 1)
@@ -5711,11 +5711,11 @@ static void ShowDemoWindowMisc()
             struct funcs { static bool IsLegacyNativeDupe(ImGuiKey key) { return key < 512 && ImGui::GetIO().KeyMap[key] != -1; } }; // Hide Native<>ImGuiKey duplicates when both exists in the array
             const ImGuiKey key_first = 0;
 #endif
-            ImGui::Text("Keys down:");          for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyDown(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d (%.02f secs)", ImGui::GetKeyName(key), key, ImGui::GetKeyData(key)->DownDuration); } }
-            ImGui::Text("Keys pressed:");       for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyPressed(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
-            ImGui::Text("Keys released:");      for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyReleased(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
-            ImGui::Text("Keys mods: %s%s%s%s", io.KeyCtrl ? "CTRL " : "", io.KeyShift ? "SHIFT " : "", io.KeyAlt ? "ALT " : "", io.KeySuper ? "SUPER " : "");
-            ImGui::Text("Chars queue:");        for (int i = 0; i < io.InputQueueCharacters.Size; i++) { ImWchar c = io.InputQueueCharacters[i]; ImGui::SameLine();  ImGui::Text("\'%c\' (0x%04X)", (c > ' ' && c <= 255) ? (char)c : '?', c); } // FIXME: We should convert 'c' to UTF-8 here but the functions are not public.
+            ImGui::Text("Key down:");          for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyDown(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d (%.02f secs)", ImGui::GetKeyName(key), key, ImGui::GetKeyData(key)->DownDuration); } }
+            ImGui::Text("Key pressed:");       for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyPressed(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
+            ImGui::Text("Key released:");      for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (funcs::IsLegacyNativeDupe(key)) continue; if (ImGui::IsKeyReleased(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
+            ImGui::Text("Key mods: %s%s%s%s", io.KeyCtrl ? "CTRL " : "", io.KeyShift ? "SHIFT " : "", io.KeyAlt ? "ALT " : "", io.KeySuper ? "SUPER " : "");
+            ImGui::Text("Chars queue:");        for (int i = 0; i < io.InputQueueCharacters.Size; i++) { ImWchar c = io.InputQueueCharacters[i]; ImGui::SameLine();  ImGui::Text("\'%c\' (0x%04X)", (c > ' ' && c <= 255) ? (char)c : '?', c); } // FIXME: We should correct 'c' to UTF-8 here but the functions are not public.
             ImGui::Text("NavInputs down:");     for (int i = 0; i < IM_ARRAYSIZE(io.NavInputs); i++) if (io.NavInputs[i] > 0.0f)              { ImGui::SameLine(); ImGui::Text("[%d] %.2f (%.02f secs)", i, io.NavInputs[i], io.NavInputsDownDuration[i]); }
             ImGui::Text("NavInputs pressed:");  for (int i = 0; i < IM_ARRAYSIZE(io.NavInputs); i++) if (io.NavInputsDownDuration[i] == 0.0f) { ImGui::SameLine(); ImGui::Text("[%d]", i); }
 
@@ -7291,7 +7291,7 @@ static void ShowExampleAppSimpleOverlay(bool* p_open)
         ImGui::SetNextWindowPos(window_pos, ImGuiCond_Always, window_pos_pivot);
         window_flags |= ImGuiWindowFlags_NoMove;
     }
-    ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
+    ImGui::SetNextWindowBgAlpha(0.35f); // Transparent mainBackground
     if (ImGui::Begin("Example: Simple overlay", p_open, window_flags))
     {
         IMGUI_DEMO_MARKER("Examples/Simple Overlay");
@@ -7537,7 +7537,7 @@ static void ShowExampleAppCustomRendering(bool* p_open)
             // Here we demonstrate that this can be replaced by simple offsetting + custom drawing + PushClipRect/PopClipRect() calls.
             // To use a child window instead we could use, e.g:
             //      ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));      // Disable padding
-            //      ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(50, 50, 50, 255));  // Set a background color
+            //      ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(50, 50, 50, 255));  // Set a mainBackground color
             //      ImGui::BeginChild("canvas", ImVec2(0.0f, 0.0f), true, ImGuiWindowFlags_NoMove);
             //      ImGui::PopStyleColor();
             //      ImGui::PopStyleVar();
@@ -7551,7 +7551,7 @@ static void ShowExampleAppCustomRendering(bool* p_open)
             if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
             ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
 
-            // Draw border and background color
+            // Draw border and mainBackground color
             ImGuiIO& io = ImGui::GetIO();
             ImDrawList* draw_list = ImGui::GetWindowDrawList();
             draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(50, 50, 50, 255));

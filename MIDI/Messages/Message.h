@@ -7,7 +7,7 @@
 
 #include <libremidi/message.hpp>
 #include <string>
-#include "../../Theory/Note.h"
+#include "../../Theory/Note/Note.h"
 
 namespace MIDI
 {
@@ -20,6 +20,7 @@ namespace MIDI
     public:
         MessageType type;
         std::string typeName;
+        int tick;
 
         Message(const libremidi::message& message, const std::string& typeName);
         Message(MessageType type, const std::string& typeName);

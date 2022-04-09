@@ -1071,7 +1071,7 @@ struct ImGuiNextWindowData
     ImRect                      SizeConstraintRect;
     ImGuiSizeCallback           SizeCallback;
     void*                       SizeCallbackUserData;
-    float                       BgAlphaVal;             // Override background alpha
+    float                       BgAlphaVal;             // Override mainBackground alpha
     ImVec2                      MenuBarOffsetMinVal;    // (Always on) This is not exposed publicly, so we don't clear it and it doesn't have a corresponding flag (could we? for consistency?)
 
     ImGuiNextWindowData()       { memset(this, 0, sizeof(*this)); }
@@ -1419,8 +1419,8 @@ struct ImGuiOldColumns
 // Every instance of ImGuiViewport is in fact a ImGuiViewportP.
 struct ImGuiViewportP : public ImGuiViewport
 {
-    int                 DrawListsLastFrame[2];  // Last frame number the background (0) and foreground (1) draw lists were used
-    ImDrawList*         DrawLists[2];           // Convenience background (0) and foreground (1) draw lists. We use them to draw software mouser cursor when io.MouseDrawCursor is set and to draw most debug overlays.
+    int                 DrawListsLastFrame[2];  // Last frame number the mainBackground (0) and foreground (1) draw lists were used
+    ImDrawList*         DrawLists[2];           // Convenience mainBackground (0) and foreground (1) draw lists. We use them to draw software mouser cursor when io.MouseDrawCursor is set and to draw most debug overlays.
     ImDrawData          DrawDataP;
     ImDrawDataBuilder   DrawDataBuilder;
 
@@ -1699,7 +1699,7 @@ struct ImGuiContext
     bool                    NavWindowingToggleLayer;
 
     // Render
-    float                   DimBgRatio;                         // 0.0..1.0 animation when fading in a dimming background (for modal window and CTRL+TAB list)
+    float                   DimBgRatio;                         // 0.0..1.0 animation when fading in a dimming mainBackground (for modal window and CTRL+TAB list)
     ImGuiMouseCursor        MouseCursor;
 
     // Drag and Drop
@@ -2299,7 +2299,7 @@ struct IMGUI_API ImGuiTable
     ImGuiTableTempData*         TempData;                   // Transient data while table is active. Point within g.CurrentTableStack[]
     ImSpan<ImGuiTableColumn>    Columns;                    // Point within RawData[]
     ImSpan<ImGuiTableColumnIdx> DisplayOrderToIndex;        // Point within RawData[]. Store display order of columns (when not reordered, the values are 0...Count-1)
-    ImSpan<ImGuiTableCellData>  RowCellData;                // Point within RawData[]. Store cells background requests for current row.
+    ImSpan<ImGuiTableCellData>  RowCellData;                // Point within RawData[]. Store cells mainBackground requests for current row.
     ImU64                       EnabledMaskByDisplayOrder;  // Column DisplayOrder -> IsEnabled map
     ImU64                       EnabledMaskByIndex;         // Column Index -> IsEnabled map (== not hidden by user/api) in a format adequate for iterating column without touching cold data
     ImU64                       VisibleMaskByIndex;         // Column Index -> IsVisibleX|IsVisibleY map (== not hidden by user/api && not hidden by scrolling/cliprect)
@@ -2319,7 +2319,7 @@ struct IMGUI_API ImGuiTable
     float                       RowIndentOffsetX;
     ImGuiTableRowFlags          RowFlags : 16;              // Current row flags, see ImGuiTableRowFlags_
     ImGuiTableRowFlags          LastRowFlags : 16;
-    int                         RowBgColorCounter;          // Counter for alternating background colors (can be fast-forwarded by e.g clipper), not same as CurrentRow because header rows typically don't increase this.
+    int                         RowBgColorCounter;          // Counter for alternating mainBackground colors (can be fast-forwarded by e.g clipper), not same as CurrentRow because header rows typically don't increase this.
     ImU32                       RowBgColor[2];              // Background color override for current row.
     ImU32                       BorderColorStrong;
     ImU32                       BorderColorLight;
@@ -2344,7 +2344,7 @@ struct IMGUI_API ImGuiTable
     ImRect                      InnerRect;                  // InnerRect but without decoration. As with OuterRect, for non-scrolling tables, InnerRect.Max.y is
     ImRect                      WorkRect;
     ImRect                      InnerClipRect;
-    ImRect                      BgClipRect;                 // We use this to cpu-clip cell background color fill, evolve during the frame as we cross frozen rows boundaries
+    ImRect                      BgClipRect;                 // We use this to cpu-clip cell mainBackground color fill, evolve during the frame as we cross frozen rows boundaries
     ImRect                      Bg0ClipRectForDrawCmd;      // Actual ImDrawCmd clip rect for BG0/1 channel. This tends to be == OuterWindow->ClipRect at BeginTable() because output in BG0/BG1 is cpu-clipped
     ImRect                      Bg2ClipRectForDrawCmd;      // Actual ImDrawCmd clip rect for BG2 channel. This tends to be a correct, tight-fit, because output to BG2 are done by widgets relying on regular ClipRect.
     ImRect                      HostClipRect;               // This is used to check if we can eventually merge our columns draw calls into the current draw call of the current window.
@@ -2505,7 +2505,7 @@ namespace ImGui
     IMGUI_API void          SetCurrentFont(ImFont* font);
     inline ImFont*          GetDefaultFont() { ImGuiContext& g = *GImGui; return g.IO.FontDefault ? g.IO.FontDefault : g.IO.Fonts->Fonts[0]; }
     inline ImDrawList*      GetForegroundDrawList(ImGuiWindow* window) { IM_UNUSED(window); return GetForegroundDrawList(); } // This seemingly unnecessary wrapper simplifies compatibility between the 'master' and 'docking' branches.
-    IMGUI_API ImDrawList*   GetBackgroundDrawList(ImGuiViewport* viewport);                     // get background draw list for the given viewport. this draw list will be the first rendering one. Useful to quickly draw shapes/text behind dear imgui contents.
+    IMGUI_API ImDrawList*   GetBackgroundDrawList(ImGuiViewport* viewport);                     // get mainBackground draw list for the given viewport. this draw list will be the first rendering one. Useful to quickly draw shapes/text behind dear imgui contents.
     IMGUI_API ImDrawList*   GetForegroundDrawList(ImGuiViewport* viewport);                     // get foreground draw list for the given viewport. this draw list will be the last rendered one. Useful to quickly draw shapes/text over dear imgui contents.
 
     // Init

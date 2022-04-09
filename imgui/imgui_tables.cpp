@@ -1090,7 +1090,7 @@ void ImGui::TableUpdateLayout(ImGuiTable* table)
     table->BorderX1 = table->InnerClipRect.Min.x;// +((table->Flags & ImGuiTableFlags_BordersOuter) ? 0.0f : -1.0f);
     table->BorderX2 = table->InnerClipRect.Max.x;// +((table->Flags & ImGuiTableFlags_BordersOuter) ? 0.0f : +1.0f);
 
-    // [Part 9] Allocate draw channels and setup background cliprect
+    // [Part 9] Allocate draw channels and setup mainBackground cliprect
     TableSetupDrawChannels(table);
 
     // [Part 10] Hit testing on borders
@@ -1614,7 +1614,7 @@ void ImGui::TableSetBgColor(ImGuiTableBgTarget target, ImU32 color, int column_n
     if (color == IM_COL32_DISABLE)
         color = 0;
 
-    // We cannot draw neither the cell or row background immediately as we don't know the row height at this point in time.
+    // We cannot draw neither the cell or row mainBackground immediately as we don't know the row height at this point in time.
     switch (target)
     {
     case ImGuiTableBgTarget_CellBg:
@@ -1743,7 +1743,7 @@ void ImGui::TableEndRow(ImGuiTable* table)
     // likely that the next call to TableBeginCell() will reposition the cursor to take account of vertical padding.
     window->DC.CursorPos.y = table->RowPosY2;
 
-    // Row background fill
+    // Row mainBackground fill
     const float bg_y1 = table->RowPosY1;
     const float bg_y2 = table->RowPosY2;
     const bool unfreeze_rows_actual = (table->CurrentRow + 1 == table->FreezeRowsCount);
@@ -1754,7 +1754,7 @@ void ImGui::TableEndRow(ImGuiTable* table)
     const bool is_visible = (bg_y2 >= table->InnerClipRect.Min.y && bg_y1 <= table->InnerClipRect.Max.y);
     if (is_visible)
     {
-        // Decide of background color for the row
+        // Decide of mainBackground color for the row
         ImU32 bg_col0 = 0;
         ImU32 bg_col1 = 0;
         if (table->RowBgColor[0] != IM_COL32_DISABLE)
@@ -1782,7 +1782,7 @@ void ImGui::TableEndRow(ImGuiTable* table)
             table->DrawSplitter->SetCurrentChannel(window->DrawList, TABLE_DRAW_CHANNEL_BG0);
         }
 
-        // Draw row background
+        // Draw row mainBackground
         // We soft/cpu clip this so all backgrounds and borders can share the same clipping rectangle
         if (bg_col0 || bg_col1)
         {
@@ -1794,7 +1794,7 @@ void ImGui::TableEndRow(ImGuiTable* table)
                 window->DrawList->AddRectFilled(row_rect.Min, row_rect.Max, bg_col1);
         }
 
-        // Draw cell background color
+        // Draw cell mainBackground color
         if (draw_cell_bg_color)
         {
             ImGuiTableCellData* cell_data_end = &table->RowCellData[table->RowCellDataCurrent];
@@ -2214,7 +2214,7 @@ void ImGui::TableUpdateColumnsWeightFromWidth(ImGuiTable* table)
 // - TableDrawBorders() [Internal]
 //-------------------------------------------------------------------------
 
-// Bg2 is used by Selectable (and possibly other widgets) to render to the background.
+// Bg2 is used by Selectable (and possibly other widgets) to render to the mainBackground.
 // Unlike our Bg0/1 channel which we uses for RowBg/CellBg/Borders and where we guarantee all shapes to be CPU-clipped, the Bg2 channel being widgets-facing will rely on regular ClipRect.
 void ImGui::TablePushBackgroundChannel()
 {
@@ -2248,8 +2248,8 @@ void ImGui::TablePopBackgroundChannel()
 // - After crossing FreezeRowsCount, all columns see their current draw channel changed to a second set of channels.
 // - We only use the dummy draw channel so we can push a null clipping rectangle into it without affecting other
 //   channels, while simplifying per-row/per-cell overhead. It will be empty and discarded when merged.
-// - We allocate 1 or 2 background draw channels. This is because we know TablePushBackgroundChannel() is only used for
-//   horizontal spanning. If we allowed vertical spanning we'd need one background draw channel per merge group (1-4).
+// - We allocate 1 or 2 mainBackground draw channels. This is because we know TablePushBackgroundChannel() is only used for
+//   horizontal spanning. If we allowed vertical spanning we'd need one mainBackground draw channel per merge group (1-4).
 // Draw channel allocation (before merging):
 // - NoClip                       --> 2+D+1 channels: bg0/1 + bg2 + foreground (same clip rect == always 1 draw call)
 // - Clip                         --> 2+D+N channels
@@ -3771,7 +3771,7 @@ void ImGui::PushColumnClipRect(int column_index)
     PushClipRect(column->ClipRect.Min, column->ClipRect.Max, false);
 }
 
-// Get into the columns background draw command (which is generally the same draw command as before we called BeginColumns)
+// Get into the columns mainBackground draw command (which is generally the same draw command as before we called BeginColumns)
 void ImGui::PushColumnsBackground()
 {
     ImGuiWindow* window = GetCurrentWindowRead();

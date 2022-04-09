@@ -10,11 +10,11 @@ CMakeFiles/MIDIAssistant.dir/Application/Application.cpp.o
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
- /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
@@ -32,9 +32,12 @@ CMakeFiles/MIDIAssistant.dir/Application/Track.cpp.o
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
@@ -95,6 +98,7 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/InputPort.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/OutputPort.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
@@ -115,9 +119,11 @@ CMakeFiles/MIDIAssistant.dir/Director/Quantizer.cpp.o
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.cpp
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/AudioPlayer.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
@@ -155,9 +161,11 @@ CMakeFiles/MIDIAssistant.dir/MIDI/IO/IOManager.cpp.o
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/InputPort.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/OutputPort.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
@@ -229,6 +237,7 @@ CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Messages/NoteOn.cpp.o
  ../include/libremidi/message.hpp
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+ /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.cpp
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
  /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h

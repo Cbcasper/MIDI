@@ -871,59 +871,113 @@ Sequencer/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.s
 .PHONY : Sequencer/Timer.cpp.s
 
-Theory/Note.o: Theory/Note.cpp.o
+Theory/Key/Key.o: Theory/Key/Key.cpp.o
 
-.PHONY : Theory/Note.o
-
-# target to build an object file
-Theory/Note.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.o
-.PHONY : Theory/Note.cpp.o
-
-Theory/Note.i: Theory/Note.cpp.i
-
-.PHONY : Theory/Note.i
-
-# target to preprocess a source file
-Theory/Note.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.i
-.PHONY : Theory/Note.cpp.i
-
-Theory/Note.s: Theory/Note.cpp.s
-
-.PHONY : Theory/Note.s
-
-# target to generate assembly for a file
-Theory/Note.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note.cpp.s
-.PHONY : Theory/Note.cpp.s
-
-Theory/NoteFilter.o: Theory/NoteFilter.cpp.o
-
-.PHONY : Theory/NoteFilter.o
+.PHONY : Theory/Key/Key.o
 
 # target to build an object file
-Theory/NoteFilter.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.o
-.PHONY : Theory/NoteFilter.cpp.o
+Theory/Key/Key.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.o
+.PHONY : Theory/Key/Key.cpp.o
 
-Theory/NoteFilter.i: Theory/NoteFilter.cpp.i
+Theory/Key/Key.i: Theory/Key/Key.cpp.i
 
-.PHONY : Theory/NoteFilter.i
+.PHONY : Theory/Key/Key.i
 
 # target to preprocess a source file
-Theory/NoteFilter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.i
-.PHONY : Theory/NoteFilter.cpp.i
+Theory/Key/Key.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.i
+.PHONY : Theory/Key/Key.cpp.i
 
-Theory/NoteFilter.s: Theory/NoteFilter.cpp.s
+Theory/Key/Key.s: Theory/Key/Key.cpp.s
 
-.PHONY : Theory/NoteFilter.s
+.PHONY : Theory/Key/Key.s
 
 # target to generate assembly for a file
-Theory/NoteFilter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/NoteFilter.cpp.s
-.PHONY : Theory/NoteFilter.cpp.s
+Theory/Key/Key.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.s
+.PHONY : Theory/Key/Key.cpp.s
+
+Theory/Note/Note.o: Theory/Note/Note.cpp.o
+
+.PHONY : Theory/Note/Note.o
+
+# target to build an object file
+Theory/Note/Note.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.o
+.PHONY : Theory/Note/Note.cpp.o
+
+Theory/Note/Note.i: Theory/Note/Note.cpp.i
+
+.PHONY : Theory/Note/Note.i
+
+# target to preprocess a source file
+Theory/Note/Note.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.i
+.PHONY : Theory/Note/Note.cpp.i
+
+Theory/Note/Note.s: Theory/Note/Note.cpp.s
+
+.PHONY : Theory/Note/Note.s
+
+# target to generate assembly for a file
+Theory/Note/Note.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/Note.cpp.s
+.PHONY : Theory/Note/Note.cpp.s
+
+Theory/Note/NoteFilter.o: Theory/Note/NoteFilter.cpp.o
+
+.PHONY : Theory/Note/NoteFilter.o
+
+# target to build an object file
+Theory/Note/NoteFilter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o
+.PHONY : Theory/Note/NoteFilter.cpp.o
+
+Theory/Note/NoteFilter.i: Theory/Note/NoteFilter.cpp.i
+
+.PHONY : Theory/Note/NoteFilter.i
+
+# target to preprocess a source file
+Theory/Note/NoteFilter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.i
+.PHONY : Theory/Note/NoteFilter.cpp.i
+
+Theory/Note/NoteFilter.s: Theory/Note/NoteFilter.cpp.s
+
+.PHONY : Theory/Note/NoteFilter.s
+
+# target to generate assembly for a file
+Theory/Note/NoteFilter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.s
+.PHONY : Theory/Note/NoteFilter.cpp.s
+
+Theory/Note/RootNote.o: Theory/Note/RootNote.cpp.o
+
+.PHONY : Theory/Note/RootNote.o
+
+# target to build an object file
+Theory/Note/RootNote.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o
+.PHONY : Theory/Note/RootNote.cpp.o
+
+Theory/Note/RootNote.i: Theory/Note/RootNote.cpp.i
+
+.PHONY : Theory/Note/RootNote.i
+
+# target to preprocess a source file
+Theory/Note/RootNote.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.i
+.PHONY : Theory/Note/RootNote.cpp.i
+
+Theory/Note/RootNote.s: Theory/Note/RootNote.cpp.s
+
+.PHONY : Theory/Note/RootNote.s
+
+# target to generate assembly for a file
+Theory/Note/RootNote.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.s
+.PHONY : Theory/Note/RootNote.cpp.s
 
 Theory/Theory.o: Theory/Theory.cpp.o
 
@@ -1393,12 +1447,18 @@ help:
 	@echo "... Sequencer/Timer.o"
 	@echo "... Sequencer/Timer.i"
 	@echo "... Sequencer/Timer.s"
-	@echo "... Theory/Note.o"
-	@echo "... Theory/Note.i"
-	@echo "... Theory/Note.s"
-	@echo "... Theory/NoteFilter.o"
-	@echo "... Theory/NoteFilter.i"
-	@echo "... Theory/NoteFilter.s"
+	@echo "... Theory/Key/Key.o"
+	@echo "... Theory/Key/Key.i"
+	@echo "... Theory/Key/Key.s"
+	@echo "... Theory/Note/Note.o"
+	@echo "... Theory/Note/Note.i"
+	@echo "... Theory/Note/Note.s"
+	@echo "... Theory/Note/NoteFilter.o"
+	@echo "... Theory/Note/NoteFilter.i"
+	@echo "... Theory/Note/NoteFilter.s"
+	@echo "... Theory/Note/RootNote.o"
+	@echo "... Theory/Note/RootNote.i"
+	@echo "... Theory/Note/RootNote.s"
 	@echo "... Theory/Theory.o"
 	@echo "... Theory/Theory.i"
 	@echo "... Theory/Theory.s"

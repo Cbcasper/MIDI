@@ -1815,7 +1815,7 @@ void ImDrawListSplitter::SetCurrentChannel(ImDrawList* draw_list, int idx)
 // [SECTION] ImDrawData
 //-----------------------------------------------------------------------------
 
-// For backward compatibility: convert all buffers from indexed to de-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!
+// For backward compatibility: correct all buffers from indexed to de-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!
 void ImDrawData::DeIndexAllBuffers()
 {
     ImVector<ImDrawVert> new_vtx_buffer;

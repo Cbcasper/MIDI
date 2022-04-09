@@ -7,7 +7,7 @@
 
 #include <memory>
 
-#include "Note.h"
+#include "Note/Note.h"
 
 namespace Music
 {

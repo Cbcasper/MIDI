@@ -1720,7 +1720,7 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo *info, int glyph_index, s
          vertices[off+i].y = (stbtt_int16) y;
       }
 
-      // now convert them to our format
+      // now correct them to our format
       num_vertices=0;
       sx = sy = cx = cy = scx = scy = 0;
       for (i=0; i < n; ++i) {
@@ -3662,7 +3662,7 @@ static int stbtt_BakeFontBitmap_internal(unsigned char *data, int offset,  // fo
    f.userdata = NULL;
    if (!stbtt_InitFont(&f, data, offset))
       return -1;
-   STBTT_memset(pixels, 0, pw*ph); // background of 0 around pixels
+   STBTT_memset(pixels, 0, pw*ph); // mainBackground of 0 around pixels
    x=y=1;
    bottom_y = 1;
 
@@ -3821,7 +3821,7 @@ STBTT_DEF int stbtt_PackBegin(stbtt_pack_context *spc, unsigned char *pixels, in
    stbrp_init_target(context, pw-padding, ph-padding, nodes, num_nodes);
 
    if (pixels)
-      STBTT_memset(pixels, 0, pw*ph); // background of 0 around pixels
+      STBTT_memset(pixels, 0, pw*ph); // mainBackground of 0 around pixels
 
    return 1;
 }
@@ -4609,7 +4609,7 @@ static stbtt_int32 stbtt__CompareUTF8toUTF16_bigendian_prefix(stbtt_uint8 *s1, s
 {
    stbtt_int32 i=0;
 
-   // convert utf16 to utf8 and compare the results while converting
+   // correct utf16 to utf8 and compare the results while converting
    while (len2) {
       stbtt_uint16 ch = s2[0]*256 + s2[1];
       if (ch < 0x80) {

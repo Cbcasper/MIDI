@@ -28,11 +28,20 @@ namespace UI
     {
         previousLastMessage = getLastMessage();
         measureWidth = 60;
-        scroll = 0;
+        headerSize = 18;
+        scroll = headerSize / 2;
         keyWidth = 10;
         keyLength = 50;
         pianoOutput = std::make_shared<MIDI::Instrument>("KOMPLETE KONTROL A25", 1);
-        background = ImColor(50, 50, 50);
+
+        mainBackground = ImColor(50, 50, 50);
+        darkBackground = ImColor(35, 35, 35);
+
+        divisionColor = ImColor(255, 255, 255, 150);
+        playingColor = ImColor(255, 0, 0);
+        playingColorTransparent = ImColor(255, 0, 0, 50);
+        recordingColor = ImColor(255, 255, 255);
+        recordingColorTransparent = ImColor(255, 255, 255, 50);
     }
 
     void UserInterface::start()
@@ -127,9 +136,9 @@ namespace UI
 
             computeMeasureLength();
             renderControl(controlPosition, controlSize);
-            drawList->AddRectFilled(tracklistPosition, tracklistPosition + tracklistSize, background);
+            drawList->AddRectFilled(tracklistPosition, tracklistPosition + tracklistSize, mainBackground);
             renderSequencer(sequencerPosition, sequencerSize);
-            drawList->AddRectFilled(harmonyPosition, harmonyPosition + harmonyModelSize, background);
+            drawList->AddRectFilled(harmonyPosition, harmonyPosition + harmonyModelSize, mainBackground);
 
             drawList->AddRect(canvasPosition, canvasPosition + canvasSize, borderColor);
             drawList->AddLine(controlPosition + ImVec2(0, controlSize.y), controlPosition + controlSize, borderColor);
@@ -143,7 +152,7 @@ namespace UI
     void UserInterface::renderControl(const ImVec2& controlPosition, const ImVec2& controlSize)
     {
         ImDrawList* drawList = ImGui::GetWindowDrawList();
-        drawList->AddRectFilled(controlPosition, controlPosition + controlSize, background);
+        drawList->AddRectFilled(controlPosition, controlPosition + controlSize, mainBackground);
 
         State::SongPointer song = applicationState->song;
         ImGui::SliderInt("Number of beats", &song->numberOfBeats, 1, 10);
@@ -159,12 +168,13 @@ namespace UI
             ImGui::EndCombo();
         }
         int currentTime = applicationState->currentTime + 1;
-        float timeInMeasures = currentTime / measureLength;
+        float timeInMeasures = static_cast<float>(currentTime) / measureLength;
         int currentMeasures = static_cast<int>(floor(timeInMeasures));
         int currentBeats = static_cast<int>(floor(timeInMeasures * song->numberOfBeats));
         int currentDivisions = static_cast<int>(floor(timeInMeasures * song->timeDivision * song->numberOfBeats));
         ImGui::Text("%d, %d, %d, %d", currentMeasures + 1, currentBeats % song->numberOfBeats + 1,
-                                           currentDivisions % static_cast<int>(divisionsPerBeat) + 1, currentTime % applicationState->ticksPerDivision + 1);
+                                           currentDivisions % static_cast<int>(divisionsPerBeat) + 1,
+                                           currentTime % applicationState->ticksPerDivision + 1);
     }
 
     void UserInterface::computeMeasureLength()
@@ -173,75 +183,120 @@ namespace UI
         measureLength = divisionsPerBeat * static_cast<float>(applicationState->song->numberOfBeats * applicationState->ticksPerDivision);
     }
 
-    float UserInterface::computePosition(float ticks)
+    float UserInterface::computePosition(int ticks)
     {
         return scroll + static_cast<float>(ticks) / measureLength * measureWidth;
+    }
+
+    int UserInterface::computeTickDelta(float positionDelta)
+    {
+        return static_cast<int>(floor(positionDelta / measureWidth * measureLength));
     }
 
     void UserInterface::renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize)
     {
         ImDrawList* drawList = ImGui::GetWindowDrawList();
-        float headerHeight = 18;
-        ImVec2 mainAreaPosition = sequencerPosition + ImVec2(0, headerHeight);
-        ImVec2 mainAreaSize = sequencerSize - ImVec2(0, headerHeight);
+        mainAreaPosition = sequencerPosition + ImVec2(0, headerSize);
+        mainAreaSize = sequencerSize - ImVec2(0, headerSize);
 
-        drawList->AddRectFilled(sequencerPosition, sequencerPosition + ImVec2(sequencerSize.x, headerHeight),
-                                ImColor(35, 35, 35));
-        drawList->AddRectFilled(mainAreaPosition, mainAreaPosition + sequencerSize - ImVec2(0, headerHeight),
-                                background);
+        totalWidth = static_cast<float>(applicationState->song->measures) * measureWidth;
+
+        drawList->AddRectFilled(sequencerPosition, sequencerPosition + sequencerSize, darkBackground);
+        drawList->AddRectFilled(mainAreaPosition + ImVec2(scroll, 0),
+                                mainAreaPosition + ImVec2(scroll + totalWidth, sequencerSize.y - headerSize),
+                                mainBackground);
 
         ImGui::PushClipRect(sequencerPosition, sequencerPosition + sequencerSize, false);
 
+        renderGrid(drawList);
+        renderNotes(drawList);
+        float playheadLocation = renderPlayhead(drawList, sequencerPosition);
+        sequencerEventButtons(playheadLocation, sequencerPosition, sequencerSize);
+        sequencerKeyEvents();
+
+        ImGui::PopClipRect();
+    }
+
+
+    void UserInterface::renderGrid(ImDrawList* drawList)
+    {
         State::SongPointer song = applicationState->song;
 
-        float totalSize = song->measures * measureWidth - mainAreaSize.x;
-        ImColor divisionColor = ImColor(255, 255, 255, 150);
+        drawList->AddLine(mainAreaPosition + ImVec2(scroll, 0),
+                          mainAreaPosition + ImVec2(scroll + totalWidth, 0), divisionColor);
         for (int i = 0; i < song->measures; ++i)
         {
-            float beatOffset = scroll + static_cast<float>(i) * measureWidth;
-            drawList->AddLine(mainAreaPosition + ImVec2(beatOffset, 0),
-                              mainAreaPosition + ImVec2(beatOffset, -headerHeight),
+            float measureOffset = scroll + static_cast<float>(i) * measureWidth;
+            drawList->AddLine(mainAreaPosition + ImVec2(measureOffset, 0),
+                              mainAreaPosition + ImVec2(measureOffset, -headerSize),
                               divisionColor);
-            for (int j = 0; j < song->numberOfBeats - 1; ++j)
+            for (int j = 1; j < song->numberOfBeats; ++j)
             {
-                float divisionOffset = beatOffset + (j + 1) * measureWidth / song->numberOfBeats;
-                drawList->AddLine(mainAreaPosition + ImVec2(divisionOffset, 0),
-                                  mainAreaPosition + ImVec2(divisionOffset, -headerHeight / 2),
+                float beatOffset = measureOffset + j * measureWidth / static_cast<float>(song->numberOfBeats);
+                drawList->AddLine(mainAreaPosition + ImVec2(beatOffset, 0),
+                                  mainAreaPosition + ImVec2(beatOffset, -headerSize / 2),
                                   divisionColor);
             }
-
-            drawList->AddLine(mainAreaPosition + ImVec2(scroll + i * measureWidth, 0),
-                              mainAreaPosition + ImVec2(scroll + i * measureWidth, mainAreaSize.y),
+            drawList->AddLine(mainAreaPosition + ImVec2(measureOffset, 0),
+                              mainAreaPosition + ImVec2(measureOffset, mainAreaSize.y),
                               divisionColor);
         }
+    }
 
-        drawList->AddLine(mainAreaPosition, mainAreaPosition + ImVec2(totalSize, 0), divisionColor);
+    void UserInterface::renderNotes(ImDrawList* drawList)
+    {
+        for (const State::TrackPointer& track: applicationState->tracks)
+        {
+            std::unique_lock<std::mutex> lock(track->mutex);
+            for (const auto& [tick, messages]: track->midiMessages)
+                for (const MIDI::MessagePointer& message: messages)
+                    if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
+                    {
+                        int end = noteOn->noteEnd ? noteOn->noteEnd->tick : applicationState->currentTime + 1;
+                        float flippedValue = static_cast<float>(128 - noteOn->note->value);
+                        drawList->AddRectFilled(mainAreaPosition + ImVec2(computePosition(tick), mainAreaSize.y / 128 * flippedValue),
+                                                mainAreaPosition + ImVec2(computePosition(end), mainAreaSize.y / 128 * (flippedValue - 1)),
+                                                ImColor(0, 0, 255));
+                    }
+        }
+    }
 
-        ImColor playheadColor = ImColor(255, 0, 0);
-        float playheadLocation = computePosition(static_cast<float>(applicationState->currentTime + 1));
+    float UserInterface::renderPlayhead(ImDrawList* drawList, const ImVec2& sequencerPosition)
+    {
+        ImColor playheadColor = applicationState->recording ? playingColor : recordingColor;
+        ImColor playheadFillColor = applicationState->recording ? playingColorTransparent : recordingColorTransparent;
+        float playheadLocation = computePosition(applicationState->currentTime + 1);
         drawList->AddLine(mainAreaPosition + ImVec2(playheadLocation, 0),
                           mainAreaPosition + ImVec2(playheadLocation, mainAreaSize.y),
                           playheadColor);
 
-        for (const State::TrackPointer& track: applicationState->tracks)
+        drawList->AddRectFilled(sequencerPosition + ImVec2(playheadLocation - headerSize / 2, 0),
+                                sequencerPosition + ImVec2(playheadLocation + headerSize / 2, headerSize),
+                                playheadFillColor, headerSize / 10);
+        drawList->AddRect(sequencerPosition + ImVec2(playheadLocation - headerSize / 2, 0),
+                          sequencerPosition + ImVec2(playheadLocation + headerSize / 2, headerSize),
+                          playheadColor, headerSize / 10);
+        return playheadLocation;
+    }
+
+    void UserInterface::sequencerEventButtons(float playheadLocation, const ImVec2& sequencerPosition, const ImVec2& sequencerSize)
+    {
+        ImGuiButtonFlags buttonFlags = ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight | ImGuiButtonFlags_AllowItemOverlap;
+        ImGui::SetCursorScreenPos(sequencerPosition + ImVec2(playheadLocation - headerSize / 2, 0));
+        ImGui::InvisibleButton("playhead", ImVec2(headerSize, headerSize), buttonFlags);
+        bool playheadActive = ImGui::IsItemActive();
+
+        float positiveScroll = Utilities::clamp(scroll, 0, headerSize / 2);
+        ImGui::SetCursorScreenPos(sequencerPosition + ImVec2(positiveScroll, 0));
+        ImGui::InvisibleButton("header", ImVec2(sequencerSize.x - positiveScroll, headerSize), buttonFlags);
+        bool headerActive = ImGui::IsItemActive();
+        if (ImGui::IsItemActivated())
+            applicationState->currentTime = computeTickDelta(-scroll + ImGui::GetMousePos().x - sequencerPosition.x);
+        if (playheadActive || headerActive)
         {
-            std::map<MIDI::MessagePointer, MIDI::NoteOnPointer> noteBeginnings;
-            for (const auto& [tick, messages]: track->midiMessages)
-                for (const MIDI::MessagePointer& message: messages)
-                    if (applicationState->displayMessageFilter(message))
-                    {
-                        MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message);
-                        if (noteOn)
-                            noteBeginnings[noteOn->noteEnd] = noteOn;
-                        else if (noteBeginnings[message])
-                        {
-                            noteOn = noteBeginnings[message];
-                            int flippedValue = 128 - noteOn->note->value;
-                            drawList->AddRectFilled(mainAreaPosition + ImVec2(computePosition(tick), mainAreaSize.y / 128 * flippedValue),
-                                                    mainAreaPosition + ImVec2(computePosition(tick), mainAreaSize.y / 128 * (flippedValue - 1)),
-                                                    ImColor(0, 0, 255));
-                        }
-                    }
+            int tickDelta = computeTickDelta(ImGui::GetMouseDragDelta().x);
+            applicationState->currentTime = std::max(applicationState->currentTime + tickDelta, -1);
+            ImGui::ResetMouseDragDelta();
         }
 
         ImGui::SetCursorScreenPos(sequencerPosition);
@@ -249,19 +304,26 @@ namespace UI
         if (ImGui::IsItemHovered())
         {
             float newScroll = scroll + ImGui::GetIO().MouseWheelH;
-            scroll = Utilities::clamp(newScroll, -totalSize, 0);
+            scroll = Utilities::clamp(newScroll, -totalWidth + mainAreaSize.x, headerSize / 2);
         }
+    }
+
+    void UserInterface::sequencerKeyEvents()
+    {
         if (ImGui::IsKeyDown(ImGuiKey_ModSuper) && ImGui::IsKeyPressed(ImGuiKey_RightArrow)) measureWidth++;
         if (ImGui::IsKeyDown(ImGuiKey_ModSuper) && ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) measureWidth--;
         if (ImGui::IsKeyPressed(ImGuiKey_Space))
         {
-            if (sequencer->running)
-                sequencer->stop();
-            else
-                sequencer->start();
+            applicationState->stopRecording();
+            if (sequencer->running)     sequencer->stop();
+            else                        sequencer->start();
+        }
+        if (ImGui::IsKeyPressed(ImGuiKey_R) && !sequencer->running)
+        {
+            applicationState->recording = true;
+            sequencer->start();
         }
         if (ImGui::IsKeyPressed(ImGuiKey_Enter)) sequencer->reset();
-        ImGui::PopClipRect();
     }
 
     void UserInterface::renderPiano()

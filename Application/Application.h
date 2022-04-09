@@ -35,6 +35,8 @@ namespace State
 
         SongPointer song;
 
+        bool recording;
+
         int currentTime = -1;
         int ticksPerDivision = 240;
 
@@ -42,6 +44,8 @@ namespace State
 
         void inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void clearMessages();
+
+        void stopRecording();
     };
 }
 

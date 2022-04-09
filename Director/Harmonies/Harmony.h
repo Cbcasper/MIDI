@@ -5,7 +5,7 @@
 #ifndef MIDIASSISTANT_HARMONY_H
 #define MIDIASSISTANT_HARMONY_H
 
-#include "../../Theory/NoteFilter.h"
+#include "../../Theory/Note/NoteFilter.h"
 #include "../../MIDI/Messages/Messages/NoteMessage.h"
 #include "../../MIDI/AudioPlayer.h"
 #include "../../MIDI/Messages/Instrument.h"

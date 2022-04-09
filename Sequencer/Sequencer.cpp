@@ -53,8 +53,12 @@ namespace System
         tracksCV.wait(lock, [&]{ return status; });
         while (running)
         {
+            track->mutex.lock();
             for (const MIDI::MessagePointer& message: track->midiMessages[applicationState->currentTime])
                 track->playMIDIMessage(std::make_pair(message, track->input));
+            if (track->midiMessages[applicationState->currentTime].empty())
+                track->midiMessages.erase(applicationState->currentTime);
+            track->mutex.unlock();
 
             status = false;
             tracksCV.wait(lock, [&]{ return status; });

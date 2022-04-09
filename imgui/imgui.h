@@ -254,7 +254,7 @@ struct ImVec2
     float  operator[] (size_t idx) const    { IM_ASSERT(idx <= 1); return (&x)[idx]; }    // We very rarely use this [] operator, the assert overhead is fine.
     float& operator[] (size_t idx)          { IM_ASSERT(idx <= 1); return (&x)[idx]; }    // We very rarely use this [] operator, the assert overhead is fine.
 #ifdef IM_VEC2_CLASS_EXTRA
-    IM_VEC2_CLASS_EXTRA     // Define additional constructors and implicit cast operators in imconfig.h to convert back and forth between your math types and ImVec2.
+    IM_VEC2_CLASS_EXTRA     // Define additional constructors and implicit cast operators in imconfig.h to correct back and forth between your math types and ImVec2.
 #endif
 };
 
@@ -265,7 +265,7 @@ struct ImVec4
     constexpr ImVec4()                                        : x(0.0f), y(0.0f), z(0.0f), w(0.0f) { }
     constexpr ImVec4(float _x, float _y, float _z, float _w)  : x(_x), y(_y), z(_z), w(_w) { }
 #ifdef IM_VEC4_CLASS_EXTRA
-    IM_VEC4_CLASS_EXTRA     // Define additional constructors and implicit cast operators in imconfig.h to convert back and forth between your math types and ImVec4.
+    IM_VEC4_CLASS_EXTRA     // Define additional constructors and implicit cast operators in imconfig.h to correct back and forth between your math types and ImVec4.
 #endif
 };
 IM_MSVC_RUNTIME_CHECKS_RESTORE
@@ -357,7 +357,7 @@ namespace ImGui
     IMGUI_API void          SetNextWindowContentSize(const ImVec2& size);                               // set next window content size (~ scrollable client area, which enforce the range of scrollbars). Not including window decorations (title bar, menu bar, etc.) nor WindowPadding. set an axis to 0.0f to leave it automatic. call before Begin()
     IMGUI_API void          SetNextWindowCollapsed(bool collapsed, ImGuiCond cond = 0);                 // set next window collapsed state. call before Begin()
     IMGUI_API void          SetNextWindowFocus();                                                       // set next window to be focused / top-most. call before Begin()
-    IMGUI_API void          SetNextWindowBgAlpha(float alpha);                                          // set next window background color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBg/ChildBg/PopupBg. you may also use ImGuiWindowFlags_NoBackground.
+    IMGUI_API void          SetNextWindowBgAlpha(float alpha);                                          // set next window mainBackground color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBg/ChildBg/PopupBg. you may also use ImGuiWindowFlags_NoBackground.
     IMGUI_API void          SetWindowPos(const ImVec2& pos, ImGuiCond cond = 0);                        // (not recommended) set current window position - call within Begin()/End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.
     IMGUI_API void          SetWindowSize(const ImVec2& size, ImGuiCond cond = 0);                      // (not recommended) set current window size - call within Begin()/End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.
     IMGUI_API void          SetWindowCollapsed(bool collapsed, ImGuiCond cond = 0);                     // (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().
@@ -669,7 +669,7 @@ namespace ImGui
 
     // Popups: begin/end functions
     //  - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards. ImGuiWindowFlags are forwarded to the window.
-    //  - BeginPopupModal(): block every interactions behind the window, cannot be closed by user, add a dimming background, has a title bar.
+    //  - BeginPopupModal(): block every interactions behind the window, cannot be closed by user, add a dimming mainBackground, has a title bar.
     IMGUI_API bool          BeginPopup(const char* str_id, ImGuiWindowFlags flags = 0);                         // return true if the popup is open, and you can start outputting to it.
     IMGUI_API bool          BeginPopupModal(const char* name, bool* p_open = NULL, ImGuiWindowFlags flags = 0); // return true if the modal is open, and you can start outputting to it.
     IMGUI_API void          EndPopup();                                                                         // only call EndPopup() if BeginPopupXXX() returns true!
@@ -950,7 +950,7 @@ enum ImGuiWindowFlags_
     ImGuiWindowFlags_NoScrollWithMouse      = 1 << 4,   // Disable user vertically scrolling with mouse wheel. On child window, mouse wheel will be forwarded to the parent unless NoScrollbar is also set.
     ImGuiWindowFlags_NoCollapse             = 1 << 5,   // Disable user collapsing window by double-clicking on it. Also referred to as Window Menu Button (e.g. within a docking node).
     ImGuiWindowFlags_AlwaysAutoResize       = 1 << 6,   // Resize every window to its content every frame
-    ImGuiWindowFlags_NoBackground           = 1 << 7,   // Disable drawing background color (WindowBg, etc.) and outside border. Similar as using SetNextWindowBgAlpha(0.0f).
+    ImGuiWindowFlags_NoBackground           = 1 << 7,   // Disable drawing mainBackground color (WindowBg, etc.) and outside border. Similar as using SetNextWindowBgAlpha(0.0f).
     ImGuiWindowFlags_NoSavedSettings        = 1 << 8,   // Never load/save settings in .ini file
     ImGuiWindowFlags_NoMouseInputs          = 1 << 9,   // Disable catching mouse, hovering test with pass through.
     ImGuiWindowFlags_MenuBar                = 1 << 10,  // Has a menu-bar
@@ -1013,7 +1013,7 @@ enum ImGuiTreeNodeFlags_
 {
     ImGuiTreeNodeFlags_None                 = 0,
     ImGuiTreeNodeFlags_Selected             = 1 << 0,   // Draw as selected
-    ImGuiTreeNodeFlags_Framed               = 1 << 1,   // Draw frame with background (e.g. for CollapsingHeader)
+    ImGuiTreeNodeFlags_Framed               = 1 << 1,   // Draw frame with mainBackground (e.g. for CollapsingHeader)
     ImGuiTreeNodeFlags_AllowItemOverlap     = 1 << 2,   // Hit testing to allow subsequent widgets to overlap this one
     ImGuiTreeNodeFlags_NoTreePushOnOpen     = 1 << 3,   // Don't do a TreePush() when open (e.g. for CollapsingHeader) = no extra indent nor pushing on ID stack
     ImGuiTreeNodeFlags_NoAutoOpenOnLog      = 1 << 4,   // Don't automatically and temporarily open node when Logging is active (by default logging will automatically open tree nodes)
@@ -1232,7 +1232,7 @@ enum ImGuiTableColumnFlags_
 enum ImGuiTableRowFlags_
 {
     ImGuiTableRowFlags_None                         = 0,
-    ImGuiTableRowFlags_Headers                      = 1 << 0    // Identify header row (set default background color + width of its contents accounted differently for auto column width)
+    ImGuiTableRowFlags_Headers                      = 1 << 0    // Identify header row (set default mainBackground color + width of its contents accounted differently for auto column width)
 };
 
 // Enum for ImGui::TableSetBgColor()
@@ -1240,16 +1240,16 @@ enum ImGuiTableRowFlags_
 //  - Layer 0: draw with RowBg0 color if set, otherwise draw with ColumnBg0 if set.
 //  - Layer 1: draw with RowBg1 color if set, otherwise draw with ColumnBg1 if set.
 //  - Layer 2: draw with CellBg color if set.
-// The purpose of the two row/columns layers is to let you decide if a background color changes should override or blend with the existing color.
+// The purpose of the two row/columns layers is to let you decide if a mainBackground color changes should override or blend with the existing color.
 // When using ImGuiTableFlags_RowBg on the table, each row has the RowBg0 color automatically set for odd/even rows.
 // If you set the color of RowBg0 target, your color will override the existing RowBg0 color.
 // If you set the color of RowBg1 or ColumnBg1 target, your color will blend over the RowBg0 color.
 enum ImGuiTableBgTarget_
 {
     ImGuiTableBgTarget_None                         = 0,
-    ImGuiTableBgTarget_RowBg0                       = 1,        // Set row background color 0 (generally used for background, automatically set when ImGuiTableFlags_RowBg is used)
-    ImGuiTableBgTarget_RowBg1                       = 2,        // Set row background color 1 (generally used for selection marking)
-    ImGuiTableBgTarget_CellBg                       = 3         // Set cell background color (top-most color)
+    ImGuiTableBgTarget_RowBg0                       = 1,        // Set row mainBackground color 0 (generally used for mainBackground, automatically set when ImGuiTableFlags_RowBg is used)
+    ImGuiTableBgTarget_RowBg1                       = 2,        // Set row mainBackground color 1 (generally used for selection marking)
+    ImGuiTableBgTarget_CellBg                       = 3         // Set cell mainBackground color (top-most color)
 };
 
 // Flags for ImGui::IsWindowFocused()
@@ -1567,11 +1567,11 @@ enum ImGuiCol_
     ImGuiCol_PlotLinesHovered,
     ImGuiCol_PlotHistogram,
     ImGuiCol_PlotHistogramHovered,
-    ImGuiCol_TableHeaderBg,         // Table header background
+    ImGuiCol_TableHeaderBg,         // Table header mainBackground
     ImGuiCol_TableBorderStrong,     // Table outer and header borders (prefer using Alpha=1.0 here)
     ImGuiCol_TableBorderLight,      // Table inner borders (prefer using Alpha=1.0 here)
-    ImGuiCol_TableRowBg,            // Table row background (even rows)
-    ImGuiCol_TableRowBgAlt,         // Table row background (odd rows)
+    ImGuiCol_TableRowBg,            // Table row mainBackground (even rows)
+    ImGuiCol_TableRowBgAlt,         // Table row mainBackground (odd rows)
     ImGuiCol_TextSelectedBg,
     ImGuiCol_DragDropTarget,
     ImGuiCol_NavHighlight,          // Gamepad/keyboard: current highlighted item
@@ -2634,7 +2634,7 @@ struct ImDrawData
     // Functions
     ImDrawData()    { Clear(); }
     void Clear()    { memset(this, 0, sizeof(*this)); }     // The ImDrawList are owned by ImGuiContext!
-    IMGUI_API void  DeIndexAllBuffers();                    // Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!
+    IMGUI_API void  DeIndexAllBuffers();                    // Helper to correct all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!
     IMGUI_API void  ScaleClipRects(const ImVec2& fb_scale); // Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.
 };
 
@@ -2670,7 +2670,7 @@ struct ImFontConfig
 };
 
 // Hold rendering data for one glyph.
-// (Note: some language parsers may fail to convert the 31+1 bitfield members, in this case maybe drop store a single u32 or we can rework this)
+// (Note: some language parsers may fail to correct the 31+1 bitfield members, in this case maybe drop store a single u32 or we can rework this)
 struct ImFontGlyph
 {
     unsigned int    Colored : 1;        // Flag to indicate glyph is colored and should generally ignore tinting (make it usable with no shift on little-endian as this is used in loops)

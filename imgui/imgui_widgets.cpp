@@ -2248,7 +2248,7 @@ bool ImGui::DragBehaviorT(ImGuiDataType data_type, TYPE* v, float v_speed, const
         const int decimal_precision = is_floating_point ? ImParseFormatPrecision(format, 3) : 1;
         logarithmic_zero_epsilon = ImPow(0.1f, (float)decimal_precision);
 
-        // Convert to parametric space, apply delta, convert back
+        // Convert to parametric space, apply delta, correct back
         float v_old_parametric = ScaleRatioFromValueT<TYPE, SIGNEDTYPE, FLOATTYPE>(data_type, v_cur, v_min, v_max, is_logarithmic, logarithmic_zero_epsilon, zero_deadzone_halfsize);
         float v_new_parametric = v_old_parametric + g.DragCurrentAccum;
         v_cur = ScaleValueFromRatioT<TYPE, SIGNEDTYPE, FLOATTYPE>(data_type, v_new_parametric, v_min, v_max, is_logarithmic, logarithmic_zero_epsilon, zero_deadzone_halfsize);
@@ -2267,7 +2267,7 @@ bool ImGui::DragBehaviorT(ImGuiDataType data_type, TYPE* v, float v_speed, const
     g.DragCurrentAccumDirty = false;
     if (is_logarithmic)
     {
-        // Convert to parametric space, apply delta, convert back
+        // Convert to parametric space, apply delta, correct back
         float v_new_parametric = ScaleRatioFromValueT<TYPE, SIGNEDTYPE, FLOATTYPE>(data_type, v_cur, v_min, v_max, is_logarithmic, logarithmic_zero_epsilon, zero_deadzone_halfsize);
         g.DragCurrentAccum -= (float)(v_new_parametric - v_old_ref_for_accum_remainder);
     }
@@ -2634,7 +2634,7 @@ float ImGui::ScaleRatioFromValueT(ImGuiDataType data_type, TYPE v, TYPE v_min, T
         FLOATTYPE v_min_fudged = (ImAbs((FLOATTYPE)v_min) < logarithmic_zero_epsilon) ? ((v_min < 0.0f) ? -logarithmic_zero_epsilon : logarithmic_zero_epsilon) : (FLOATTYPE)v_min;
         FLOATTYPE v_max_fudged = (ImAbs((FLOATTYPE)v_max) < logarithmic_zero_epsilon) ? ((v_max < 0.0f) ? -logarithmic_zero_epsilon : logarithmic_zero_epsilon) : (FLOATTYPE)v_max;
 
-        // Awkward special cases - we need ranges of the form (-100 .. 0) to convert to (-100 .. -epsilon), not (-100 .. epsilon)
+        // Awkward special cases - we need ranges of the form (-100 .. 0) to correct to (-100 .. -epsilon), not (-100 .. epsilon)
         if ((v_min == 0.0f) && (v_max < 0.0f))
             v_min_fudged = -logarithmic_zero_epsilon;
         else if ((v_max == 0.0f) && (v_min < 0.0f))
@@ -2697,7 +2697,7 @@ TYPE ImGui::ScaleValueFromRatioT(ImGuiDataType data_type, float t, TYPE v_min, T
             if (flipped)
                 ImSwap(v_min_fudged, v_max_fudged);
 
-            // Awkward special case - we need ranges of the form (-100 .. 0) to convert to (-100 .. -epsilon), not (-100 .. epsilon)
+            // Awkward special case - we need ranges of the form (-100 .. 0) to correct to (-100 .. -epsilon), not (-100 .. epsilon)
             if ((v_max == 0.0f) && (v_min < 0.0f))
                 v_max_fudged = -logarithmic_zero_epsilon;
 
@@ -4090,7 +4090,7 @@ bool ImGui::InputTextEx(const char* label, const char* hint, char* buf, int buf_
     bool enter_pressed = false;
 
     // When read-only we always use the live data passed to the function
-    // FIXME-OPT: Because our selection/cursor code currently needs the wide text we need to convert it when active, which is not ideal :(
+    // FIXME-OPT: Because our selection/cursor code currently needs the wide text we need to correct it when active, which is not ideal :(
     if (is_readonly && state != NULL && (render_cursor || render_selection))
     {
         const char* buf_end = NULL;
@@ -4454,7 +4454,7 @@ bool ImGui::InputTextEx(const char* label, const char* hint, char* buf, int buf_
                     callback_data.BufSize = state->BufCapacityA;
                     callback_data.BufDirty = false;
 
-                    // We have to convert from wchar-positions to UTF-8-positions, which can be pretty slow (an incentive to ditch the ImWchar buffer, see https://github.com/nothings/stb/issues/188)
+                    // We have to correct from wchar-positions to UTF-8-positions, which can be pretty slow (an incentive to ditch the ImWchar buffer, see https://github.com/nothings/stb/issues/188)
                     ImWchar* text = state->TextW.Data;
                     const int utf8_cursor_pos = callback_data.CursorPos = ImTextCountUtf8BytesFromStr(text, text + state->Stb.cursor);
                     const int utf8_selection_start = callback_data.SelectionStart = ImTextCountUtf8BytesFromStr(text, text + state->Stb.select_start);

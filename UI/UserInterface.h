@@ -35,16 +35,28 @@ namespace UI
         MIDI::InstrumentPointer pianoOutput;
 
         float scroll;
+        float headerSize;
         float measureWidth;
         float divisionsPerBeat;
         float measureLength;
+        float totalWidth;
+
+        ImVec2 mainAreaPosition;
+        ImVec2 mainAreaSize;
 
         float keyWidth;
         float keyLength;
         ImVec2 keyTopLeft;
         ImVec2 keySize;
 
-        ImColor background;
+        ImColor mainBackground;
+        ImColor darkBackground;
+
+        ImColor divisionColor;
+        ImColor playingColor;
+        ImColor playingColorTransparent;
+        ImColor recordingColor;
+        ImColor recordingColorTransparent;
 
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
                       const std::shared_ptr<System::Sequencer>& sequencer,
@@ -61,13 +73,23 @@ namespace UI
         void renderHarmonyModel();
 
         void computeMeasureLength();
-        float computePosition(float ticks);
+        float computePosition(int ticks);
+        int computeTickDelta(float positionDelta);
+
+        void renderGrid(ImDrawList* drawList);
+        void renderNotes(ImDrawList* drawList);
+        float renderPlayhead(ImDrawList* drawList, const ImVec2& sequencerPosition);
+        void sequencerEventButtons(float playheadLocation, const ImVec2& sequencerPosition,
+                                   const ImVec2& sequencerSize);
+        void sequencerKeyEvents();
+
         MIDI::MessagePointer getLastMessage() const;
+
         void drawKeys(int numberOfKeys, int keyIndex, const ImColor& keyColor,
                       const ImColor& pressedColor, const ImColor& borderColor);
         void updateKeyTopLeft(float adjustment);
-        void playNote(int noteValue);
 
+        void playNote(int noteValue);
         void stopNote(int noteValue);
     };
 }

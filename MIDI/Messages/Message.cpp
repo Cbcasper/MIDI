@@ -6,12 +6,12 @@
 
 namespace MIDI
 {
-    Message::Message(const libremidi::message& message, const std::string& typeName): typeName(typeName)
+    Message::Message(const libremidi::message& message, const std::string& typeName): typeName(typeName), tick(-2)
     {
         type = message.get_message_type();
     }
 
-    Message::Message(MessageType type, const std::string& typeName): typeName(typeName), type(type)
+    Message::Message(MessageType type, const std::string& typeName): typeName(typeName), type(type), tick(-2)
     {}
 
     std::string Message::toString()
