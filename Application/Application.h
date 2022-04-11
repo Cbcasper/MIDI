@@ -14,7 +14,8 @@
 #include "../MIDI/MessageFilter.h"
 #include "../MIDI/Messages/Message.h"
 #include "../MIDI/Messages/Instrument.h"
-#include "../Director/Harmonies/ModulationHarmony.h"
+#include "../Director/Harmonies/TranspositionHarmony.h"
+#include "../Theory/Key/Key.h"
 
 namespace State
 {
@@ -29,16 +30,15 @@ namespace State
         std::list<MIDI::MessageOnInstrument> messages;
         std::vector<TrackPointer> tracks;
 
-        MIDI::MessageFilter displayMessageFilter;
-
-        Music::ModulationHarmony modulationHarmony;
-
         SongPointer song;
+        Music::KeyPointer key;
 
+        int currentTime;
         bool recording;
 
-        int currentTime = -1;
         int ticksPerDivision = 240;
+
+        MIDI::MessageFilter displayMessageFilter;
 
         Application();
 
@@ -46,6 +46,9 @@ namespace State
         void clearMessages();
 
         void stopRecording();
+
+        static MIDI::InstrumentPointer selectInstrument(const std::vector<std::string>& ports);
+        void initializeTracks();
     };
 }
 

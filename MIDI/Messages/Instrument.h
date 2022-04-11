@@ -22,7 +22,7 @@ namespace MIDI
         Instrument(const std::string& port);
         Instrument(const std::string& port, int channel);
 
-        bool operator==(const Instrument& instrument);
+        bool operator==(const Instrument& instrument) const;
     };
 
     using InstrumentPointer = std::shared_ptr<Instrument>;

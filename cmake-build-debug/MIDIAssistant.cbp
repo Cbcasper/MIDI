@@ -118,6 +118,12 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/TranspositionHarmony.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/TranspositionHarmony.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
@@ -244,10 +250,22 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Timer.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/IntervalSequence.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/IntervalSequence.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/MelodicMinor.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/MelodicMinor.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.cpp">

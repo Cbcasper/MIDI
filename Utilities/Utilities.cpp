@@ -26,3 +26,16 @@ float Utilities::clamp(float value, float min, float max)
     else if (value > max)   return max;
     else                    return value;
 }
+
+int Utilities::sum(const std::vector<int>& vector)
+{
+    int sum = 0;
+    for (int value: vector)
+        sum += value;
+    return sum;
+}
+
+int Utilities::positiveModulo(int value, int modulo)
+{
+    return (value + modulo) % modulo;
+}

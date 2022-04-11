@@ -11,17 +11,21 @@
 
 namespace State
 {
-    Track::Track(Application* application, const std::string& port, int channel): application(application)
+    Track::Track(Application* application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output):
+                 application(application), input(input), output(output)
     {
         audioPlayer = MIDI::AudioPlayer();
-        input = std::make_shared<MIDI::Instrument>(port, channel);
     }
 
     void Track::incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
-        playMIDIMessage(messageOnInstrument);
-        if (application->recording)
-            recordMIDIMessage(messageOnInstrument);
+        const auto& [message, instrument] = messageOnInstrument;
+        if (*instrument == *input)
+        {
+            playMIDIMessage(messageOnInstrument);
+            if (application->recording)
+                recordMIDIMessage(messageOnInstrument);
+        }
     }
 
     void Track::playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
@@ -34,8 +38,6 @@ namespace State
     {
         auto& [message, instrument] = messageOnInstrument;
         message->tick = application->currentTime;
-        std::unique_lock<std::mutex> lock(mutex);
-        midiMessages[message->tick].emplace_back(message);
         if (application->displayMessageFilter(message))
         {
             SoundingNotes& soundingNotes = instrumentSoundingNotes[instrument];
@@ -50,10 +52,13 @@ namespace State
                 soundingNotes.erase(value);
             }
         }
+        std::unique_lock<std::mutex> lock(mutex);
+        midiMessages[message->tick].emplace_back(message);
     }
 
     void Track::cleanupNotes()
     {
+        std::unique_lock<std::mutex> lock(mutex);
         for (const auto& [instrument, soundingNotes]: instrumentSoundingNotes)
             for (const auto& [noteValue, noteOffPointer]: soundingNotes)
             {

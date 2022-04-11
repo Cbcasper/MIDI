@@ -6,7 +6,6 @@
 
 namespace State
 {
-    Song::Song(int measures, int numberOfBeats, Music::TimeDivision timeDivision):
-               measures(measures), numberOfBeats(numberOfBeats), timeDivision(timeDivision)
+    Song::Song(): measures(200), numberOfBeats(4), timeDivision(Music::Fourth)
     {}
 }

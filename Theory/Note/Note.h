@@ -22,8 +22,9 @@ namespace Music
         int octave;
         int value;
 
-        static NotePointer getInstance(unsigned char value, Name instanceName, int instanceOctave, bool instanceSharp);
-        static NotePointer getInstance(Name instanceName, int instanceOctave, bool instanceSharp);
+        static NotePointer getInstance(unsigned char value, Name name, bool sharp, int octave);
+        static NotePointer getInstance(const RootNotePointer& rootNote, int octave);
+        static NotePointer getInstance(Name name, bool sharp, int octave);
         static NotePointer getInstance(unsigned char value);
         std::string toString() const override;
 
@@ -31,7 +32,7 @@ namespace Music
         static std::map<unsigned char, NotePointer> notes;
         static std::mutex mutex;
 
-        Note(Name name, int octave, bool sharp, int value);
+        Note(Name name, bool sharp, int octave, int value);
     };
 }
 

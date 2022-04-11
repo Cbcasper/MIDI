@@ -39,9 +39,11 @@ namespace Music
 
     void Director::processMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
+        const auto& [message, instrument] = messageOnInstrument;
         for (const State::TrackPointer& track: applicationState->tracks)
-            for (const HarmonyPointer& harmony: track->harmonies)
-                harmony->processMessage(std::static_pointer_cast<MIDI::NoteMessage>(messageOnInstrument.first));
+            if (*instrument == *track->input)
+                for (const HarmonyPointer& harmony: track->harmonies)
+                    harmony->processMessage(std::static_pointer_cast<MIDI::NoteMessage>(message));
     }
 
     void Director::inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)

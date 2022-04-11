@@ -423,14 +423,4 @@ namespace UI
         pianoPlayer.processMIDIMessage(noteOffMessage->rawMessage(pianoOutput->channel));
         MIDI::IOManager::getInstance()->sendMIDIOut(std::make_pair(noteOffMessage, pianoOutput));
     }
-
-    void UserInterface::renderHarmonyModel()
-    {
-        if (ImGui::Begin("Harmony model"))
-        {
-            ImGui::InputInt("Modulation", &applicationState->modulationHarmony.modulationOffset);
-            ImGui::Text("%d", applicationState->modulationHarmony.modulationOffset);
-        }
-        ImGui::End();
-    }
 }

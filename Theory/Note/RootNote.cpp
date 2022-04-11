@@ -6,6 +6,7 @@
 
 #include <sstream>
 #include <cmath>
+#include <iostream>
 
 namespace Music
 {
@@ -32,7 +33,7 @@ namespace Music
 
     int RootNote::convert(RootNote::Name name, bool sharp)
     {
-        int value = name * 2 - (int) name > 1;
+        int value = ((int) name) * 2 - ((int) name > 2);
         return value + (int) sharp;
     }
 
@@ -53,6 +54,12 @@ namespace Music
 
     std::vector<char> RootNote::noteNames()
     {
-        return {'C', 'D', 'E', 'F', 'G', 'A', 'B'};
+        static std::vector<char> noteNames = {'C', 'D', 'E', 'F', 'G', 'A', 'B'};
+        return noteNames;
+    }
+
+    bool RootNote::operator==(const RootNote& rootNote)
+    {
+        return name == rootNote.name && sharp == rootNote.sharp;
     }
 }

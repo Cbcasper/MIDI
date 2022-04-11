@@ -53,13 +53,13 @@ set(SOURCES
         Director/Harmonies/Harmony.cpp Director/Harmonies/Harmony.h
         Theory/Note/NoteFilter.cpp Theory/Note/NoteFilter.h
         Application/Track.cpp Application/Track.h
-        Director/Harmonies/ModulationHarmony.cpp Director/Harmonies/ModulationHarmony.h
+        Director/Harmonies/TranspositionHarmony.cpp Director/Harmonies/TranspositionHarmony.h
         Utilities/Utilities.cpp Utilities/Utilities.h
         Sequencer/Timer.cpp Sequencer/Timer.h
         Application/Song.cpp Application/Song.h
         Theory/TimeDivision.h Theory/TimeDivision.cpp
         Theory/Note/RootNote.cpp Theory/Note/RootNote.h
-        Theory/Key/Key.cpp Theory/Key/Key.h)
+        Theory/Key/Key.cpp Theory/Key/Key.h Theory/Key/IntervalSequence.cpp Theory/Key/IntervalSequence.h Theory/Key/MelodicMinor.cpp Theory/Key/MelodicMinor.h Director/Harmonies/ModulationHarmony.cpp Director/Harmonies/ModulationHarmony.h)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h

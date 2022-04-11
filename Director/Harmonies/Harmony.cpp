@@ -18,8 +18,7 @@ namespace Music
         if (noteFilter(noteMessage->note))
         {
             MIDI::NoteMessagePointer generatedNoteMessage = generate(noteMessage);
-            if (chainedHarmony)
-                chainedHarmony->processMessage(generatedNoteMessage);
+            if (chainedHarmony) chainedHarmony->processMessage(generatedNoteMessage);
         }
     }
 }

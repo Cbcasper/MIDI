@@ -304,6 +304,33 @@ Director/Harmonies/ModulationHarmony.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.s
 .PHONY : Director/Harmonies/ModulationHarmony.cpp.s
 
+Director/Harmonies/TranspositionHarmony.o: Director/Harmonies/TranspositionHarmony.cpp.o
+
+.PHONY : Director/Harmonies/TranspositionHarmony.o
+
+# target to build an object file
+Director/Harmonies/TranspositionHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.o
+.PHONY : Director/Harmonies/TranspositionHarmony.cpp.o
+
+Director/Harmonies/TranspositionHarmony.i: Director/Harmonies/TranspositionHarmony.cpp.i
+
+.PHONY : Director/Harmonies/TranspositionHarmony.i
+
+# target to preprocess a source file
+Director/Harmonies/TranspositionHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.i
+.PHONY : Director/Harmonies/TranspositionHarmony.cpp.i
+
+Director/Harmonies/TranspositionHarmony.s: Director/Harmonies/TranspositionHarmony.cpp.s
+
+.PHONY : Director/Harmonies/TranspositionHarmony.s
+
+# target to generate assembly for a file
+Director/Harmonies/TranspositionHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.s
+.PHONY : Director/Harmonies/TranspositionHarmony.cpp.s
+
 Director/Quantizer.o: Director/Quantizer.cpp.o
 
 .PHONY : Director/Quantizer.o
@@ -871,6 +898,33 @@ Sequencer/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.s
 .PHONY : Sequencer/Timer.cpp.s
 
+Theory/Key/IntervalSequence.o: Theory/Key/IntervalSequence.cpp.o
+
+.PHONY : Theory/Key/IntervalSequence.o
+
+# target to build an object file
+Theory/Key/IntervalSequence.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/IntervalSequence.cpp.o
+.PHONY : Theory/Key/IntervalSequence.cpp.o
+
+Theory/Key/IntervalSequence.i: Theory/Key/IntervalSequence.cpp.i
+
+.PHONY : Theory/Key/IntervalSequence.i
+
+# target to preprocess a source file
+Theory/Key/IntervalSequence.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/IntervalSequence.cpp.i
+.PHONY : Theory/Key/IntervalSequence.cpp.i
+
+Theory/Key/IntervalSequence.s: Theory/Key/IntervalSequence.cpp.s
+
+.PHONY : Theory/Key/IntervalSequence.s
+
+# target to generate assembly for a file
+Theory/Key/IntervalSequence.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/IntervalSequence.cpp.s
+.PHONY : Theory/Key/IntervalSequence.cpp.s
+
 Theory/Key/Key.o: Theory/Key/Key.cpp.o
 
 .PHONY : Theory/Key/Key.o
@@ -897,6 +951,33 @@ Theory/Key/Key.s: Theory/Key/Key.cpp.s
 Theory/Key/Key.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/Key.cpp.s
 .PHONY : Theory/Key/Key.cpp.s
+
+Theory/Key/MelodicMinor.o: Theory/Key/MelodicMinor.cpp.o
+
+.PHONY : Theory/Key/MelodicMinor.o
+
+# target to build an object file
+Theory/Key/MelodicMinor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/MelodicMinor.cpp.o
+.PHONY : Theory/Key/MelodicMinor.cpp.o
+
+Theory/Key/MelodicMinor.i: Theory/Key/MelodicMinor.cpp.i
+
+.PHONY : Theory/Key/MelodicMinor.i
+
+# target to preprocess a source file
+Theory/Key/MelodicMinor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/MelodicMinor.cpp.i
+.PHONY : Theory/Key/MelodicMinor.cpp.i
+
+Theory/Key/MelodicMinor.s: Theory/Key/MelodicMinor.cpp.s
+
+.PHONY : Theory/Key/MelodicMinor.s
+
+# target to generate assembly for a file
+Theory/Key/MelodicMinor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Key/MelodicMinor.cpp.s
+.PHONY : Theory/Key/MelodicMinor.cpp.s
 
 Theory/Note/Note.o: Theory/Note/Note.cpp.o
 
@@ -1384,6 +1465,9 @@ help:
 	@echo "... Director/Harmonies/ModulationHarmony.o"
 	@echo "... Director/Harmonies/ModulationHarmony.i"
 	@echo "... Director/Harmonies/ModulationHarmony.s"
+	@echo "... Director/Harmonies/TranspositionHarmony.o"
+	@echo "... Director/Harmonies/TranspositionHarmony.i"
+	@echo "... Director/Harmonies/TranspositionHarmony.s"
 	@echo "... Director/Quantizer.o"
 	@echo "... Director/Quantizer.i"
 	@echo "... Director/Quantizer.s"
@@ -1447,9 +1531,15 @@ help:
 	@echo "... Sequencer/Timer.o"
 	@echo "... Sequencer/Timer.i"
 	@echo "... Sequencer/Timer.s"
+	@echo "... Theory/Key/IntervalSequence.o"
+	@echo "... Theory/Key/IntervalSequence.i"
+	@echo "... Theory/Key/IntervalSequence.s"
 	@echo "... Theory/Key/Key.o"
 	@echo "... Theory/Key/Key.i"
 	@echo "... Theory/Key/Key.s"
+	@echo "... Theory/Key/MelodicMinor.o"
+	@echo "... Theory/Key/MelodicMinor.i"
+	@echo "... Theory/Key/MelodicMinor.s"
 	@echo "... Theory/Note/Note.o"
 	@echo "... Theory/Note/Note.i"
 	@echo "... Theory/Note/Note.s"

@@ -32,7 +32,9 @@ namespace Music
         static std::pair<Name, bool> correct(Name name, bool sharp);
         static std::pair<Name, bool> convert(int value);
         static int convert(Name name, bool sharp);
+
         RootNotePointer operator+(int semitones) const;
+        bool operator==(const RootNote& rootNote);
 
         virtual std::string toString() const;
         static std::vector<char> noteNames();

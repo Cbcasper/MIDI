@@ -6,13 +6,16 @@
 
 namespace State
 {
-    Application::Application(): modulationHarmony("KOMPLETE KONTROL A25", 1, 0)
+    Application::Application()
     {
-        tracks.emplace_back(std::make_shared<Track>(this, "KOMPLETE KONTROL A25", 5));
-        song = std::make_shared<Song>(200, 4, Music::Fourth);
+        song = std::make_shared<Song>();
+        key = std::make_shared<Music::Key>();
+
         displayMessageFilter = MIDI::MessageFilter();
         displayMessageFilter.allowTypes({MIDI::MessageType::NOTE_ON, MIDI::MessageType::NOTE_OFF});
+
         recording = false;
+        currentTime = -1;
     }
 
     void Application::inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
@@ -36,5 +39,20 @@ namespace State
         recording = false;
         for (const TrackPointer& track: tracks)
             track->cleanupNotes();
+    }
+
+    MIDI::InstrumentPointer Application::selectInstrument(const std::vector<std::string>& ports)
+    {
+        if (ports.empty())
+            return std::make_shared<MIDI::Instrument>(1);
+        else
+            return std::make_shared<MIDI::Instrument>(ports[0], 1);
+    }
+
+    void Application::initializeTracks()
+    {
+        MIDI::InstrumentPointer input = selectInstrument(inputPorts);
+        MIDI::InstrumentPointer output = selectInstrument(outputPorts);
+        tracks.emplace_back(std::make_shared<Track>(this, input, output));
     }
 }

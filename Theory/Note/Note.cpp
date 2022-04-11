@@ -12,34 +12,39 @@ namespace Music
     std::map<unsigned char, NotePointer> Note::notes;
     std::mutex Note::mutex;
 
-    Note::Note(Name name, int octave, bool sharp, int value): RootNote(name, sharp), octave(octave), value(value)
+    Note::Note(Name name, bool sharp, int octave, int value) : RootNote(name, sharp), octave(octave), value(value)
     {}
 
-    NotePointer Note::getInstance(unsigned char value, Name instanceName, int instanceOctave, bool instanceSharp)
+    NotePointer Note::getInstance(unsigned char value, Name name, bool sharp, int octave)
     {
         if (!notes[value])
         {
             mutex.lock();
             if (!notes[value])
-                notes[value] = NotePointer(new Note(instanceName, instanceOctave, instanceSharp, value));
+                notes[value] = NotePointer(new Note(name, sharp, octave, value));
             mutex.unlock();
         }
         return notes[value];
     }
 
-    NotePointer Note::getInstance(Name instanceName, int instanceOctave, bool instanceSharp)
+    NotePointer Note::getInstance(const RootNotePointer& rootNote, int octave)
     {
-        unsigned char value = convert(instanceName, instanceSharp);
-        return getInstance(value, instanceName, instanceOctave, instanceSharp);
+        return getInstance(rootNote->name, rootNote->sharp, octave);
+    }
+
+    NotePointer Note::getInstance(Name name, bool sharp, int octave)
+    {
+        unsigned char value = convert(name, sharp);
+        return getInstance(value, name, sharp, octave);
     }
 
     NotePointer Note::getInstance(unsigned char value)
     {
-        int octave = floor(value / 12);
+        int octave = floor(static_cast<float>(value) / 12.0f);
         int localValue = value - 12 * octave;
 
         const auto& [name, sharp] = convert(localValue);
-        return getInstance(value, name, octave, sharp);
+        return getInstance(value, name, sharp, octave);
     }
 
     std::string Note::toString() const

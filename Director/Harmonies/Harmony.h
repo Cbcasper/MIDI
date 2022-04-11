@@ -18,8 +18,8 @@ namespace Music
     class Harmony
     {
     public:
-        MIDI::AudioPlayer audioPlayer;
         MIDI::InstrumentPointer output;
+        MIDI::AudioPlayer audioPlayer;
 
         HarmonyPointer chainedHarmony;
 

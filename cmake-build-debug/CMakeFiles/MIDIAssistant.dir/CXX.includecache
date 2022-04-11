@@ -109,6 +109,8 @@ Track.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Instrument.h
 ../Director/Harmonies/ModulationHarmony.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ModulationHarmony.h
+../Theory/Key/Key.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Song.h
 memory
@@ -130,9 +132,37 @@ unordered_map
 ../MIDI/Messages/Messages/NoteOff.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
 
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Director.h
+memory
+-
+thread
+-
+mutex
+-
+condition_variable
+-
+queue
+-
+map
+-
+../Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+../MIDI/Messages/Messages/NoteMessage.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
+../MIDI/MessageFilter.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
+../MIDI/Messages/Messages/NoteOff.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
+../MIDI/Messages/Messages/NoteOn.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
+../MIDI/IO/IOManager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/IOManager.h
+../Theory/Theory.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Theory.h
+
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.h
-../../Theory/NoteFilter.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
+../../Theory/Note/NoteFilter.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.h
 ../../MIDI/Messages/Messages/NoteMessage.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
 ../../MIDI/AudioPlayer.h
@@ -221,8 +251,8 @@ libremidi/message.hpp
 -
 string
 -
-../../Theory/Note.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+../../Theory/Note/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
 ../Message.h
@@ -233,8 +263,8 @@ NoteMessage.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
 ../Message.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
-../../../Theory/Note.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+../../../Theory/Note/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
 NoteOff.h
@@ -243,8 +273,8 @@ NoteMessage.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteMessage.h
 ../Message.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Message.h
-../../../Theory/Note.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+../../../Theory/Note/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h
 Messages/Message.h
@@ -282,19 +312,53 @@ shared_mutex
 condition_variable
 -
 
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/IntervalSequence.h
+map
+-
+memory
+-
+../Note/RootNote.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h
+../../Utilities/Utilities.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Utilities/Utilities.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/Key.h
+../Note/RootNote.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h
+IntervalSequence.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/IntervalSequence.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
 map
 -
 vector
 -
 mutex
 -
+RootNote.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h
 
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/NoteFilter.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/NoteFilter.h
 map
 -
 Note.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h
+utility
+-
+tuple
+-
+memory
+-
+vector
+-
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Theory.h
+memory
+-
+Note/Note.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/Note.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/TimeDivision.h
 map
@@ -305,28 +369,6 @@ string
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/MessageFilterCheckboxes.h
 ../MIDI/MessageFilter.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/MessageFilter.h
-
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.cpp
-sstream
--
-iostream
--
-cmath
--
-queue
--
-../imgui/imgui_internal.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imgui_internal.h
-../imgui/Renderer.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/Renderer.h
-UserInterface.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.h
-../MIDI/Messages/Messages/NoteOn.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOn.h
-../MIDI/Messages/Messages/NoteOff.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Messages/Messages/NoteOff.h
-../Theory/TimeDivision.h
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/TimeDivision.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.h
 libremidi/message.hpp
@@ -348,13 +390,17 @@ MessageFilterCheckboxes.h
 ../Director/Quantizer.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.h
 
-/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/Renderer.h
-functional
--
-utility
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Utilities/Utilities.h
+vector
 -
 string
 -
+map
+-
+future
+-
+../MIDI/IO/Port.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/Port.h
 
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imconfig.h
 
@@ -393,4 +439,20 @@ imstb_textedit.h
 /Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/imgui/imstb_textedit.h
 string.h
 -
+
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/main.cpp
+UI/UserInterface.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/UserInterface.h
+MIDI/IO/IOManager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/IO/IOManager.h
+Application/Application.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Application.h
+Sequencer/Sequencer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Sequencer.h
+Director/Director.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Director.h
+MIDI/FileManager.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/FileManager.h
+Director/Quantizer.h
+/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Quantizer.h
 

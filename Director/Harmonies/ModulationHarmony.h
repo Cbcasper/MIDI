@@ -1,5 +1,5 @@
 //
-// Created by Casper De Smet on 24/03/2022.
+// Created by Casper De Smet on 11/04/2022.
 //
 
 #ifndef MIDIASSISTANT_MODULATIONHARMONY_H
@@ -11,7 +11,6 @@ namespace Music
 {
     class ModulationHarmony: public Harmony
     {
-    public:
         int modulationOffset;
 
         ModulationHarmony(const std::string& port, int channel, int modulationOffset);
@@ -19,5 +18,6 @@ namespace Music
         MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) override;
     };
 }
+
 
 #endif //MIDIASSISTANT_MODULATIONHARMONY_H

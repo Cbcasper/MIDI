@@ -22,7 +22,7 @@ namespace State
         int numberOfBeats;
         Music::TimeDivision timeDivision;
 
-        Song(int measures, int numberOfBeats, Music::TimeDivision timeDivision);
+        Song();
     };
 }
 

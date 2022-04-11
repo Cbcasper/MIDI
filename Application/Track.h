@@ -33,7 +33,7 @@ namespace State
 
         std::vector<Music::HarmonyPointer> harmonies;
 
-        Track(Application* application, const std::string& port, int channel);
+        Track(Application* application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output);
 
         void incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);

@@ -2,8 +2,8 @@
 // Created by Casper De Smet on 27/02/2022.
 //
 
-#ifndef MIDIPLAYGROUND_DIRECTOR_H
-#define MIDIPLAYGROUND_DIRECTOR_H
+#ifndef MIDIASSISTANT_DIRECTOR_H
+#define MIDIASSISTANT_DIRECTOR_H
 
 #include <memory>
 #include <thread>
@@ -46,4 +46,4 @@ namespace Music
 }
 
 
-#endif //MIDIPLAYGROUND_DIRECTOR_H
+#endif //MIDIASSISTANT_DIRECTOR_H
