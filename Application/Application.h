@@ -14,7 +14,7 @@
 #include "../MIDI/MessageFilter.h"
 #include "../MIDI/Messages/Message.h"
 #include "../MIDI/Messages/Instrument.h"
-#include "../Director/Harmonies/TranspositionHarmony.h"
+#include "../Director/Harmonies/SingleHarmonies/TranspositionHarmony.h"
 #include "../Theory/Key/Key.h"
 
 namespace State
@@ -50,6 +50,8 @@ namespace State
         static MIDI::InstrumentPointer selectInstrument(const std::vector<std::string>& ports);
         void initializeTracks();
     };
+
+    using ApplicationPointer = std::shared_ptr<Application>;
 }
 
 

@@ -277,59 +277,113 @@ Director/Harmonies/Harmony.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/Harmony.cpp.s
 .PHONY : Director/Harmonies/Harmony.cpp.s
 
-Director/Harmonies/ModulationHarmony.o: Director/Harmonies/ModulationHarmony.cpp.o
+Director/Harmonies/SingleHarmonies/ModulationHarmony.o: Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o
 
-.PHONY : Director/Harmonies/ModulationHarmony.o
-
-# target to build an object file
-Director/Harmonies/ModulationHarmony.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.o
-.PHONY : Director/Harmonies/ModulationHarmony.cpp.o
-
-Director/Harmonies/ModulationHarmony.i: Director/Harmonies/ModulationHarmony.cpp.i
-
-.PHONY : Director/Harmonies/ModulationHarmony.i
-
-# target to preprocess a source file
-Director/Harmonies/ModulationHarmony.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.i
-.PHONY : Director/Harmonies/ModulationHarmony.cpp.i
-
-Director/Harmonies/ModulationHarmony.s: Director/Harmonies/ModulationHarmony.cpp.s
-
-.PHONY : Director/Harmonies/ModulationHarmony.s
-
-# target to generate assembly for a file
-Director/Harmonies/ModulationHarmony.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ModulationHarmony.cpp.s
-.PHONY : Director/Harmonies/ModulationHarmony.cpp.s
-
-Director/Harmonies/TranspositionHarmony.o: Director/Harmonies/TranspositionHarmony.cpp.o
-
-.PHONY : Director/Harmonies/TranspositionHarmony.o
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.o
 
 # target to build an object file
-Director/Harmonies/TranspositionHarmony.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.o
-.PHONY : Director/Harmonies/TranspositionHarmony.cpp.o
+Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o
 
-Director/Harmonies/TranspositionHarmony.i: Director/Harmonies/TranspositionHarmony.cpp.i
+Director/Harmonies/SingleHarmonies/ModulationHarmony.i: Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.i
 
-.PHONY : Director/Harmonies/TranspositionHarmony.i
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.i
 
 # target to preprocess a source file
-Director/Harmonies/TranspositionHarmony.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.i
-.PHONY : Director/Harmonies/TranspositionHarmony.cpp.i
+Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.i
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.i
 
-Director/Harmonies/TranspositionHarmony.s: Director/Harmonies/TranspositionHarmony.cpp.s
+Director/Harmonies/SingleHarmonies/ModulationHarmony.s: Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.s
 
-.PHONY : Director/Harmonies/TranspositionHarmony.s
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.s
 
 # target to generate assembly for a file
-Director/Harmonies/TranspositionHarmony.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/TranspositionHarmony.cpp.s
-.PHONY : Director/Harmonies/TranspositionHarmony.cpp.s
+Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.s
+.PHONY : Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.s
+
+Director/Harmonies/SingleHarmonies/RandomHarmony.o: Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o
+
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.o
+
+# target to build an object file
+Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o
+
+Director/Harmonies/SingleHarmonies/RandomHarmony.i: Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.i
+
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.i
+
+# target to preprocess a source file
+Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.i
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.i
+
+Director/Harmonies/SingleHarmonies/RandomHarmony.s: Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s
+
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.s
+
+# target to generate assembly for a file
+Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s
+.PHONY : Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s
+
+Director/Harmonies/SingleHarmonies/SingleHarmony.o: Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o
+
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.o
+
+# target to build an object file
+Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o
+
+Director/Harmonies/SingleHarmonies/SingleHarmony.i: Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.i
+
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.i
+
+# target to preprocess a source file
+Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.i
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.i
+
+Director/Harmonies/SingleHarmonies/SingleHarmony.s: Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.s
+
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.s
+
+# target to generate assembly for a file
+Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.s
+.PHONY : Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.s
+
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.o: Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.o
+
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.o
+
+# target to build an object file
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.o
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.o
+
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.i: Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.i
+
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.i
+
+# target to preprocess a source file
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.i
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.i
+
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.s: Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.s
+
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.s
+
+# target to generate assembly for a file
+Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.s
+.PHONY : Director/Harmonies/SingleHarmonies/TranspositionHarmony.cpp.s
 
 Director/Quantizer.o: Director/Quantizer.cpp.o
 
@@ -1462,12 +1516,18 @@ help:
 	@echo "... Director/Harmonies/Harmony.o"
 	@echo "... Director/Harmonies/Harmony.i"
 	@echo "... Director/Harmonies/Harmony.s"
-	@echo "... Director/Harmonies/ModulationHarmony.o"
-	@echo "... Director/Harmonies/ModulationHarmony.i"
-	@echo "... Director/Harmonies/ModulationHarmony.s"
-	@echo "... Director/Harmonies/TranspositionHarmony.o"
-	@echo "... Director/Harmonies/TranspositionHarmony.i"
-	@echo "... Director/Harmonies/TranspositionHarmony.s"
+	@echo "... Director/Harmonies/SingleHarmonies/ModulationHarmony.o"
+	@echo "... Director/Harmonies/SingleHarmonies/ModulationHarmony.i"
+	@echo "... Director/Harmonies/SingleHarmonies/ModulationHarmony.s"
+	@echo "... Director/Harmonies/SingleHarmonies/RandomHarmony.o"
+	@echo "... Director/Harmonies/SingleHarmonies/RandomHarmony.i"
+	@echo "... Director/Harmonies/SingleHarmonies/RandomHarmony.s"
+	@echo "... Director/Harmonies/SingleHarmonies/SingleHarmony.o"
+	@echo "... Director/Harmonies/SingleHarmonies/SingleHarmony.i"
+	@echo "... Director/Harmonies/SingleHarmonies/SingleHarmony.s"
+	@echo "... Director/Harmonies/SingleHarmonies/TranspositionHarmony.o"
+	@echo "... Director/Harmonies/SingleHarmonies/TranspositionHarmony.i"
+	@echo "... Director/Harmonies/SingleHarmonies/TranspositionHarmony.s"
 	@echo "... Director/Quantizer.o"
 	@echo "... Director/Quantizer.i"
 	@echo "... Director/Quantizer.s"

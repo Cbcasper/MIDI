@@ -26,6 +26,7 @@ public:
     static float clamp(float value, float min, float max);
     static int sum(const std::vector<int>& vector);
     static int positiveModulo(int value, int modulo);
+    static int numberOfDigits(double value);
 };
 
 

@@ -4,6 +4,8 @@
 
 #include "Utilities.h"
 
+#include <cmath>
+
 std::vector<std::string> Utilities::keyList(const MIDI::PortMap& map)
 {
     std::vector<std::string> keys;
@@ -38,4 +40,9 @@ int Utilities::sum(const std::vector<int>& vector)
 int Utilities::positiveModulo(int value, int modulo)
 {
     return (value + modulo) % modulo;
+}
+
+int Utilities::numberOfDigits(double value)
+{
+    return static_cast<int>(ceil(log10(value + 1)));
 }

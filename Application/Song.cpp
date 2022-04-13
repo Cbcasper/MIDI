@@ -6,6 +6,6 @@
 
 namespace State
 {
-    Song::Song(): measures(200), numberOfBeats(4), timeDivision(Music::Fourth)
+    Song::Song(): measures(200), numberOfBeats(4), timeDivision(Music::Fourth), tempo(500000)
     {}
 }

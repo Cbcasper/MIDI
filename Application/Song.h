@@ -22,6 +22,8 @@ namespace State
         int numberOfBeats;
         Music::TimeDivision timeDivision;
 
+        int tempo;
+
         Song();
     };
 }

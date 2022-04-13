@@ -11,6 +11,8 @@
 #include <shared_mutex>
 #include <condition_variable>
 
+#include "../Application/Application.h"
+
 namespace System
 {
     class Timer;
@@ -19,6 +21,8 @@ namespace System
     class Timer
     {
     public:
+        State::ApplicationPointer application;
+
         unsigned long ticks;
         bool running;
 
@@ -27,14 +31,18 @@ namespace System
         std::vector<bool*> statusFlags;
 
         std::future<void> timerFuture;
-        std::chrono::microseconds tickLength;
+        std::chrono::nanoseconds tickLength;
 
         static TimerPointer getInstance();
+
+        void initialize(const State::ApplicationPointer& givenApplication);
 
         void timerThread();
         void subscribe(bool* status);
         void unsubscribe(bool* status);
         void statusOn();
+
+        void setTempo(double microseconds);
 
         virtual ~Timer();
 

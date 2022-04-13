@@ -10,10 +10,8 @@ namespace System
     std::mutex Timer::instanceMutex;
     TimerPointer Timer::instance;
 
-    Timer::Timer()
+    Timer::Timer(): tickLength(std::chrono::nanoseconds(500000000 / 960)) // 120 bpm in nanoseconds
     {
-        // TODO: decide tick length
-        tickLength = std::chrono::microseconds(500000 / 960);
         ticks = 0;
         running = true;
         timerFuture = Utilities::makeThread([=] { return timerThread(); });
@@ -23,6 +21,12 @@ namespace System
     {
         running = false;
         timerFuture.wait();
+    }
+
+    void Timer::initialize(const State::ApplicationPointer& givenApplication)
+    {
+        application = givenApplication;
+        setTempo(application->song->tempo);
     }
 
     TimerPointer Timer::getInstance()
@@ -63,5 +67,12 @@ namespace System
     {
         for (bool* status: statusFlags)
             *status = true;
+    }
+
+    void Timer::setTempo(double microseconds)
+    {
+        double divisionsPerBeat = static_cast<double>(Music::Sixteenth) / static_cast<double>(application->song->timeDivision);
+        double microsecondsPerTick = microseconds / divisionsPerBeat / application->ticksPerDivision;
+        tickLength = std::chrono::nanoseconds(static_cast<int>(round(microsecondsPerTick * 1000)));
     }
 }

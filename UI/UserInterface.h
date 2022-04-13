@@ -34,6 +34,11 @@ namespace UI
         MIDI::InstrumentPointer pianoInput;
         MIDI::InstrumentPointer pianoOutput;
 
+        float controlHeight;
+        float trackListRatio;
+        float sequencerRatio;
+        float harmonyRatio;
+
         float scroll;
         float headerSize;
         float measureWidth;
@@ -49,14 +54,14 @@ namespace UI
         ImVec2 keyTopLeft;
         ImVec2 keySize;
 
-        ImColor mainBackground;
-        ImColor darkBackground;
+        ImU32 mainBackground;
+        ImU32 darkBackground;
 
-        ImColor divisionColor;
-        ImColor playingColor;
-        ImColor playingColorTransparent;
-        ImColor recordingColor;
-        ImColor recordingColorTransparent;
+        ImU32 divisionColor;
+        ImU32 playingColor;
+        ImU32 playingColorTransparent;
+        ImU32 recordingColor;
+        ImU32 recordingColorTransparent;
 
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
                       const std::shared_ptr<System::Sequencer>& sequencer,
@@ -67,10 +72,14 @@ namespace UI
 
         void renderMessageMonitor();
         void renderMainWindow();
-        void renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize);
         void renderControl(const ImVec2& controlPosition, const ImVec2& controlSize);
+        void renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize);
+        void renderHarmonyModel(const ImVec2& harmonyPosition, const ImVec2& harmonyModelSize);
         void renderPiano();
-        void renderHarmonyModel();
+
+        bool clickableItem(const std::string& id, const std::function<void()>& itemFunction);
+        void displayTime(const State::SongPointer& song);
+        void displayPaddedTimeElement(int value, int total);
 
         void computeMeasureLength();
         float computePosition(int ticks);
@@ -85,8 +94,8 @@ namespace UI
 
         MIDI::MessagePointer getLastMessage() const;
 
-        void drawKeys(int numberOfKeys, int keyIndex, const ImColor& keyColor,
-                      const ImColor& pressedColor, const ImColor& borderColor);
+        void drawKeys(int numberOfKeys, int keyIndex, const ImU32& keyColor,
+                      const ImU32& pressedColor, const ImU32& borderColor);
         void updateKeyTopLeft(float adjustment);
 
         void playNote(int noteValue);
