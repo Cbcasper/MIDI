@@ -75,4 +75,47 @@ namespace Music
         rep << intervalSequence[0]->toString();
         return rep.str();
     }
+
+    std::string IntervalSequence::sequenceName(IntervalSequence::Type sequenceType)
+    {
+        static std::map<Type, std::string> sequenceNames = {{Ionian,          "Ionian"},
+                                                           {Dorian,          "Dorian"},
+                                                           {Phrygian,        "Phrygian"},
+                                                           {Lydian,          "Lydian"},
+                                                           {Mixolydian,      "Mixolydian"},
+                                                           {Aeolian,         "Aeolian"},
+                                                           {Locrian,         "Locrian"},
+                                                           {Major,           "Major"},
+                                                           {NaturalMinor,    "Natural Minor"},
+                                                           {HarmonicMinor,   "Harmonic Minor"},
+                                                           {MelodicMinor,    "Melodic Minor"}};
+        return sequenceNames[sequenceType];
+    }
+
+    std::vector<Mode::Type> IntervalSequence::allModes()
+    {
+        return {Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian};
+    }
+
+    std::vector<Scale::Type> IntervalSequence::allScales()
+    {
+        return {Major, NaturalMinor, HarmonicMinor, MelodicMinor};
+    }
+
+    std::map<IntervalSequence::Type, IntervalSequence::Type> IntervalSequence::getTypeMap()
+    {
+        std::map<Type, Type> typeMap;
+        for (Mode::Type mode: allModes())
+            typeMap[mode] = mode;
+        for (Scale::Type scale: allScales())
+            typeMap[scale] = scale;
+        typeMap[Major] = Ionian;
+        typeMap[NaturalMinor] = Aeolian;
+        return typeMap;
+    }
+
+    bool IntervalSequence::ofType(IntervalSequence::Type otherType) {
+        static std::map<Type, Type> typeMap = getTypeMap();
+        return typeMap[type] == typeMap[otherType];
+    }
 }

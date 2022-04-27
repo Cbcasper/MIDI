@@ -10,18 +10,16 @@
 
 #include "libremidi/libremidi.hpp"
 
-#include "../../Application/Application.h"
-#include "../AudioPlayer.h"
-#include "../Processor.h"
+#include "IOType.h"
 #include "InputPort.h"
 #include "OutputPort.h"
+#include "../Processor.h"
+#include "../AudioPlayer.h"
 #include "../Utilities/Utilities.h"
+#include "../../Application/Application.h"
 
 namespace MIDI
 {
-    enum IOType
-    { Input, Output };
-
     class IOManager;
     using PortMap = std::map<std::string, PortPointer>;
     using PortMapPair = std::pair<std::string, PortPointer>;

@@ -16,6 +16,7 @@
 #include "MessageFilterCheckboxes.h"
 #include "../MIDI/FileManager.h"
 #include "../Director/Quantizer.h"
+#include "KeyColor.h"
 
 namespace UI
 {
@@ -63,6 +64,12 @@ namespace UI
         ImU32 recordingColor;
         ImU32 recordingColorTransparent;
 
+        KeyColorPointer blackKey;
+        KeyColorPointer whiteKey;
+        KeyColorPointer highlightedColor;
+
+        std::map<Music::Harmony::Type, ImU32> harmonyColors;
+
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
                       const std::shared_ptr<System::Sequencer>& sequencer,
                       const std::shared_ptr<Music::Quantizer>& quantizer);
@@ -77,9 +84,16 @@ namespace UI
         void renderHarmonyModel(const ImVec2& harmonyPosition, const ImVec2& harmonyModelSize);
         void renderPiano();
 
-        bool clickableItem(const std::string& id, const std::function<void()>& itemFunction);
-        void displayTime(const State::SongPointer& song);
-        void displayPaddedTimeElement(int value, int total);
+        void renderControlBar(const ImVec2& controlBarPosition, const ImVec2& controlBarSize);
+        void renderTime(const State::SongPointer& song);
+        int renderPaddedTimeElement(const std::string& id, int value, int total);
+        void renderSignatureEdit(const State::SongPointer& song);
+        void adjustTime(int measures, int beats, int divisions, int ticks);
+        void renderTempo();
+        void renderKey(const Music::KeyPointer& key);
+
+        void renderHarmonySource(const ImVec2& harmonySourcePosition, const ImVec2& harmonySourceSize);
+        void constructHarmony(Music::Harmony::Type type);
 
         void computeMeasureLength();
         float computePosition(int ticks);
@@ -94,9 +108,12 @@ namespace UI
 
         MIDI::MessagePointer getLastMessage() const;
 
-        void drawKeys(int numberOfKeys, int keyIndex, const ImU32& keyColor,
-                      const ImU32& pressedColor, const ImU32& borderColor);
+        int renderOctaves(int numberOfOctaves, int startOctave, const std::string& id,
+                           const std::set<int>& highlightedKeys = {});
+        int renderPianoKeys(int numberOfKeys, int keyIndex, const KeyColorPointer& keyColor,
+                            const std::set<int>& highlightedKeys);
         void updateKeyTopLeft(float adjustment);
+        void updatePlayedKey(int& currentPlayedKey, int newPlayedKey);
 
         void playNote(int noteValue);
         void stopNote(int noteValue);

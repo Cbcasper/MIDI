@@ -16,6 +16,7 @@
 #include "../MIDI/Messages/Instrument.h"
 #include "../Director/Harmonies/SingleHarmonies/TranspositionHarmony.h"
 #include "../Theory/Key/Key.h"
+#include "../MIDI/IO/IOType.h"
 
 namespace State
 {
@@ -31,7 +32,6 @@ namespace State
         std::vector<TrackPointer> tracks;
 
         SongPointer song;
-        Music::KeyPointer key;
 
         int currentTime;
         bool recording;
@@ -47,7 +47,7 @@ namespace State
 
         void stopRecording();
 
-        static MIDI::InstrumentPointer selectInstrument(const std::vector<std::string>& ports);
+        MIDI::InstrumentPointer selectInstrument(MIDI::IOType ioType);
         void initializeTracks();
     };
 

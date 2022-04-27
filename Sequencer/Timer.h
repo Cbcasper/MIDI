@@ -42,7 +42,7 @@ namespace System
         void unsubscribe(bool* status);
         void statusOn();
 
-        void setTempo(double microseconds);
+        void setTempo(int microseconds);
 
         virtual ~Timer();
 

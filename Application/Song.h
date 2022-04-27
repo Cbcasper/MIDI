@@ -8,6 +8,7 @@
 #include <memory>
 
 #include "../Theory/TimeDivision.h"
+#include "../Theory/Key/Key.h"
 
 namespace State
 {
@@ -17,14 +18,15 @@ namespace State
     class Song
     {
     public:
+        int tempo;
         int measures;
-
         int numberOfBeats;
         Music::TimeDivision timeDivision;
-
-        int tempo;
+        Music::KeyPointer key;
 
         Song();
+
+        void setTempo(int microseconds);
     };
 }
 

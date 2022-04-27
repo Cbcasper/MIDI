@@ -29,6 +29,13 @@ float Utilities::clamp(float value, float min, float max)
     else                    return value;
 }
 
+int Utilities::clamp(int value, int min, int max)
+{
+    if (value < min)        return min;
+    else if (value > max)   return max;
+    else                    return value;
+}
+
 int Utilities::sum(const std::vector<int>& vector)
 {
     int sum = 0;

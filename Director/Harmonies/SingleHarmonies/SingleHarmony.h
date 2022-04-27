@@ -14,7 +14,7 @@ namespace Music
     class SingleHarmony: public Harmony
     {
     public:
-        SingleHarmony(const std::string& port, int channel);
+        SingleHarmony(Type type, const MIDI::InstrumentPointer& output);
 
         virtual std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) = 0;
         MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) override;

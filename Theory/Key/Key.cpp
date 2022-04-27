@@ -21,6 +21,12 @@ namespace Music
         intervalSequence->apply(rootNote);
     }
 
+    void Key::setRootNote(const std::pair<RootNote::Name, bool>& note)
+    {
+        const auto& [name, sharp] = note;
+        return setRootNote(name, sharp);
+    }
+
     void Key::setIntervalSequence(IntervalSequence::Type type)
     {
         switch (type)

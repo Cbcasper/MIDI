@@ -50,6 +50,13 @@ namespace Music
         std::pair<RootNotePointer, int> modulate(const RootNotePointer& note, int offset);
 
         virtual std::string toString();
+        static std::string sequenceName(Type type);
+
+        static std::vector<Type> allModes();
+        static std::vector<Type> allScales();
+
+        std::map<Type, Type> getTypeMap();
+        bool ofType(Type otherType);
     };
 
     using Mode = IntervalSequence;

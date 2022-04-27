@@ -18,6 +18,18 @@ namespace Music
     class Harmony
     {
     public:
+        enum Type
+        {
+            Random,
+            Transposition,
+            Modulation,
+            Canon,
+            Choral
+        };
+
+        Type type;
+        std::string name;
+
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayer audioPlayer;
 
@@ -26,10 +38,13 @@ namespace Music
         NoteFilter noteFilter;
         std::map<NotePointer, NotePointer> soundingNotes;
 
-        Harmony(const std::string& port, int channel);
+        Harmony(Type type, const MIDI::InstrumentPointer& output);
 
         void processMessage(const MIDI::NoteMessagePointer& noteMessage);
         virtual MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) = 0;
+
+        static std::string harmonyName(Type type);
+        static std::vector<Type> allHarmonies();
     };
 }
 

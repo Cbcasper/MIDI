@@ -18,7 +18,7 @@ namespace Music
         std::default_random_engine randomEngine;
         std::uniform_int_distribution<int> uniformIntDistribution;
 
-        RandomHarmony(const std::string& port, int channel);
+        RandomHarmony(const MIDI::InstrumentPointer& output);
 
         std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };

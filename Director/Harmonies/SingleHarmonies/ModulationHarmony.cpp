@@ -6,8 +6,8 @@
 
 namespace Music
 {
-    ModulationHarmony::ModulationHarmony(const std::string& port, int channel, int modulationOffset, const KeyPointer& key):
-                       SingleHarmony(port, channel), modulationOffset(modulationOffset), key(key)
+    ModulationHarmony::ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key, int modulationOffset):
+                       SingleHarmony(Modulation, output), modulationOffset(modulationOffset), key(key)
     {}
 
     std::pair<bool, NotePointer> ModulationHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)

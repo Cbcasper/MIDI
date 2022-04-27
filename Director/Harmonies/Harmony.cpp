@@ -6,11 +6,11 @@
 
 namespace Music
 {
-    Harmony::Harmony(const std::string& port, int channel)
+    Harmony::Harmony(Type type, const MIDI::InstrumentPointer& output): type(type), output(output)
     {
         audioPlayer = MIDI::AudioPlayer();
-        output = std::make_shared<MIDI::Instrument>(port, channel);
         noteFilter = NoteFilter();
+        name = harmonyName(type);
     }
 
     void Harmony::processMessage(const MIDI::NoteMessagePointer& noteMessage)
@@ -20,5 +20,20 @@ namespace Music
             MIDI::NoteMessagePointer generatedNoteMessage = generate(noteMessage);
             if (chainedHarmony) chainedHarmony->processMessage(generatedNoteMessage);
         }
+    }
+
+    std::string Harmony::harmonyName(Harmony::Type type)
+    {
+        static std::map<Type, std::string> harmonyNames = {{Random, "Random"},
+                                                           {Transposition, "Transposition"},
+                                                           {Modulation, "Modulation"},
+                                                           {Canon, "Canon"},
+                                                           {Choral, "Choral"}};
+        return harmonyNames[type];
+    }
+
+    std::vector<Harmony::Type> Harmony::allHarmonies()
+    {
+        return {Random, Transposition, Modulation, Canon, Choral};
     }
 }

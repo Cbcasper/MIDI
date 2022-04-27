@@ -50,6 +50,7 @@ void Renderer::start() const
     // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
     //io.Fonts->AddFontDefault();
     io.Fonts->AddFontFromFileTTF("./imgui/fonts/Roboto-Medium.ttf", 16.0f, &config);
+    io.Fonts->AddFontFromFileTTF("./imgui/fonts/Roboto-Medium.ttf", 32.0f, &config);
     //io.Fonts->AddFontFromFileTTF("./imgui/fonts/Cousine-Regular.ttf", 15.0f);
     //io.Fonts->AddFontFromFileTTF("./imgui/fonts/DroidSans.ttf", 16.0f);
     //io.Fonts->AddFontFromFileTTF("./imgui/fonts/ProggyTiny.ttf", 10.0f);

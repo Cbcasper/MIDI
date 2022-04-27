@@ -14,7 +14,7 @@ namespace Music
     public:
         int transpositionOffset;
 
-        TranspositionHarmony(const std::string& port, int channel, int transpositionOffset);
+        TranspositionHarmony(const MIDI::InstrumentPointer& output, int transpositionOffset = 0);
 
         std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };

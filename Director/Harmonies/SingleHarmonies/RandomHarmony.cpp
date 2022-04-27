@@ -6,7 +6,7 @@
 
 namespace Music
 {
-    RandomHarmony::RandomHarmony(const std::string& port, int channel): SingleHarmony(port, channel)
+    RandomHarmony::RandomHarmony(const MIDI::InstrumentPointer& output): SingleHarmony(Random, output)
     {
         randomEngine = std::default_random_engine(randomDevice());
         uniformIntDistribution = std::uniform_int_distribution(0, 127);

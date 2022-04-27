@@ -16,7 +16,7 @@ namespace Music
         KeyPointer key;
         int modulationOffset;
 
-        ModulationHarmony(const std::string& port, int channel, int modulationOffset, const KeyPointer& key);
+        ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key, int modulationOffset = 0);
 
         std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };

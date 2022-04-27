@@ -9,7 +9,6 @@ namespace State
     Application::Application()
     {
         song = std::make_shared<Song>();
-        key = std::make_shared<Music::Key>();
 
         displayMessageFilter = MIDI::MessageFilter();
         displayMessageFilter.allowTypes({MIDI::MessageType::NOTE_ON, MIDI::MessageType::NOTE_OFF});
@@ -41,8 +40,9 @@ namespace State
             track->cleanupNotes();
     }
 
-    MIDI::InstrumentPointer Application::selectInstrument(const std::vector<std::string>& ports)
+    MIDI::InstrumentPointer Application::selectInstrument(MIDI::IOType ioType)
     {
+        std::vector<std::string> ports = ioType == MIDI::Input ? inputPorts : outputPorts;
         if (ports.empty())
             return std::make_shared<MIDI::Instrument>(1);
         else
@@ -51,8 +51,8 @@ namespace State
 
     void Application::initializeTracks()
     {
-        MIDI::InstrumentPointer input = selectInstrument(inputPorts);
-        MIDI::InstrumentPointer output = selectInstrument(outputPorts);
+        MIDI::InstrumentPointer input = selectInstrument(MIDI::Input);
+        MIDI::InstrumentPointer output = selectInstrument(MIDI::Output);
         tracks.emplace_back(std::make_shared<Track>(this, input, output));
     }
 }
