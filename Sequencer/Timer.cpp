@@ -72,7 +72,7 @@ namespace System
     void Timer::setTempo(int microseconds)
     {
         double divisionsPerBeat = static_cast<double>(Music::Sixteenth) / static_cast<double>(application->song->timeDivision);
-        double microsecondsPerTick = static_cast<double>(microseconds) / divisionsPerBeat / application->ticksPerDivision;
+        double microsecondsPerTick = static_cast<double>(microseconds) / divisionsPerBeat / application->song->ticksPerDivision;
         tickLength = std::chrono::nanoseconds(static_cast<int>(round(microsecondsPerTick * 1000)));
     }
 }

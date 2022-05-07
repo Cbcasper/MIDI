@@ -9,6 +9,10 @@
 #include <utility>
 #include <string>
 
+#include "imgui.h"
+
+#import "../UI/Font.h"
+
 class Renderer
 {
 public:
@@ -18,7 +22,7 @@ public:
     explicit Renderer(std::function<void()> render, const char* title): render(std::move(render)), title(title) {}
 
     static void glfw_error_callback(int error, const char* description);
-    void start() const;
+    void start(UI::FontPointer& defaultFont, UI::FontPointer& mediumFont, UI::FontPointer& largeFont) const;
 };
 
 

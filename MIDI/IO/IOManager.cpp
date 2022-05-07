@@ -42,7 +42,7 @@ namespace MIDI
             constructPort(portNumber, systemMIDIIn.portName(portNumber), IOType::Input);
         for (int portNumber = 0; portNumber < systemMIDIOut.portCount(); ++portNumber)
             constructPort(portNumber, systemMIDIOut.portName(portNumber), IOType::Output);
-        processor->initializePorts(Utilities::keyList(inputPorts), Utilities::keyList(outputPorts));
+        processor->updatePorts(Utilities::keyList(inputPorts), Utilities::keyList(outputPorts));
     }
 
     void IOManager::constructPort(int portNumber, const std::string& portName, IOType ioType)

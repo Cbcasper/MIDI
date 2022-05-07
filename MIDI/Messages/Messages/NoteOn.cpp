@@ -20,4 +20,10 @@ namespace MIDI
     {
         return libremidi::message::note_on(channel, note->value, velocity);
     }
+
+    void NoteOn::move(int newTick)
+    {
+        noteEnd->tick += newTick - tick;
+        tick = newTick;
+    }
 }

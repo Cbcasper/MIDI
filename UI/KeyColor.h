@@ -18,7 +18,9 @@ namespace UI
         ImU32 pressed;
         ImU32 border;
 
-        KeyColor(ImU32 key,ImU32 pressed, ImU32 border);
+        KeyColor(int red, int green, int blue, bool dark = false);
+
+        operator ImU32();
     };
 
     using KeyColorPointer = std::shared_ptr<KeyColor>;

@@ -34,7 +34,7 @@ namespace Music
 
     NotePointer Note::getInstance(Name name, bool sharp, int octave)
     {
-        unsigned char value = convert(name, sharp);
+        unsigned char value = convert(name, sharp) + octave * 12;
         return getInstance(value, name, sharp, octave);
     }
 

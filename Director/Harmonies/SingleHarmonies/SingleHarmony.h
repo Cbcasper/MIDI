@@ -16,10 +16,10 @@ namespace Music
     public:
         SingleHarmony(Type type, const MIDI::InstrumentPointer& output);
 
-        virtual std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) = 0;
+        virtual NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) = 0;
         MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) override;
-        void handleNoteOn(const MIDI::NoteOnPointer& noteOn, MIDI::NoteMessagePointer& generatedMessage);
-        void handleNoteOff(const MIDI::NoteOffPointer& noteOff, MIDI::NoteMessagePointer& generatedMessage);
+        MIDI::NoteMessagePointer handleNoteOn(const MIDI::NoteOnPointer& noteOn);
+        MIDI::NoteMessagePointer handleNoteOff(const MIDI::NoteOffPointer& noteOff);
     };
 }
 

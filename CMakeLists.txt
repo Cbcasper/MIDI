@@ -49,7 +49,6 @@ set(SOURCES
         MIDI/IO/InputPort.cpp MIDI/IO/InputPort.h
         MIDI/IO/OutputPort.cpp MIDI/IO/OutputPort.h
         MIDI/Messages/Messages/NoteMessage.cpp MIDI/Messages/Messages/NoteMessage.h
-        Director/Quantizer.cpp Director/Quantizer.h
         Director/Harmonies/Harmony.cpp Director/Harmonies/Harmony.h
         Theory/Note/NoteFilter.cpp Theory/Note/NoteFilter.h
         Application/Track.cpp Application/Track.h
@@ -59,7 +58,16 @@ set(SOURCES
         Application/Song.cpp Application/Song.h
         Theory/TimeDivision.h Theory/TimeDivision.cpp
         Theory/Note/RootNote.cpp Theory/Note/RootNote.h
-        Theory/Key/Key.cpp Theory/Key/Key.h Theory/Key/IntervalSequence.cpp Theory/Key/IntervalSequence.h Theory/Key/MelodicMinor.cpp Theory/Key/MelodicMinor.h Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp Director/Harmonies/SingleHarmonies/ModulationHarmony.h Director/Harmonies/SingleHarmonies/SingleHarmony.cpp Director/Harmonies/SingleHarmonies/SingleHarmony.h Director/Harmonies/SingleHarmonies/RandomHarmony.cpp Director/Harmonies/SingleHarmonies/RandomHarmony.h UI/KeyColor.cpp UI/KeyColor.h MIDI/IO/IOType.h)
+        Theory/Key/Key.cpp Theory/Key/Key.h
+        Theory/Key/IntervalSequence.cpp Theory/Key/IntervalSequence.h
+        Theory/Key/MelodicMinor.cpp Theory/Key/MelodicMinor.h
+        Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp Director/Harmonies/SingleHarmonies/ModulationHarmony.h
+        Director/Harmonies/SingleHarmonies/SingleHarmony.cpp Director/Harmonies/SingleHarmonies/SingleHarmony.h
+        Director/Harmonies/SingleHarmonies/RandomHarmony.cpp Director/Harmonies/SingleHarmonies/RandomHarmony.h
+        UI/KeyColor.cpp UI/KeyColor.h
+        MIDI/IO/IOType.h
+        Sequencer/Metronome.cpp Sequencer/Metronome.h
+        MIDI/Messages/Instrument.cpp MIDI/Messages/Instrument.h UI/Font.cpp UI/Font.h Director/Harmonies/CanonHarmony.cpp Director/Harmonies/CanonHarmony.h)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h
@@ -69,7 +77,8 @@ set(IMGUI
         imgui/imgui_demo.cpp
         imgui/imgui_impl_glfw.cpp imgui/imgui_impl_glfw.h
         imgui/imgui_impl_metal.mm imgui/imgui_impl_metal.h
-        imgui/Renderer.mm imgui/Renderer.h MIDI/Messages/Instrument.cpp MIDI/Messages/Instrument.h)
+        imgui/Renderer.mm imgui/Renderer.h
+        imgui/IconsFontAwesome6.h)
 
 add_executable(MIDIAssistant
         main.cpp ${SOURCES} ${IMGUI})

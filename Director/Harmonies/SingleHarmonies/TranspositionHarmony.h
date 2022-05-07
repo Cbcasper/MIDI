@@ -16,8 +16,10 @@ namespace Music
 
         TranspositionHarmony(const MIDI::InstrumentPointer& output, int transpositionOffset = 0);
 
-        std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
+        NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };
+
+    using TranspositionHarmonyPointer = std::shared_ptr<TranspositionHarmony>;
 }
 
 #endif //MIDIASSISTANT_TRANSPOSITIONHARMONY_H

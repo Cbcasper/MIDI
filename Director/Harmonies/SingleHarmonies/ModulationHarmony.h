@@ -18,8 +18,10 @@ namespace Music
 
         ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key, int modulationOffset = 0);
 
-        std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
+        NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };
+
+    using ModulationHarmonyPointer = std::shared_ptr<ModulationHarmony>;
 }
 
 

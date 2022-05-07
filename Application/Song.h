@@ -24,9 +24,12 @@ namespace State
         Music::TimeDivision timeDivision;
         Music::KeyPointer key;
 
+        int ticksPerDivision = 240;
+
         Song();
 
         void setTempo(int microseconds);
+        void computeMeasureLength(float& divisionsPerBeat, float& ticksPerBeat, float& ticksPerMeasure);
     };
 }
 

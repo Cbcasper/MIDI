@@ -18,10 +18,18 @@ namespace Music
         std::default_random_engine randomEngine;
         std::uniform_int_distribution<int> uniformIntDistribution;
 
-        RandomHarmony(const MIDI::InstrumentPointer& output);
+        int low;
+        int high;
+        bool absolute;
 
-        std::pair<bool, NotePointer> generateNote(const MIDI::NoteOnPointer& noteOn) override;
+        explicit RandomHarmony(const MIDI::InstrumentPointer& output);
+
+        void setAbsolute(bool newAbsolute);
+        void reinitialize();
+        NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };
+
+    using RandomHarmonyPointer = std::shared_ptr<RandomHarmony>;
 }
 
 #endif //MIDIASSISTANT_RANDOMHARMONY_H

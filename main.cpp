@@ -4,7 +4,6 @@
 #include "Sequencer/Sequencer.h"
 #include "Director/Director.h"
 #include "MIDI/FileManager.h"
-#include "Director/Quantizer.h"
 
 int main()
 {
@@ -13,14 +12,17 @@ int main()
     System::Timer::getInstance()->initialize(applicationState);
 
     std::shared_ptr<Music::Director> director = std::make_shared<Music::Director>(applicationState);
-    std::shared_ptr<Music::Quantizer> quantizer = std::make_shared<Music::Quantizer>(applicationState);
     std::shared_ptr<MIDI::Processor> midiProcessor = std::make_shared<MIDI::Processor>(applicationState, director);
     std::shared_ptr<System::Sequencer> sequencer = std::make_shared<System::Sequencer>(applicationState, director);
 
     MIDI::IOManager::getInstance()->initialize(midiProcessor);
     MIDI::FileManager::getInstance()->initialize(midiProcessor);
 
-    std::shared_ptr<UI::UserInterface> ui = std::make_shared<UI::UserInterface>(applicationState, sequencer, quantizer);
+    MIDI::InstrumentPointer input = applicationState->selectInstrument(MIDI::Input);
+    MIDI::InstrumentPointer output = applicationState->selectInstrument(MIDI::Output);
+    applicationState->tracks.emplace_back(std::make_shared<State::Track>(applicationState, input, output));
+
+    std::shared_ptr<UI::UserInterface> ui = std::make_shared<UI::UserInterface>(applicationState, sequencer);
     ui->start();
 
     return 0;

@@ -25,7 +25,7 @@ void Renderer::glfw_error_callback(int error, const char* description)
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-void Renderer::start() const
+void Renderer::start(UI::FontPointer& defaultFont, UI::FontPointer& mediumFont, UI::FontPointer& largeFont) const
 {
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -37,10 +37,8 @@ void Renderer::start() const
     // Setup style
     ImGui::StyleColorsDark();
     //ImGui::StyleColorsClassic();
+    ImGui::GetStyle().FrameRounding = 3;
 
-    ImFontConfig config;
-    config.OversampleH = 8;
-    config.OversampleV = 8;
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
     // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
@@ -48,14 +46,15 @@ void Renderer::start() const
     // - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
     // - Read 'docs/FONTS.txt' for more instructions and details.
     // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
-    //io.Fonts->AddFontDefault();
-    io.Fonts->AddFontFromFileTTF("./imgui/fonts/Roboto-Medium.ttf", 16.0f, &config);
-    io.Fonts->AddFontFromFileTTF("./imgui/fonts/Roboto-Medium.ttf", 32.0f, &config);
-    //io.Fonts->AddFontFromFileTTF("./imgui/fonts/Cousine-Regular.ttf", 15.0f);
-    //io.Fonts->AddFontFromFileTTF("./imgui/fonts/DroidSans.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("./imgui/fonts/ProggyTiny.ttf", 10.0f);
-    //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-    //IM_ASSERT(font != NULL);
+//    io.Fonts->AddFontDefault();
+
+    defaultFont = std::make_shared<UI::Font>("./imgui/fonts/Roboto-Medium.ttf", 16.f, 8.f, 13.f);
+    mediumFont = std::make_shared<UI::Font>("./imgui/fonts/Roboto-Medium.ttf", 24.f, 12.f, 20.f);
+    largeFont = std::make_shared<UI::Font>("./imgui/fonts/Roboto-Medium.ttf", 32.f, 16.f, 27.f);
+//    io.Fonts->AddFontFromFileTTF("./imgui/fonts/Cousine-Regular.ttf", 15.0f);
+//    io.Fonts->AddFontFromFileTTF("./imgui/fonts/DroidSans.ttf", 16.0f);
+//    io.Fonts->AddFontFromFileTTF("./imgui/fonts/ProggyTiny.ttf", 10.0f);
+//    io.Fonts->AddFontFromFileTTF("./imgui/fonts/ProggyClean.ttf", 10.0f);
 
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);

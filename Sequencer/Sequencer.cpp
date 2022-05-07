@@ -10,11 +10,11 @@
 
 namespace System
 {
-    Sequencer::Sequencer(const std::shared_ptr<State::Application>& applicationState,
-                         const std::shared_ptr<Music::Director>& director):
-                         applicationState(applicationState), director(director)
+    Sequencer::Sequencer(const State::ApplicationPointer& applicationState, const std::shared_ptr<Music::Director>& director):
+                         applicationState(applicationState), director(director), metronome(Metronome(applicationState->song))
     {
         running = false;
+        clicking = false;
     }
 
     Sequencer::~Sequencer()
@@ -36,6 +36,9 @@ namespace System
 
             trackStatusOn();
             tracksCV.notify_all();
+
+            if (clicking)
+                metronome.clickOnTick(applicationState->currentTime);
 
             status = false;
             timer->signalCV.wait(lock, [&]{ return status; });

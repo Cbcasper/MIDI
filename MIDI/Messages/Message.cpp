@@ -28,4 +28,9 @@ namespace MIDI
     {
         return std::string();
     }
+
+    void Message::move(int newTick)
+    {
+        tick = newTick;
+    }
 }

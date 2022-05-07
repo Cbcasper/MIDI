@@ -30,6 +30,9 @@ namespace MIDI
         AUGraphConnectNodeInput(auGraph, instrumentNode, 0, outputNode, 0);
         AUGraphInitialize(auGraph);
         AUGraphStart(auGraph);
+
+        for (int i = 0; i < 16; ++i)
+            processMIDIMessage(libremidi::message::control_change(i + 1, 91, 10));
     }
 
     void AudioPlayer::processMIDIMessage(const libremidi::message& message) const

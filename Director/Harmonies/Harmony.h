@@ -30,6 +30,8 @@ namespace Music
         Type type;
         std::string name;
 
+        bool selected;
+
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayer audioPlayer;
 
@@ -42,6 +44,7 @@ namespace Music
 
         void processMessage(const MIDI::NoteMessagePointer& noteMessage);
         virtual MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) = 0;
+        void play(const MIDI::NoteMessagePointer& original, const MIDI::NoteMessagePointer& generated);
 
         static std::string harmonyName(Type type);
         static std::vector<Type> allHarmonies();

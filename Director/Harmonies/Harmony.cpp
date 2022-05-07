@@ -4,9 +4,12 @@
 
 #include "Harmony.h"
 
+#include "../../MIDI/IO/IOManager.h"
+
 namespace Music
 {
-    Harmony::Harmony(Type type, const MIDI::InstrumentPointer& output): type(type), output(output)
+    Harmony::Harmony(Type type, const MIDI::InstrumentPointer& output):
+                     type(type), output(output), selected(false)
     {
         audioPlayer = MIDI::AudioPlayer();
         noteFilter = NoteFilter();
@@ -20,6 +23,13 @@ namespace Music
             MIDI::NoteMessagePointer generatedNoteMessage = generate(noteMessage);
             if (chainedHarmony) chainedHarmony->processMessage(generatedNoteMessage);
         }
+    }
+
+    void Harmony::play(const MIDI::NoteMessagePointer& original, const MIDI::NoteMessagePointer& generated)
+    {
+        MIDI::IOManagerPointer ioManager = MIDI::IOManager::getInstance();
+        ioManager->sendMIDIOut(std::make_pair(generated, output));
+        audioPlayer.processMIDIMessage(generated->rawMessage(output->channel));
     }
 
     std::string Harmony::harmonyName(Harmony::Type type)

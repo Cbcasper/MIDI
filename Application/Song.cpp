@@ -17,4 +17,11 @@ namespace State
         tempo = microseconds;
         System::Timer::getInstance()->setTempo(tempo);
     }
+
+    void Song::computeMeasureLength(float& divisionsPerBeat, float& ticksPerBeat, float& ticksPerMeasure)
+    {
+        divisionsPerBeat = static_cast<float>(Music::Sixteenth) / static_cast<float>(timeDivision);
+        ticksPerBeat = divisionsPerBeat * static_cast<float>(ticksPerDivision);
+        ticksPerMeasure = ticksPerBeat * static_cast<float>(numberOfBeats);
+    }
 }

@@ -30,6 +30,8 @@ namespace MIDI
         virtual std::string message();
         virtual std::string value();
         virtual libremidi::message rawMessage(int channel) = 0;
+
+        virtual void move(int newTick);
     };
 }
 

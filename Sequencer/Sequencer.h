@@ -14,6 +14,7 @@
 
 #include "../Application/Application.h"
 #include "./Timer.h"
+#include "Metronome.h"
 
 namespace Music
 {
@@ -25,8 +26,9 @@ namespace System
     class Sequencer
     {
     public:
-        std::shared_ptr<State::Application> applicationState;
+        State::ApplicationPointer applicationState;
         std::shared_ptr<Music::Director> director;
+        Metronome metronome;
 
         std::future<void> masterFuture;
         std::vector<std::future<void>> trackFutures;
@@ -36,8 +38,9 @@ namespace System
         std::vector<bool*> trackStatuses;
 
         bool running;
+        bool clicking;
 
-        explicit Sequencer(const std::shared_ptr<State::Application>& applicationState,
+        explicit Sequencer(const State::ApplicationPointer& applicationState,
                            const std::shared_ptr<Music::Director>& director);
         ~Sequencer();
 

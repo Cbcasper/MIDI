@@ -11,8 +11,8 @@ namespace Music
                           SingleHarmony(Transposition, output), transpositionOffset(transpositionOffset)
     {}
 
-    std::pair<bool, NotePointer> TranspositionHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)
+    NotePointer TranspositionHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)
     {
-        return std::make_pair(true, Note::getInstance(noteOn->note->value + transpositionOffset));
+        return Note::getInstance(noteOn->note->value + transpositionOffset);
     }
 }

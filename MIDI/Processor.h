@@ -33,7 +33,6 @@ namespace MIDI
         static std::unique_ptr<Message> convertMIDIMessage(const libremidi::message& message);
 
         void updatePorts(const std::vector<std::string>& inputPorts, const std::vector<std::string>& outputPorts);
-        void initializePorts(const std::vector<std::string>& inputPorts, const std::vector<std::string>& outputPorts);
     };
 }
 

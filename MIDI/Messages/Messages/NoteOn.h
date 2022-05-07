@@ -21,6 +21,7 @@ namespace MIDI
         NoteOn(const Music::NotePointer& note, int velocity);
 
         libremidi::message rawMessage(int channel) override;
+        void move(int newTick) override;
     };
 
     using NoteOnPointer = std::shared_ptr<NoteOn>;

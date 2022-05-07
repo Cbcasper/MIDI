@@ -36,8 +36,6 @@ namespace State
         int currentTime;
         bool recording;
 
-        int ticksPerDivision = 240;
-
         MIDI::MessageFilter displayMessageFilter;
 
         Application();
@@ -48,7 +46,6 @@ namespace State
         void stopRecording();
 
         MIDI::InstrumentPointer selectInstrument(MIDI::IOType ioType);
-        void initializeTracks();
     };
 
     using ApplicationPointer = std::shared_ptr<Application>;

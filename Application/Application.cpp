@@ -48,11 +48,4 @@ namespace State
         else
             return std::make_shared<MIDI::Instrument>(ports[0], 1);
     }
-
-    void Application::initializeTracks()
-    {
-        MIDI::InstrumentPointer input = selectInstrument(MIDI::Input);
-        MIDI::InstrumentPointer output = selectInstrument(MIDI::Output);
-        tracks.emplace_back(std::make_shared<Track>(this, input, output));
-    }
 }

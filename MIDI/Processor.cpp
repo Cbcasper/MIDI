@@ -51,10 +51,4 @@ namespace MIDI
         applicationState->inputPorts = inputPorts;
         applicationState->outputPorts = outputPorts;
     }
-
-    void Processor::initializePorts(const std::vector<std::string>& inputPorts, const std::vector<std::string>& outputPorts)
-    {
-        updatePorts(inputPorts, outputPorts);
-        applicationState->initializeTracks();
-    }
 }
