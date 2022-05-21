@@ -5,41 +5,38 @@
 #ifndef MIDIASSISTANT_TRACK_H
 #define MIDIASSISTANT_TRACK_H
 
-#include <set>
-#include <unordered_map>
+#include <vector>
 
+#include "Take.h"
 #include "../MIDI/Processor.h"
 #include "../MIDI/AudioPlayer.h"
 #include "../MIDI/Messages/Instrument.h"
 #include "../Director/Harmonies/Harmony.h"
-#include "../MIDI/Messages/Messages/NoteOff.h"
+#include "../MIDI/Messages/Messages/NoteOn.h"
 #include "../Theory/TimeDivision.h"
+#include "../MIDI/MessageFilter.h"
 
 namespace State
 {
     class Application;
     using ApplicationPointer = std::shared_ptr<Application>;
-    using SoundingNotes = std::map<int, MIDI::NoteOffPointer*>;
 
     class Track
     {
     public:
         ApplicationPointer application;
 
-        std::mutex mutex;
-
         MIDI::InstrumentPointer input;
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayer audioPlayer;
 
+        TakePointer mainTake;
+        TakePointer recordingTake;
+        std::vector<TakePointer> takes;
+
+        std::map<Music::NotePointer, int> soundingNotes;
+
         float height;
-
-        std::unordered_map<MIDI::InstrumentPointer, SoundingNotes> instrumentSoundingNotes;
-        std::map<int, std::set<MIDI::MessagePointer>> midiMessages;
-
-        bool notesRecorded;
-        int lowestNote;
-        int highestNote;
 
         std::vector<Music::HarmonyPointer> harmonies;
 
@@ -47,14 +44,11 @@ namespace State
 
         void incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
-        void recordMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument, int tick = -1);
-        void cleanupNotes();
+        void updateSoundingNotes(const MIDI::MessagePointer& message);
+        void stopRecording();
 
         bool hasSelectedHarmonies();
         void clearSelectedHarmonies();
-
-        void quantize(Music::TimeDivision quantizeDivision);
-        int quantizeTick(int tick, Music::TimeDivision quantizeDivision);
     };
 
     using TrackPointer = std::shared_ptr<Track>;

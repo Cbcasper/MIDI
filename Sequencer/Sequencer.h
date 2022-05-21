@@ -12,9 +12,10 @@
 #include <shared_mutex>
 #include <condition_variable>
 
-#include "../Application/Application.h"
-#include "./Timer.h"
+#include "Timer.h"
+#include "Cycle.h"
 #include "Metronome.h"
+#include "../Application/Application.h"
 
 namespace Music
 {
@@ -28,7 +29,8 @@ namespace System
     public:
         State::ApplicationPointer applicationState;
         std::shared_ptr<Music::Director> director;
-        Metronome metronome;
+        MetronomePointer metronome;
+        CyclePointer cycle;
 
         std::future<void> masterFuture;
         std::vector<std::future<void>> trackFutures;
@@ -38,7 +40,6 @@ namespace System
         std::vector<bool*> trackStatuses;
 
         bool running;
-        bool clicking;
 
         explicit Sequencer(const State::ApplicationPointer& applicationState,
                            const std::shared_ptr<Music::Director>& director);

@@ -26,6 +26,7 @@ namespace UI
     public:
         std::shared_ptr<State::Application> applicationState;
         std::shared_ptr<System::Sequencer> sequencer;
+        std::shared_ptr<Music::Director> director;
 
         MessageFilterCheckboxes messageMonitorFilter;
         ImGuiTableFlags midiMessageTableFlags;
@@ -83,10 +84,12 @@ namespace UI
         KeyColorPointer primaryHighlight;
         KeyColorPointer secondaryHighlight;
 
+        std::set<int> pressedKeys;
         std::map<int, std::stack<KeyColorPointer>> keyColors;
         std::map<Music::Harmony::Type, KeyColorPointer> harmonyColors;
 
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
+                      const std::shared_ptr<Music::Director>& director,
                       const std::shared_ptr<System::Sequencer>& sequencer);
 
         void start();
@@ -119,7 +122,7 @@ namespace UI
         void renderHarmonySource(const ImVec2& harmonySourcePosition, const ImVec2& harmonySourceSize);
 
         float computeXPosition(int ticks);
-        float computeYPosition(const ImVec2& trackSize, const State::TrackPointer& track, int value);
+        float computeYPosition(const ImVec2& trackSize, const State::TakePointer& take, int value);
         int computeTickDelta(float positionDelta);
 
         void renderGrid(ImDrawList* drawList);

@@ -18,6 +18,8 @@ namespace System
         MIDI::AudioPlayer audioPlayer;
         State::SongPointer song;
 
+        bool clicking;
+
         MIDI::NoteOnPointer measureSoundOn;
         MIDI::NoteOffPointer measureSoundOff;
         MIDI::NoteOnPointer beatSoundOn;
@@ -30,6 +32,7 @@ namespace System
 
         void clickOnTick(int tick);
     };
+    using MetronomePointer = std::shared_ptr<Metronome>;
 }
 
 #endif //MIDIASSISTANT_METRONOME_H

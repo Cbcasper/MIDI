@@ -94,6 +94,12 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Song.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Take.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Take.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Application/Track.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
@@ -251,6 +257,12 @@
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/MIDI/Processor.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Cycle.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Cycle.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Metronome.cpp">

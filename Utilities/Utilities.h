@@ -18,16 +18,16 @@ namespace MIDI
     using PortMap = std::map<std::string, PortPointer>;
 }
 
-class Utilities
+namespace Utilities
 {
-public:
-    static std::vector<std::string> keyList(const MIDI::PortMap& map);
-    static std::future<void> makeThread(const std::function<void()>& threadFunction);
-    static float clamp(float value, float min, float max);
-    static int clamp(int value, int min, int max);
-    static int sum(const std::vector<int>& vector);
-    static int positiveModulo(int value, int modulo);
-    static int numberOfDigits(double value);
+    std::vector<std::string> keyList(const MIDI::PortMap& map);
+    std::future<void> makeThread(const std::function<void()>& threadFunction);
+    float clamp(float value, float min, float max);
+    int clamp(int value, int min, int max);
+    int bottomClamp(int value, int min);
+    int sum(const std::vector<int>& vector);
+    int positiveModulo(int value, int modulo);
+    int numberOfDigits(double value);
 };
 
 

@@ -27,8 +27,9 @@
 namespace UI
 {
     UserInterface::UserInterface(const std::shared_ptr<State::Application>& applicationState,
+                                 const std::shared_ptr<Music::Director>& director,
                                  const std::shared_ptr<System::Sequencer>& sequencer):
-                                applicationState(applicationState), sequencer(sequencer)
+                                 applicationState(applicationState), director(director), sequencer(sequencer)
     {
         previousLastMessage = getLastMessage();
         pianoOutput = applicationState->selectInstrument(MIDI::Output);
@@ -209,7 +210,7 @@ namespace UI
             renderTimeDivisionSelect(quantizeDivision);
             ImGui::SameLine();
             if (ImGui::Button("Quantize"))
-                applicationState->tracks[0]->quantize(quantizeDivision);
+                applicationState->tracks[0]->mainTake->quantize(quantizeDivision);
         }
         ImGui::EndChild();
     }
@@ -305,7 +306,8 @@ namespace UI
         int measureTicks = measures * static_cast<int>(measureLength);
         int beatTicks = beats * static_cast<int>(divisionsPerBeat) * ticksPerDivision;
         int divisionTicks = divisions * ticksPerDivision;
-        applicationState->currentTime += measureTicks + beatTicks + divisionTicks + ticks;
+        int offset = measureTicks + beatTicks + divisionTicks + ticks;
+        applicationState->currentTime = Utilities::bottomClamp(applicationState->currentTime + offset, -1);
     }
 
     int UserInterface::renderPaddedTimeElement(const std::string& id, int value, int total)
@@ -403,7 +405,7 @@ namespace UI
                     ImGui::TableNextColumn();
                     if (i < scales.size())
                     {
-                        std::string scaleName = Music::Mode::sequenceName(scales[i]);
+                        std::string scaleName = Music::Scale::sequenceName(scales[i]);
                         if (ImGui::Selectable(scaleName.c_str(), key->intervalSequence->ofType(scales[i]),
                                               ImGuiSelectableFlags_DontClosePopups))
                             key->setIntervalSequence(scales[i]);
@@ -418,11 +420,15 @@ namespace UI
 
     void UserInterface::renderSequencerControls()
     {
-        ImGui::Button(" " ICON_FA_BACKWARD " ");
+        ImGui::PushButtonRepeat(true);
+        if (ImGui::Button(" " ICON_FA_BACKWARD " "))
+            adjustTime(-1, 0, 0, 0);
         ImGui::SameLine(0.f, 1.f);
 
-        ImGui::Button(" " ICON_FA_FORWARD " ");
+        if (ImGui::Button(" " ICON_FA_FORWARD " "))
+            adjustTime(1, 0, 0, 0);
         ImGui::SameLine(0.f, 1.f);
+        ImGui::PopButtonRepeat();
 
         if (renderColoredControlButton(ICON_FA_CIRCLE, true, recordingColor))
             record();
@@ -432,12 +438,21 @@ namespace UI
             play();
         ImGui::SameLine(0.f, 1.f);
 
-        if (renderColoredControlButton(ICON_FA_ARROWS_ROTATE, false, cycleColor))
-            ;
+        System::CyclePointer cycle = sequencer->cycle;
+        if (renderColoredControlButton(ICON_FA_ARROWS_ROTATE, cycle->cycling, cycleColor))
+            cycle->cycling = !cycle->cycling;
         ImGui::SameLine(0.f, 1.f);
 
-        if (renderColoredControlButton(ICON_FA_BELL, sequencer->clicking, metronomeColor))
-            sequencer->clicking = !sequencer->clicking;
+        System::MetronomePointer metronome = sequencer->metronome;
+        if (renderColoredControlButton(ICON_FA_BELL, metronome->clicking, metronomeColor))
+            metronome->clicking = !metronome->clicking;
+        ImGui::SameLine();
+
+        if (ImGui::Button(ICON_FA_CHEVRON_LEFT ICON_FA_CHEVRON_RIGHT))
+            measureWidth /= .9;
+        ImGui::SameLine(0.f, 1.f);
+        if (ImGui::Button(ICON_FA_CHEVRON_RIGHT ICON_FA_CHEVRON_LEFT))
+            measureWidth *= .9;
     }
 
     bool UserInterface::renderPlayButton()
@@ -530,6 +545,9 @@ namespace UI
             if (ImGui::BeginChild("trackPianoWindow", ImVec2(tracklistSize.x, keyLength),
                                   false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
             {
+                for (const auto& [note, occurrences]: track->soundingNotes)
+                    if (occurrences > 0)
+                        pressedKeys.insert(note->value);
                 std::map<Music::HarmonyPointer, std::set<int>> harmonyNotes;
                 for (const Music::HarmonyPointer& harmony: track->harmonies)
                 {
@@ -540,6 +558,7 @@ namespace UI
                 renderOctaves(11, 0, "trackPiano");
                 for (const Music::HarmonyPointer& harmony: track->harmonies)
                     popKeyColors(harmonyNotes[harmony]);
+                pressedKeys.clear();
             }
             ImGui::EndChild();
             ImGui::PopID();
@@ -552,10 +571,12 @@ namespace UI
         return scroll + static_cast<float>(ticks) / measureLength * measureWidth;
     }
 
-    float UserInterface::computeYPosition(const ImVec2& trackSize, const State::TrackPointer& track, int value)
+    float UserInterface::computeYPosition(const ImVec2& trackSize, const State::TakePointer& take, int value)
     {
-        int range = Utilities::clamp(track->highestNote - track->lowestNote + 24, 0, 127 + 24);
-        int rangedValue = value - track->lowestNote + 12;
+        int highestNote = take->highestNote == -1 ? 64 : take->highestNote;
+        int lowestNote = take->lowestNote == 128 ? 64 : take->lowestNote;
+        int range = Utilities::clamp(highestNote - lowestNote + 24, 0, 127 + 24);
+        int rangedValue = value - lowestNote + 12;
         return trackSize.y / static_cast<float>(range) * static_cast<float>(range - rangedValue);
     }
 
@@ -591,6 +612,7 @@ namespace UI
     {
         State::SongPointer song = applicationState->song;
 
+        ImGui::GetStyle().AntiAliasedLines = false;
         drawList->AddLine(mainAreaPosition + ImVec2(scroll, 0),
                           mainAreaPosition + ImVec2(scroll + totalWidth, 0), divisionColor);
         for (int i = 0; i < song->measures; ++i)
@@ -610,6 +632,7 @@ namespace UI
                               mainAreaPosition + ImVec2(measureOffset, mainAreaSize.y),
                               divisionColor);
         }
+        ImGui::GetStyle().AntiAliasedLines = true;
     }
 
     void UserInterface::renderSequencerTracks(ImDrawList* drawList)
@@ -628,8 +651,9 @@ namespace UI
     {
         for (const State::TrackPointer& track: applicationState->tracks)
         {
-            std::unique_lock<std::mutex> lock(track->mutex);
-            for (const auto& [tick, messages]: track->midiMessages)
+            State::TakePointer take = track->mainTake;
+            std::unique_lock<std::mutex> lock(take->mutex);
+            for (const auto& [tick, messages]: take->midiMessages)
                 for (const MIDI::MessagePointer& message: messages)
                     if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
                     {
@@ -641,9 +665,9 @@ namespace UI
                                                     noteColor.x, noteColor.y, noteColor.z);
 
                         float startX = computeXPosition(tick);
-                        float startY = computeYPosition(trackSize, track, noteOn->note->value + 1);
+                        float startY = computeYPosition(trackSize, take, noteOn->note->value + 1);
                         float endX = computeXPosition(end);
-                        float endY = computeYPosition(trackSize, track, noteOn->note->value);
+                        float endY = computeYPosition(trackSize, take, noteOn->note->value);
                         drawList->AddRectFilled(trackPosition + ImVec2(startX, startY),
                                                 trackPosition + ImVec2(endX, endY),
                                                 ImGui::ColorConvertFloat4ToU32(noteColor));
@@ -701,8 +725,9 @@ namespace UI
 
     void UserInterface::sequencerKeyEvents()
     {
-        if (ImGui::IsKeyDown(ImGuiKey_ModSuper) && ImGui::IsKeyPressed(ImGuiKey_RightArrow)) measureWidth++;
-        if (ImGui::IsKeyDown(ImGuiKey_ModSuper) && ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) measureWidth--;
+        bool super = ImGui::IsKeyDown(ImGuiKey_ModSuper);
+        if (super && ImGui::IsKeyPressed(ImGuiKey_RightArrow)) measureWidth /= .75;
+        if (super && ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) measureWidth *= .75;
         if (ImGui::IsItemFocused())
         {
             if (ImGui::IsKeyPressed(ImGuiKey_Space))    play();
@@ -970,7 +995,6 @@ namespace UI
         {
             int noteValue = keyIndex + i * 2;
             ImGui::PushID(noteValue);
-            ImVec2 keyBottomRight = keyTopLeft + keySize;
 
             ImGui::InvisibleButton("", keySize, buttonFlags);
             ImGui::SetItemAllowOverlap();
@@ -978,15 +1002,16 @@ namespace UI
             if (ImGui::IsItemActivated() && ImGui::IsItemHovered())   playNote(noteValue);
             if (ImGui::IsItemDeactivated())                           stopNote(noteValue);
             if (ImGui::IsItemClicked())                               playedKey = noteValue;
-            bool active = ImGui::IsItemActive();
+            bool active = ImGui::IsItemActive() || pressedKeys.find(noteValue) != pressedKeys.end();
 
             KeyColorPointer keyColor = keyColors[noteValue].top();
             ImU32 currentColor = active ? keyColor->pressed : keyColor->key;
-            ImVec2 pressedOffset = active ? ImVec2(0, keySize.y / 20) : ImVec2(0, 0);
+            ImVec2 currentKeySize = active ? keySize + ImVec2(0, keySize.y / 20) : keySize;
+            ImVec2 keyBottomRight = keyTopLeft + currentKeySize;
 
-            drawList->AddRectFilled(keyTopLeft, keyBottomRight + pressedOffset, currentColor);
-            drawList->AddLine(keyTopLeft, keyBottomRight + ImVec2(-keyWidth, 0) + pressedOffset, keyColor->border);
-            drawList->AddLine(keyTopLeft + ImVec2(keyWidth, 0), keyBottomRight + pressedOffset, keyColor->border);
+            drawList->AddRectFilled(keyTopLeft, keyBottomRight, currentColor);
+            drawList->AddLine(keyTopLeft, keyTopLeft + ImVec2(0, currentKeySize.y), keyColor->border);
+            drawList->AddLine(keyTopLeft + ImVec2(currentKeySize.x, 0), keyBottomRight, keyColor->border);
 
             updateKeyTopLeft(keyWidth);
             ImGui::PopID();
@@ -1066,26 +1091,39 @@ namespace UI
 
     void UserInterface::renderMIDIInstrument(const MIDI::InstrumentPointer& instrument, float availableWidth)
     {
-        ImGui::BeginGroup();
-        ImGui::BeginGroup();
-        if (availableWidth != 0) ImGui::SetNextItemWidth(availableWidth / 2);
-        if (ImGui::BeginCombo("Port", instrument->port.c_str()))
+        ImGui::Button(ICON_FA_ARROW_RIGHT_TO_BRACKET " ");
+        ImGui::SameLine();
+        float availableWidthContent = ImGui::GetContentRegionAvail().x;
+        float itemSpacing = ImGui::GetStyle().ItemSpacing.x;
+//        ImGui::BeginGroup();
+//        ImGui::BeginGroup();
+//        if (availableWidth != 0)
+            ImGui::SetNextItemWidth(availableWidthContent * .5f - itemSpacing / 2);
+        const char* preview = instrument->port.c_str();
+        if (instrument->allPorts) preview = "All";
+        if (instrument->noPorts)  preview = "None";
+        if (ImGui::BeginCombo("##Port", preview))
         {
+            if (ImGui::Selectable("All", instrument->allPorts))
+                instrument->setAllPorts();
+            if (ImGui::Selectable("None", instrument->noPorts))
+                instrument->setNoPorts();
             for (const std::string& outputPort: applicationState->outputPorts)
-            {
-                ImGui::PushID(("output port" + outputPort).c_str());
-                if (ImGui::Selectable(outputPort.c_str(), outputPort == instrument->port))
-                    instrument->port = outputPort;
-                ImGui::PopID();
-            }
+                if (ImGui::Selectable(outputPort.c_str(), outputPort == instrument->port && instrument->specificPort()))
+                    instrument->setPort(outputPort);
             ImGui::EndCombo();
         }
+        ImGui::SameLine();
 
-        if (availableWidth != 0) ImGui::SetNextItemWidth(availableWidth / 2);
+//        if (availableWidth != 0)
+            ImGui::SetNextItemWidth(availableWidthContent * .5f - itemSpacing / 2);
         ImGuiSliderFlags sliderFlags = ImGuiSliderFlags_AlwaysClamp;
-        ImGui::SliderInt("Channel", &instrument->channel, 1, 16, "%d", sliderFlags);
-        ImGui::EndGroup();
-        ImVec2 size = ImGui::GetItemRectSize();
+        const char* format = "%d";
+        if (instrument->allChannels()) format = "All";
+        if (instrument->noChannels())  format = "None";
+        ImGui::SliderInt("##Channel", &instrument->channel, 1, CHANNELS_NONE, format, sliderFlags);
+//        ImGui::EndGroup();
+//        ImVec2 size = ImGui::GetItemRectSize();
 
         ImGui::Spacing();
         ImGui::Spacing();
@@ -1094,22 +1132,22 @@ namespace UI
         {
             ImGui::EndCombo();
         }
-        ImGui::EndGroup();
-
-        if (availableWidth != 0)
-        {
-            ImGui::SameLine();
-            ImGui::BeginGroup();
-            ImGui::Button("Mute", ImVec2(size.y, size.y));
-            ImGui::SameLine();
-            ImGui::Button("Solo", ImVec2(size.y, size.y));
-            ImGui::Spacing();
-            ImGui::Spacing();
-            ImGui::Button("Mute", ImVec2(size.y, 0));
-            ImGui::SameLine();
-            ImGui::Button("Solo", ImVec2(size.y, 0));
-            ImGui::EndGroup();
-        }
+//        ImGui::EndGroup();
+//
+//        if (availableWidth != 0)
+//        {
+//            ImGui::SameLine();
+//            ImGui::BeginGroup();
+//            ImGui::Button("Mute", ImVec2(size.y, size.y));
+//            ImGui::SameLine();
+//            ImGui::Button("Solo", ImVec2(size.y, size.y));
+//            ImGui::Spacing();
+//            ImGui::Spacing();
+//            ImGui::Button("Mute", ImVec2(size.y, 0));
+//            ImGui::SameLine();
+//            ImGui::Button("Solo", ImVec2(size.y, 0));
+//            ImGui::EndGroup();
+//        }
     }
 
     void UserInterface::renderTimeDivisionSelect(Music::TimeDivision& selectingTimeDivision)

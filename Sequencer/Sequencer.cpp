@@ -11,10 +11,16 @@
 namespace System
 {
     Sequencer::Sequencer(const State::ApplicationPointer& applicationState, const std::shared_ptr<Music::Director>& director):
-                         applicationState(applicationState), director(director), metronome(Metronome(applicationState->song))
+                         applicationState(applicationState), director(director)
     {
+        float divisionsPerBeat;
+        float ticksPerBeat;
+        float ticksPerMeasure;
+        applicationState->song->computeMeasureLength(divisionsPerBeat, ticksPerBeat, ticksPerMeasure);
+
         running = false;
-        clicking = false;
+        metronome = std::make_shared<Metronome>(applicationState->song);
+        cycle = std::make_shared<Cycle>(0, ticksPerMeasure * 1);
     }
 
     Sequencer::~Sequencer()
@@ -32,13 +38,12 @@ namespace System
         timer->signalCV.wait(lock, [&]{ return status; });
         while (running)
         {
-            applicationState->currentTime++;
+            applicationState->currentTime = cycle->set(applicationState->currentTime + 1);
 
             trackStatusOn();
             tracksCV.notify_all();
 
-            if (clicking)
-                metronome.clickOnTick(applicationState->currentTime);
+            metronome->clickOnTick(applicationState->currentTime);
 
             status = false;
             timer->signalCV.wait(lock, [&]{ return status; });
@@ -56,12 +61,16 @@ namespace System
         tracksCV.wait(lock, [&]{ return status; });
         while (running)
         {
-            track->mutex.lock();
-            for (const MIDI::MessagePointer& message: track->midiMessages[applicationState->currentTime])
-                track->playMIDIMessage(std::make_pair(message, track->input));
-            if (track->midiMessages[applicationState->currentTime].empty())
-                track->midiMessages.erase(applicationState->currentTime);
-            track->mutex.unlock();
+            State::TakePointer take = track->mainTake;
+            take->mutex.lock();
+            for (const MIDI::MessagePointer& message: take->midiMessages[applicationState->currentTime])
+            {
+                track->playMIDIMessage(std::make_pair(message, track->output));
+                director->inputMIDIMessage(std::make_pair(message, track->input));
+            }
+            if (take->midiMessages[applicationState->currentTime].empty())
+                take->midiMessages.erase(applicationState->currentTime);
+            take->mutex.unlock();
 
             status = false;
             tracksCV.wait(lock, [&]{ return status; });

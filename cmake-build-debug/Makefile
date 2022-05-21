@@ -177,6 +177,30 @@ Application/Song.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Song.cpp.s
 .PHONY : Application/Song.cpp.s
 
+Application/Take.o: Application/Take.cpp.o
+.PHONY : Application/Take.o
+
+# target to build an object file
+Application/Take.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Take.cpp.o
+.PHONY : Application/Take.cpp.o
+
+Application/Take.i: Application/Take.cpp.i
+.PHONY : Application/Take.i
+
+# target to preprocess a source file
+Application/Take.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Take.cpp.i
+.PHONY : Application/Take.cpp.i
+
+Application/Take.s: Application/Take.cpp.s
+.PHONY : Application/Take.s
+
+# target to generate assembly for a file
+Application/Take.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Application/Take.cpp.s
+.PHONY : Application/Take.cpp.s
+
 Application/Track.o: Application/Track.cpp.o
 .PHONY : Application/Track.o
 
@@ -801,6 +825,30 @@ MIDI/Processor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/MIDI/Processor.cpp.s
 .PHONY : MIDI/Processor.cpp.s
 
+Sequencer/Cycle.o: Sequencer/Cycle.cpp.o
+.PHONY : Sequencer/Cycle.o
+
+# target to build an object file
+Sequencer/Cycle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Cycle.cpp.o
+.PHONY : Sequencer/Cycle.cpp.o
+
+Sequencer/Cycle.i: Sequencer/Cycle.cpp.i
+.PHONY : Sequencer/Cycle.i
+
+# target to preprocess a source file
+Sequencer/Cycle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Cycle.cpp.i
+.PHONY : Sequencer/Cycle.cpp.i
+
+Sequencer/Cycle.s: Sequencer/Cycle.cpp.s
+.PHONY : Sequencer/Cycle.s
+
+# target to generate assembly for a file
+Sequencer/Cycle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Cycle.cpp.s
+.PHONY : Sequencer/Cycle.cpp.s
+
 Sequencer/Metronome.o: Sequencer/Metronome.cpp.o
 .PHONY : Sequencer/Metronome.o
 
@@ -1416,6 +1464,9 @@ help:
 	@echo "... Application/Song.o"
 	@echo "... Application/Song.i"
 	@echo "... Application/Song.s"
+	@echo "... Application/Take.o"
+	@echo "... Application/Take.i"
+	@echo "... Application/Take.s"
 	@echo "... Application/Track.o"
 	@echo "... Application/Track.i"
 	@echo "... Application/Track.s"
@@ -1494,6 +1545,9 @@ help:
 	@echo "... MIDI/Processor.o"
 	@echo "... MIDI/Processor.i"
 	@echo "... MIDI/Processor.s"
+	@echo "... Sequencer/Cycle.o"
+	@echo "... Sequencer/Cycle.i"
+	@echo "... Sequencer/Cycle.s"
 	@echo "... Sequencer/Metronome.o"
 	@echo "... Sequencer/Metronome.i"
 	@echo "... Sequencer/Metronome.s"

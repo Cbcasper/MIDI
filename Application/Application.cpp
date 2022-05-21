@@ -37,14 +37,14 @@ namespace State
     {
         recording = false;
         for (const TrackPointer& track: tracks)
-            track->cleanupNotes();
+            track->stopRecording();
     }
 
     MIDI::InstrumentPointer Application::selectInstrument(MIDI::IOType ioType)
     {
         std::vector<std::string> ports = ioType == MIDI::Input ? inputPorts : outputPorts;
         if (ports.empty())
-            return std::make_shared<MIDI::Instrument>(1);
+            return std::make_shared<MIDI::Instrument>();
         else
             return std::make_shared<MIDI::Instrument>(ports[0], 1);
     }
