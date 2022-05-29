@@ -16,6 +16,7 @@
 #include "MessageFilterCheckboxes.h"
 #include "../MIDI/FileManager.h"
 #include "../MIDI/IO/IOManager.h"
+#include "../Director/Director.h"
 #include "../Sequencer/Sequencer.h"
 #include "../Application/Application.h"
 
@@ -33,10 +34,11 @@ namespace UI
         MIDI::MessagePointer previousLastMessage;
 
         MIDI::AudioPlayer pianoPlayer;
-        MIDI::InstrumentPointer pianoInput;
         MIDI::InstrumentPointer pianoOutput;
 
         Music::TimeDivision quantizeDivision;
+
+        ImDrawList* drawList;
 
         FontPointer defaultFont;
         FontPointer mediumFont;
@@ -52,7 +54,7 @@ namespace UI
         float measureWidth;
         float divisionsPerBeat;
         float measureLength;
-        float totalWidth;
+        float totalSequencerWidth;
 
         ImVec2 mainAreaPosition;
         ImVec2 mainAreaSize;
@@ -79,14 +81,19 @@ namespace UI
         ImU32 cycleColor;
         ImU32 metronomeColor;
 
+        ImU32 selectedTakeColor;
+
         KeyColorPointer blackKey;
         KeyColorPointer whiteKey;
         KeyColorPointer primaryHighlight;
         KeyColorPointer secondaryHighlight;
 
-        std::set<int> pressedKeys;
+        std::stack<std::function<void(const MIDI::MessagePointer&)>> pianoAction;
+        std::stack<std::function<bool(int)>> keyPressed;
         std::map<int, std::stack<KeyColorPointer>> keyColors;
         std::map<Music::Harmony::Type, KeyColorPointer> harmonyColors;
+
+        State::TrackPointer selectedTrack;
 
         UserInterface(const std::shared_ptr<State::Application>& applicationState,
                       const std::shared_ptr<Music::Director>& director,
@@ -101,6 +108,9 @@ namespace UI
         void renderTrackList(const ImVec2& tracklistPosition, const ImVec2& tracklistSize);
         void renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize);
         void renderHarmonyModel(const ImVec2& harmonyPosition, const ImVec2& harmonyModelSize);
+        void renderTracks(const ImVec2& trackListPosition, const ImVec2& sequencerPosition,
+                          const ImVec2& harmonyModelPosition, float trackListWidth, float sequencerWidth,
+                          float harmonyModelWidth);
         void renderPiano();
 
         void renderTrackControls(const ImVec2& trackControlsPosition, const ImVec2& trackControlsSize);
@@ -125,13 +135,14 @@ namespace UI
         float computeYPosition(const ImVec2& trackSize, const State::TakePointer& take, int value);
         int computeTickDelta(float positionDelta);
 
-        void renderGrid(ImDrawList* drawList);
-        void renderSequencerTracks(ImDrawList* drawList);
-        void renderNotes(ImDrawList* drawList, const ImVec2& trackPosition, const ImVec2& trackSize);
-        float renderPlayhead(ImDrawList* drawList, const ImVec2& sequencerPosition);
+        void renderGrid();
+        bool renderNotes(const State::TakePointer& take, const ImVec2& takePosition, const ImVec2& takeSize);
+        float renderPlayhead(const ImVec2& sequencerPosition);
         void sequencerEventButtons(float playheadLocation, const ImVec2& sequencerPosition,
                                    const ImVec2& sequencerSize);
         void sequencerKeyEvents();
+
+        void deleteItems();
 
         void renderTrackHarmonyModel(const State::TrackPointer& track, const ImVec2& trackHarmonyPosition,
                                      const ImVec2& trackHarmonySize);
@@ -148,6 +159,13 @@ namespace UI
         void renderCanonHarmony(const Music::HarmonyPointer& harmony);
         void renderChoralHarmony(const Music::HarmonyPointer& harmony);
 
+        void renderTrackListItem(const State::TrackPointer& track, const ImVec2& currentPosition,
+                                 float availableWidth);
+        float renderTrackSequencer(const State::TrackPointer& track, const ImVec2& currentPosition,
+                                   float sequencerWidth);
+        void renderTakeSequencer(const State::TrackPointer& track, const State::TakePointer& take,
+                                 float sequencerWidth, ImVec2& takePosition, const ImVec2& takeSize);
+
         int renderOctaves(int numberOfOctaves, int startOctave, const std::string& id);
         int renderPianoKeys(int numberOfKeys, int keyIndex);
         void updateKeyTopLeft(float adjustment);
@@ -155,6 +173,7 @@ namespace UI
 
         void playNote(int noteValue);
         void stopNote(int noteValue);
+        void playPianoMessage(const MIDI::MessagePointer& message);
         void play();
         void record();
 
@@ -163,7 +182,7 @@ namespace UI
         void pushKeyColors(const std::set<int>& values, const KeyColorPointer& keyColor);
         void popKeyColors(const std::set<int>& values);
 
-        void renderMIDIInstrument(const MIDI::InstrumentPointer& instrument, float availableWidth = 0);
+        void renderMIDIInstrument(const MIDI::InstrumentPointer& instrument);
         void renderTimeDivisionSelect(Music::TimeDivision& selectingTimeDivision);
     };
 }

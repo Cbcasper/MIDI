@@ -273,6 +273,54 @@ Director/Harmonies/CanonHarmony.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/CanonHarmony.cpp.s
 .PHONY : Director/Harmonies/CanonHarmony.cpp.s
 
+Director/Harmonies/ChoralHarmony/ChoralHarmony.o: Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.o
+
+# target to build an object file
+Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.o
+
+Director/Harmonies/ChoralHarmony/ChoralHarmony.i: Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.i
+
+# target to preprocess a source file
+Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.i
+
+Director/Harmonies/ChoralHarmony/ChoralHarmony.s: Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.s
+
+# target to generate assembly for a file
+Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp.s
+
+Director/Harmonies/ChoralHarmony/Tessiture.o: Director/Harmonies/ChoralHarmony/Tessiture.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.o
+
+# target to build an object file
+Director/Harmonies/ChoralHarmony/Tessiture.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Tessiture.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.cpp.o
+
+Director/Harmonies/ChoralHarmony/Tessiture.i: Director/Harmonies/ChoralHarmony/Tessiture.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.i
+
+# target to preprocess a source file
+Director/Harmonies/ChoralHarmony/Tessiture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Tessiture.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.cpp.i
+
+Director/Harmonies/ChoralHarmony/Tessiture.s: Director/Harmonies/ChoralHarmony/Tessiture.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.s
+
+# target to generate assembly for a file
+Director/Harmonies/ChoralHarmony/Tessiture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Tessiture.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/Tessiture.cpp.s
+
 Director/Harmonies/Harmony.o: Director/Harmonies/Harmony.cpp.o
 .PHONY : Director/Harmonies/Harmony.o
 
@@ -921,6 +969,54 @@ Sequencer/Timer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Sequencer/Timer.cpp.s
 .PHONY : Sequencer/Timer.cpp.s
 
+Theory/Chord/Chord.o: Theory/Chord/Chord.cpp.o
+.PHONY : Theory/Chord/Chord.o
+
+# target to build an object file
+Theory/Chord/Chord.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/Chord.cpp.o
+.PHONY : Theory/Chord/Chord.cpp.o
+
+Theory/Chord/Chord.i: Theory/Chord/Chord.cpp.i
+.PHONY : Theory/Chord/Chord.i
+
+# target to preprocess a source file
+Theory/Chord/Chord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/Chord.cpp.i
+.PHONY : Theory/Chord/Chord.cpp.i
+
+Theory/Chord/Chord.s: Theory/Chord/Chord.cpp.s
+.PHONY : Theory/Chord/Chord.s
+
+# target to generate assembly for a file
+Theory/Chord/Chord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/Chord.cpp.s
+.PHONY : Theory/Chord/Chord.cpp.s
+
+Theory/Chord/ChordNote.o: Theory/Chord/ChordNote.cpp.o
+.PHONY : Theory/Chord/ChordNote.o
+
+# target to build an object file
+Theory/Chord/ChordNote.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/ChordNote.cpp.o
+.PHONY : Theory/Chord/ChordNote.cpp.o
+
+Theory/Chord/ChordNote.i: Theory/Chord/ChordNote.cpp.i
+.PHONY : Theory/Chord/ChordNote.i
+
+# target to preprocess a source file
+Theory/Chord/ChordNote.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/ChordNote.cpp.i
+.PHONY : Theory/Chord/ChordNote.cpp.i
+
+Theory/Chord/ChordNote.s: Theory/Chord/ChordNote.cpp.s
+.PHONY : Theory/Chord/ChordNote.s
+
+# target to generate assembly for a file
+Theory/Chord/ChordNote.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Chord/ChordNote.cpp.s
+.PHONY : Theory/Chord/ChordNote.cpp.s
+
 Theory/Key/IntervalSequence.o: Theory/Key/IntervalSequence.cpp.o
 .PHONY : Theory/Key/IntervalSequence.o
 
@@ -1476,6 +1572,12 @@ help:
 	@echo "... Director/Harmonies/CanonHarmony.o"
 	@echo "... Director/Harmonies/CanonHarmony.i"
 	@echo "... Director/Harmonies/CanonHarmony.s"
+	@echo "... Director/Harmonies/ChoralHarmony/ChoralHarmony.o"
+	@echo "... Director/Harmonies/ChoralHarmony/ChoralHarmony.i"
+	@echo "... Director/Harmonies/ChoralHarmony/ChoralHarmony.s"
+	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.o"
+	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.i"
+	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.s"
 	@echo "... Director/Harmonies/Harmony.o"
 	@echo "... Director/Harmonies/Harmony.i"
 	@echo "... Director/Harmonies/Harmony.s"
@@ -1557,6 +1659,12 @@ help:
 	@echo "... Sequencer/Timer.o"
 	@echo "... Sequencer/Timer.i"
 	@echo "... Sequencer/Timer.s"
+	@echo "... Theory/Chord/Chord.o"
+	@echo "... Theory/Chord/Chord.i"
+	@echo "... Theory/Chord/Chord.s"
+	@echo "... Theory/Chord/ChordNote.o"
+	@echo "... Theory/Chord/ChordNote.i"
+	@echo "... Theory/Chord/ChordNote.s"
 	@echo "... Theory/Key/IntervalSequence.o"
 	@echo "... Theory/Key/IntervalSequence.i"
 	@echo "... Theory/Key/IntervalSequence.s"

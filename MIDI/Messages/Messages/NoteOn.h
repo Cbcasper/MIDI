@@ -5,6 +5,8 @@
 #ifndef MIDIASSISTANT_NOTEON_H
 #define MIDIASSISTANT_NOTEON_H
 
+#include <set>
+
 #include "NoteOff.h"
 #include "NoteMessage.h"
 #include "../Message.h"
@@ -25,6 +27,16 @@ namespace MIDI
     };
 
     using NoteOnPointer = std::shared_ptr<NoteOn>;
+
+    struct NoteOnComparator
+    {
+        bool operator()(const NoteOnPointer& firstNoteOn, const NoteOnPointer& secondNoteOn) const
+        {
+            return firstNoteOn->tick - secondNoteOn->tick;
+        }
+    };
+
+    using ChronologicNotes = std::set<NoteOnPointer, NoteOnComparator>;
 }
 
 #endif //MIDIASSISTANT_NOTEON_H

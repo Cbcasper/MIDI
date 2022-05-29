@@ -20,6 +20,7 @@ namespace State
     class Application;
     using ApplicationPointer = std::shared_ptr<Application>;
     using UnfinishedNotes = std::map<int, MIDI::NoteOnPointer>;
+    using NoteSequences = std::map<int, MIDI::ChronologicNotes>;
 
     class Take
     {
@@ -30,6 +31,7 @@ namespace State
 
         std::unordered_map<MIDI::InstrumentPointer, UnfinishedNotes> instrumentUnfinishedNotes;
         std::map<int, std::set<MIDI::MessagePointer>> midiMessages;
+        std::set<MIDI::NoteOnPointer> selectedNotes;
 
         int lowestNote;
         int highestNote;
@@ -42,6 +44,14 @@ namespace State
 
         void quantize(Music::TimeDivision quantizeDivision);
         int quantizeTick(int tick, Music::TimeDivision quantizeDivision);
+
+        std::set<MIDI::NoteOnPointer> allNotes();
+        bool noteSelected(const MIDI::NoteOnPointer& noteOn);
+        void selectAllNotes();
+        void selectNote(const MIDI::NoteOnPointer& noteOn, bool shifting);
+        void deleteSelectedNotes();
+
+        NoteSequences noteSequences();
     };
     using TakePointer = std::shared_ptr<Take>;
 }

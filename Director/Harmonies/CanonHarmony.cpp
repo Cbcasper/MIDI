@@ -37,20 +37,20 @@ namespace Music
     {
         if (MIDI::NoteMessagePointer noteMessage = scheduledMessages[timer->ticks])
         {
-            play(noteMessage, noteMessage);
-            if (noteMessage->type == MIDI::MessageType::NOTE_ON)    soundingNotes[noteMessage->note] = noteMessage->note;
-            else                                                    soundingNotes.erase(noteMessage->note);
+            std::unique_lock<std::mutex> lock(mutex);
+            play(noteMessage);
+            if (noteMessage->type == MIDI::MessageType::NOTE_ON) generatedNotes[noteMessage->note] = noteMessage->note;
+            else                                                 generatedNotes.erase(noteMessage->note);
         }
         scheduledMessages.erase(timer->ticks);
     }
 
-    MIDI::NoteMessagePointer CanonHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
+    void CanonHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
     {
         float divisionRatio = static_cast<float>(Music::Sixteenth) / static_cast<float>(timeDivision);
         float ticksPerDivision = static_cast<float>(song->ticksPerDivision) * divisionRatio;
         int offset = static_cast<int>(ticksPerDivision) * numberOfDivisions;
         scheduledMessages[timer->ticks + offset] = noteMessage;
-        return noteMessage;
     }
 
     CanonHarmony::~CanonHarmony()

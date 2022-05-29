@@ -3,6 +3,7 @@
 //
 
 #include "RootNote.h"
+#include "../../Utilities/Utilities.h"
 
 #include <sstream>
 #include <cmath>
@@ -35,6 +36,13 @@ namespace Music
     {
         int value = ((int) name) * 2 - ((int) name > 2);
         return value + (int) sharp;
+    }
+
+    int RootNote::computeOffset(const RootNotePointer& rootNote) const
+    {
+        int value = convert(name, sharp);
+        int otherValue = convert(rootNote->name, rootNote->sharp);
+        return Utilities::positiveModulo(value - otherValue, 12);
     }
 
     RootNotePointer RootNote::operator+(int semitones) const

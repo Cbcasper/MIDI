@@ -50,8 +50,10 @@ namespace Music
         return intervalSequence[newIndex];
     }
 
-    std::pair<RootNotePointer, int> IntervalSequence::modulate(const RootNotePointer& note, int offset)
+    std::pair<RootNotePointer, int>
+    IntervalSequence::modulate(const RootNotePointer& note, Modulation modulation, bool up)
     {
+        int offset = (int) modulation * (up ? 1 : -1);
         int index = 0;
         for (const RootNotePointer& diatonicNote: intervalSequence)
         {

@@ -23,6 +23,7 @@ namespace MIDI
     class IOManager;
     using PortMap = std::map<std::string, PortPointer>;
     using PortMapPair = std::pair<std::string, PortPointer>;
+    using OutputPortMap = std::map<std::string, OutputPortPointer>;
     using IOManagerPointer = std::shared_ptr<IOManager>;
 
     class IOManager

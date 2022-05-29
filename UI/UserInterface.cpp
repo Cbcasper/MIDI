@@ -23,6 +23,7 @@
 #include "../Director/Harmonies/SingleHarmonies/RandomHarmony.h"
 #include "../Director/Harmonies/SingleHarmonies/ModulationHarmony.h"
 #include "../Director/Harmonies/CanonHarmony.h"
+#include "../Director/Harmonies/ChoralHarmony/ChoralHarmony.h"
 
 namespace UI
 {
@@ -34,7 +35,7 @@ namespace UI
         previousLastMessage = getLastMessage();
         pianoOutput = applicationState->selectInstrument(MIDI::Output);
 
-        controlHeight = 100;
+        controlHeight = 102;
         trackListRatio = 1.f / 5.f;
         sequencerRatio = 2.f / 5.f;
         harmonyRatio = 2.f / 5.f;
@@ -47,7 +48,9 @@ namespace UI
 
         quantizeDivision = Music::Eighth;
 
-        mainBackground = ImColor(50, 50, 50);
+        ImU32 yellow = ImColor(255, 217, 0);
+
+        mainBackground = ImColor(40, 40, 40);
         darkBackground = ImColor(35, 35, 35);
         mainBorder = ImColor(255, 255, 255);
         darkBorder = ImColor(25, 25, 25);
@@ -60,8 +63,10 @@ namespace UI
         recordingColor = ImColor(232, 9, 9);
         recordingColorTransparent = ImColor(232, 9, 9, 50);
 
-        cycleColor = ImColor(255, 217, 0);
+        cycleColor = yellow;
         metronomeColor = ImColor(122, 0, 255);
+
+        selectedTakeColor = yellow;
 
         whiteKey = std::make_shared<KeyColor>(255, 255, 255);
         blackKey = std::make_shared<KeyColor>(0, 0, 0, true);
@@ -74,7 +79,11 @@ namespace UI
                          {Music::Harmony::Canon, std::make_shared<KeyColor>(255, 238, 22)},
                          {Music::Harmony::Choral, std::make_shared<KeyColor>(21, 173, 4)}};
 
+        pianoAction.push([&](const MIDI::MessagePointer& message){ playPianoMessage(message); });
+        keyPressed.push([](int noteValue){ return false; });
         initializeKeyColors();
+
+        selectedTrack = applicationState->tracks[0];
     }
 
     void UserInterface::start()
@@ -87,11 +96,11 @@ namespace UI
     {
         renderMessageMonitor();
         renderMainWindow();
-        renderPiano();
+//        renderPiano();
 
-        ImGui::ShowDemoWindow();
-        ImGui::ShowMetricsWindow();
-        ImGui::ShowStackToolWindow();
+//        ImGui::ShowDemoWindow();
+//        ImGui::ShowMetricsWindow();
+//        ImGui::ShowStackToolWindow();
     }
 
     void UserInterface::renderMessageMonitor()
@@ -143,10 +152,19 @@ namespace UI
 
     void UserInterface::renderMainWindow()
     {
-//        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-        if (ImGui::Begin("Sequencer"))
+        const ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowPos(viewport->WorkPos);
+        ImGui::SetNextWindowSize(viewport->WorkSize);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+
+        bool open;
+        ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize |
+                                 ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus;
+        if (ImGui::Begin("Main window", &open, flags))
         {
-            ImDrawList* drawList = ImGui::GetWindowDrawList();
+            ImGui::PopStyleVar();
+            drawList = ImGui::GetWindowDrawList();
+
             ImVec2 canvasSize = ImGui::GetContentRegionAvail();
             ImVec2 canvasPosition = ImGui::GetCursorScreenPos();
 
@@ -162,24 +180,23 @@ namespace UI
 
             float ticksPerBeat;
             applicationState->song->computeMeasureLength(divisionsPerBeat, ticksPerBeat, measureLength);
-            renderControl(controlPosition, controlSize);
             renderTrackList(tracklistPosition, tracklistSize);
             renderSequencer(sequencerPosition, sequencerSize);
             renderHarmonyModel(harmonyPosition, harmonyModelSize);
+            renderControl(controlPosition, controlSize);
 
-            drawList->AddRect(canvasPosition, canvasPosition + canvasSize, mainBorder);
             drawList->AddLine(controlPosition + ImVec2(0, controlSize.y), controlPosition + controlSize, mainBorder);
             drawList->AddLine(sequencerPosition, sequencerPosition + ImVec2(0, sequencerSize.y), mainBorder);
             drawList->AddLine(sequencerPosition + ImVec2(sequencerSize.x, 0), sequencerPosition + sequencerSize, mainBorder);
+
+            renderTracks(tracklistPosition, sequencerPosition, harmonyPosition,
+                         tracklistSize.x, sequencerSize.x, harmonyModelSize.x);
         }
         ImGui::End();
-//        ImGui::PopStyleVar();
     }
 
     void UserInterface::renderControl(const ImVec2& controlPosition, const ImVec2& controlSize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
-
         drawList->AddRectFilled(controlPosition, controlPosition + controlSize, mainBackground);
 
         ImVec2 trackControlsPosition = controlPosition;
@@ -210,17 +227,15 @@ namespace UI
             renderTimeDivisionSelect(quantizeDivision);
             ImGui::SameLine();
             if (ImGui::Button("Quantize"))
-                applicationState->tracks[0]->mainTake->quantize(quantizeDivision);
+                applicationState->tracks[0]->quantize();
         }
         ImGui::EndChild();
     }
 
     void UserInterface::renderControlBar(const ImVec2& controlBarPosition, const ImVec2& controlBarSize)
     {
-
         ImGui::SetCursorScreenPos(controlBarPosition);
-        ImGui::SetNextWindowContentSize(controlBarSize);
-        if (ImGui::BeginChild("innerControl", controlBarSize, true,
+        if (ImGui::BeginChild("innerControl", ImVec2(402.5, 102), true,
                               ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
         {
             ImGui::PushFont(*largeFont);
@@ -237,7 +252,6 @@ namespace UI
 
     void UserInterface::renderSongData()
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
         State::SongPointer song = applicationState->song;
 
         ImVec2 position = ImGui::GetCursorScreenPos();
@@ -471,8 +485,6 @@ namespace UI
 
     void UserInterface::renderHarmonySource(const ImVec2& harmonySourcePosition, const ImVec2& harmonySourceSize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
-
         ImVec2 padding = ImGui::GetStyle().WindowPadding;
         ImVec2 currentPosition = harmonySourcePosition;
 
@@ -517,53 +529,12 @@ namespace UI
 
     void UserInterface::renderTrackList(const ImVec2& tracklistPosition, const ImVec2& tracklistSize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
         drawList->AddRectFilled(tracklistPosition, tracklistPosition + tracklistSize, mainBackground);
         drawList->AddRectFilled(tracklistPosition, tracklistPosition + ImVec2(tracklistSize.x, headerSize),
                                 tracklistHeaderColor);
         drawList->AddLine(tracklistPosition + ImVec2(0, headerSize),
                           tracklistPosition + ImVec2(tracklistSize.x, headerSize),
                           mainBorder);
-
-        ImVec2 currentPosition = tracklistPosition + ImVec2(0, headerSize);
-        for (const State::TrackPointer& track: applicationState->tracks)
-        {
-            ImGui::PushID((void*)track.get());
-            drawList->AddLine(currentPosition + ImVec2(0, track->height),
-                              currentPosition + ImVec2(tracklistSize.x, track->height),
-                              darkBorder);
-            ImGui::SetCursorScreenPos(currentPosition);
-            if (ImGui::BeginChild("trackControls", ImVec2(tracklistSize.x, track->height - keyLength),
-                                  true, ImGuiWindowFlags_NoBackground))
-            {
-                renderMIDIInstrument(track->input, tracklistSize.x);
-            }
-            ImGui::EndChild();
-
-            ImGui::SetCursorScreenPos(currentPosition + ImVec2(0, track->height - keyLength));
-            ImGui::SetNextWindowContentSize(ImVec2(0, keyLength));
-            if (ImGui::BeginChild("trackPianoWindow", ImVec2(tracklistSize.x, keyLength),
-                                  false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
-            {
-                for (const auto& [note, occurrences]: track->soundingNotes)
-                    if (occurrences > 0)
-                        pressedKeys.insert(note->value);
-                std::map<Music::HarmonyPointer, std::set<int>> harmonyNotes;
-                for (const Music::HarmonyPointer& harmony: track->harmonies)
-                {
-                    for (const auto& [note, generatedNote]: harmony->soundingNotes)
-                        harmonyNotes[harmony].insert(generatedNote->value);
-                    pushKeyColors(harmonyNotes[harmony], harmonyColors[harmony->type]);
-                }
-                renderOctaves(11, 0, "trackPiano");
-                for (const Music::HarmonyPointer& harmony: track->harmonies)
-                    popKeyColors(harmonyNotes[harmony]);
-                pressedKeys.clear();
-            }
-            ImGui::EndChild();
-            ImGui::PopID();
-            currentPosition += ImVec2(0, track->height);
-        }
     }
 
     float UserInterface::computeXPosition(int ticks)
@@ -587,34 +558,32 @@ namespace UI
 
     void UserInterface::renderSequencer(const ImVec2& sequencerPosition, const ImVec2& sequencerSize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
         mainAreaPosition = sequencerPosition + ImVec2(0, headerSize);
         mainAreaSize = sequencerSize - ImVec2(0, headerSize);
 
-        totalWidth = static_cast<float>(applicationState->song->measures) * measureWidth;
+        totalSequencerWidth = static_cast<float>(applicationState->song->measures) * measureWidth;
 
         ImGui::PushClipRect(sequencerPosition, sequencerPosition + sequencerSize, false);
 
         drawList->AddRectFilled(sequencerPosition, sequencerPosition + sequencerSize, darkBackground);
         drawList->AddRectFilled(mainAreaPosition + ImVec2(scroll, 0),
-                                mainAreaPosition + ImVec2(scroll + totalWidth, sequencerSize.y - headerSize),
+                                mainAreaPosition + ImVec2(scroll + totalSequencerWidth, sequencerSize.y - headerSize),
                                 mainBackground);
 
-        renderGrid(drawList);
-        renderSequencerTracks(drawList);
-        float playheadLocation = renderPlayhead(drawList, sequencerPosition);
+        renderGrid();
+        float playheadLocation = renderPlayhead(sequencerPosition);
         sequencerEventButtons(playheadLocation, sequencerPosition, sequencerSize);
 
         ImGui::PopClipRect();
     }
 
-    void UserInterface::renderGrid(ImDrawList* drawList)
+    void UserInterface::renderGrid()
     {
         State::SongPointer song = applicationState->song;
 
         ImGui::GetStyle().AntiAliasedLines = false;
         drawList->AddLine(mainAreaPosition + ImVec2(scroll, 0),
-                          mainAreaPosition + ImVec2(scroll + totalWidth, 0), divisionColor);
+                          mainAreaPosition + ImVec2(scroll + totalSequencerWidth, 0), divisionColor);
         for (int i = 0; i < song->measures; ++i)
         {
             float measureOffset = scroll + static_cast<float>(i) * measureWidth;
@@ -635,47 +604,53 @@ namespace UI
         ImGui::GetStyle().AntiAliasedLines = true;
     }
 
-    void UserInterface::renderSequencerTracks(ImDrawList* drawList)
+    bool UserInterface::renderNotes(const State::TakePointer& take, const ImVec2& takePosition, const ImVec2& takeSize)
     {
-        ImVec2 currentPosition = mainAreaPosition;
-        for (const State::TrackPointer& track: applicationState->tracks)
-        {
-            ImVec2 trackSize = ImVec2(mainAreaSize.x, track->height);
-            renderNotes(drawList, currentPosition, trackSize);
-            drawList->AddLine(currentPosition + ImVec2(0, trackSize.y), currentPosition + trackSize, darkBackground);
-            currentPosition += ImVec2(0, track->height);
-        }
+        bool noteClicked = false;
+        ImGui::PushID((void*)take.get());
+        ImGui::PushClipRect(takePosition, takePosition + takeSize, false);
+        std::unique_lock<std::mutex> lock(take->mutex);
+        for (const auto& [tick, messages]: take->midiMessages)
+            for (const MIDI::MessagePointer& message: messages)
+                if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
+                {
+                    int end = noteOn->noteEnd ? noteOn->noteEnd->tick : applicationState->currentTime + 1;
+
+                    ImVec4 noteColor = ImVec4(0, 0, 0, 1);
+                    float mappedVelocity = ((static_cast<float>(noteOn->velocity) / 127.f) * 102 + 25) / 127.f;
+                    ImGui::ColorConvertHSVtoRGB(1 - mappedVelocity, .75, .9,
+                                                noteColor.x, noteColor.y, noteColor.z);
+
+                    float startX = computeXPosition(tick);
+                    float startY = computeYPosition(takeSize, take, noteOn->note->value + 1);
+                    float endX = computeXPosition(end);
+                    float endY = computeYPosition(takeSize, take, noteOn->note->value);
+                    drawList->AddRectFilled(takePosition + ImVec2(startX, startY),
+                                            takePosition + ImVec2(endX, endY),
+                                            ImGui::ColorConvertFloat4ToU32(noteColor));
+                    if (take->noteSelected(noteOn))
+                        drawList->AddRectFilled(takePosition + ImVec2(startX + 2, startY + 2),
+                                                takePosition + ImVec2(endX - 2, endY - 2),
+                                                ImColor(255, 255, 255, 200));
+
+                    ImGui::PushID((void*)noteOn.get());
+                    ImGui::SetCursorScreenPos(takePosition + ImVec2(startX, startY));
+                    if (ImGui::InvisibleButton("", ImVec2(endX, endY) - ImVec2(startX, startY)))
+                        take->selectNote(noteOn, ImGui::IsKeyDown(ImGuiKey_ModShift));
+                    noteClicked = noteClicked || ImGui::IsItemClicked();
+                    ImGui::PopID();
+                }
+        ImGui::PopClipRect();
+
+        ImGui::SetCursorScreenPos(takePosition);
+        ImGuiButtonFlags flags = ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_AllowItemOverlap;
+        ImGui::InvisibleButton("takeButton", takeSize, flags);
+        ImGui::SetItemAllowOverlap();
+        ImGui::PopID();
+        return noteClicked;
     }
 
-    void UserInterface::renderNotes(ImDrawList* drawList, const ImVec2& trackPosition, const ImVec2& trackSize)
-    {
-        for (const State::TrackPointer& track: applicationState->tracks)
-        {
-            State::TakePointer take = track->mainTake;
-            std::unique_lock<std::mutex> lock(take->mutex);
-            for (const auto& [tick, messages]: take->midiMessages)
-                for (const MIDI::MessagePointer& message: messages)
-                    if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
-                    {
-                        int end = noteOn->noteEnd ? noteOn->noteEnd->tick : applicationState->currentTime + 1;
-
-                        ImVec4 noteColor = ImVec4(0, 0, 0, 1);
-                        float mappedVelocity = ((static_cast<float>(noteOn->velocity) / 127.f) * 102 + 25) / 127.f;
-                        ImGui::ColorConvertHSVtoRGB(1 - mappedVelocity, .8, 1,
-                                                    noteColor.x, noteColor.y, noteColor.z);
-
-                        float startX = computeXPosition(tick);
-                        float startY = computeYPosition(trackSize, take, noteOn->note->value + 1);
-                        float endX = computeXPosition(end);
-                        float endY = computeYPosition(trackSize, take, noteOn->note->value);
-                        drawList->AddRectFilled(trackPosition + ImVec2(startX, startY),
-                                                trackPosition + ImVec2(endX, endY),
-                                                ImGui::ColorConvertFloat4ToU32(noteColor));
-                    }
-        }
-    }
-
-    float UserInterface::renderPlayhead(ImDrawList* drawList, const ImVec2& sequencerPosition)
+    float UserInterface::renderPlayhead(const ImVec2& sequencerPosition)
     {
         ImU32 playheadColor = applicationState->recording ? recordingColor : playingColor;
         ImU32 playheadFillColor = applicationState->recording ? recordingColorTransparent : playingColorTransparent;
@@ -713,13 +688,17 @@ namespace UI
             ImGui::ResetMouseDragDelta();
         }
 
+        ImGuiButtonFlags flags = ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight;// | ImGuiButtonFlags_AllowItemOverlap;
         ImGui::SetCursorScreenPos(sequencerPosition);
-        ImGui::InvisibleButton("canvas", sequencerSize, ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight);
+        ImGui::InvisibleButton("canvas", sequencerSize, flags);
+        ImGui::SetItemAllowOverlap();
         if (ImGui::IsItemHovered())
         {
             float newScroll = scroll + ImGui::GetIO().MouseWheelH;
-            scroll = Utilities::clamp(newScroll, -totalWidth + mainAreaSize.x, headerSize / 2);
+            scroll = Utilities::clamp(newScroll, -totalSequencerWidth + mainAreaSize.x, headerSize / 2);
         }
+        if (ImGui::IsItemClicked())
+        {}
         sequencerKeyEvents();
     }
 
@@ -727,39 +706,30 @@ namespace UI
     {
         bool super = ImGui::IsKeyDown(ImGuiKey_ModSuper);
         if (super && ImGui::IsKeyPressed(ImGuiKey_RightArrow)) measureWidth /= .75;
-        if (super && ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) measureWidth *= .75;
-        if (ImGui::IsItemFocused())
-        {
-            if (ImGui::IsKeyPressed(ImGuiKey_Space))    play();
-            if (ImGui::IsKeyPressed(ImGuiKey_R))        record();
-            if (ImGui::IsKeyPressed(ImGuiKey_Enter))    sequencer->reset();
-        }
+        if (super && ImGui::IsKeyPressed(ImGuiKey_LeftArrow))  measureWidth *= .75;
+        if (super && ImGui::IsKeyPressed(ImGuiKey_Q))          selectedTrack->recordingTake->selectAllNotes();
+        if (ImGui::IsKeyPressed(ImGuiKey_Space))        play();
+        if (ImGui::IsKeyPressed(ImGuiKey_R))            record();
+        if (ImGui::IsKeyPressed(ImGuiKey_Enter))        sequencer->reset();
+        if (ImGui::IsKeyPressed(ImGuiKey_Backspace))    deleteItems();
+    }
+
+    void UserInterface::deleteItems()
+    {
+        selectedTrack->recordingTake->deleteSelectedNotes();
     }
 
     void UserInterface::renderHarmonyModel(const ImVec2& harmonyPosition, const ImVec2& harmonyModelSize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
         drawList->AddRectFilled(harmonyPosition, harmonyPosition + harmonyModelSize, mainBackground);
-
-        ImVec2 currentPosition = harmonyPosition + ImVec2(0, headerSize);
-        drawList->AddLine(currentPosition, currentPosition + ImVec2(harmonyModelSize.x, 0), mainBorder);
         drawList->AddRectFilled(harmonyPosition, harmonyPosition + ImVec2(harmonyModelSize.x, headerSize), harmonyHeaderColor);
-        for (const State::TrackPointer& track: applicationState->tracks)
-        {
-            ImGui::PushID((void*)track.get());
-            renderTrackHarmonyModel(track, currentPosition, ImVec2(harmonyModelSize.x, track->height));
-            currentPosition += ImVec2(0, track->height);
-            ImGui::PopID();
-        }
+        drawList->AddLine(harmonyPosition + ImVec2(0, headerSize),
+                          harmonyPosition + ImVec2(harmonyModelSize.x, headerSize), mainBorder);
     }
 
     void UserInterface::renderTrackHarmonyModel(const State::TrackPointer& track, const ImVec2& trackHarmonyPosition,
                                                 const ImVec2& trackHarmonySize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
-        drawList->AddLine(trackHarmonyPosition + ImVec2(0, trackHarmonySize.y),
-                          trackHarmonyPosition + trackHarmonySize, darkBorder);
-
         ImGui::SetCursorScreenPos(trackHarmonyPosition);
         ImGui::InvisibleButton("harmonyModel", trackHarmonySize);
         if (ImGui::BeginDragDropTarget())
@@ -818,7 +788,6 @@ namespace UI
     void UserInterface::renderTrackHarmony(const State::TrackPointer& track, const Music::HarmonyPointer& harmony,
                                            const ImVec2& trackHarmonyPosition, const ImVec2& trackHarmonySize)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
         ImVec2 padding = ImGui::GetStyle().WindowPadding;
         ImGui::SetCursorScreenPos(trackHarmonyPosition);
         if (ImGui::BeginChild("harmony", trackHarmonySize, true, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
@@ -858,18 +827,18 @@ namespace UI
                     if (ImGui::BeginTabItem("Input"))
                     {
                         std::set<int> rangeKeys;
-                        for (int i = harmony->noteFilter.low; i <= harmony->noteFilter.high; ++i)
+                        for (int i = harmony->inputRange.low; i <= harmony->inputRange.high; ++i)
                             rangeKeys.insert(i);
                         pushKeyColors(rangeKeys, primaryHighlight);
                         int playedKey = renderOctaves(11, 0, "harmonyModelPiano");
                         popKeyColors(rangeKeys);
                         if (playedKey != -1)
-                            harmony->noteFilter.moveLow(playedKey);
+                            harmony->inputRange.moveLow(playedKey);
                         ImGui::EndTabItem();
                     }
                     if (ImGui::BeginTabItem("Output"))
                     {
-                        renderMIDIInstrument(harmony->output, trackHarmonySize.x);
+                        renderMIDIInstrument(harmony->output);
                         ImGui::EndTabItem();
                     }
                     ImGui::EndTabBar();
@@ -899,6 +868,7 @@ namespace UI
                 harmony = std::make_shared<Music::CanonHarmony>(output, applicationState->song);
                 break;
             case Music::Harmony::Choral:
+                harmony = std::make_shared<Music::ChoralHarmony>(output, applicationState->song->key);
                 break;
         }
         track->harmonies.push_back(harmony);
@@ -944,7 +914,135 @@ namespace UI
 
     void UserInterface::renderChoralHarmony(const Music::HarmonyPointer& harmony)
     {
+        Music::ChoralHarmonyPointer choralHarmony = std::static_pointer_cast<Music::ChoralHarmony>(harmony);
+        std::string preview = Music::ChoralHarmony::positionName(choralHarmony->position);
+        if (ImGui::BeginCombo("##ChoralPosition", preview.c_str()))
+        {
+            if (ImGui::Selectable("Narrow", choralHarmony->position == Music::ChoralHarmony::Narrow))
+                choralHarmony->position = Music::ChoralHarmony::Narrow;
+            if (ImGui::Selectable("Wide", choralHarmony->position == Music::ChoralHarmony::Wide))
+                choralHarmony->position = Music::ChoralHarmony::Wide;
+            ImGui::EndCombo();
+        }
+    }
 
+    void UserInterface::renderTracks(const ImVec2& trackListPosition, const ImVec2& sequencerPosition,
+                                     const ImVec2& harmonyModelPosition, float trackListWidth, float sequencerWidth,
+                                     float harmonyModelWidth)
+    {
+        ImVec2 currentTrackListPosition = trackListPosition + ImVec2(0, headerSize);
+        ImVec2 currentSequencerPosition = sequencerPosition + ImVec2(0, headerSize);
+        ImVec2 currentHarmonyModelPosition = harmonyModelPosition + ImVec2(0, headerSize);
+        float totalWidth = trackListWidth + sequencerWidth + harmonyModelWidth;
+        for (const State::TrackPointer& track: applicationState->tracks)
+        {
+            ImGui::PushID((void*)track.get());
+
+            drawList->AddLine(currentTrackListPosition + ImVec2(0, track->height),
+                              currentTrackListPosition + ImVec2(totalWidth, track->height),
+                              mainBorder, 1);
+            ImGui::SetCursorScreenPos(currentTrackListPosition + ImVec2(0, track->height));
+            ImGui::InvisibleButton("trackBorder", ImVec2(totalWidth, 3));
+            if (ImGui::IsItemHovered())
+                ImGui::SetMouseCursor(ImGuiMouseCursor_ResizeNS);
+            if (ImGui::IsItemActive())
+                track->height = ImGui::GetMousePos().y - currentTrackListPosition.y;
+
+            // TODO: Even out parameter names
+            renderTrackListItem(track, currentTrackListPosition, trackListWidth);
+            float height = renderTrackSequencer(track, currentSequencerPosition, sequencerWidth);
+            renderTrackHarmonyModel(track, currentHarmonyModelPosition,
+                                    ImVec2(harmonyModelWidth, track->height));
+
+            currentTrackListPosition.y += height;
+            currentSequencerPosition.y += height;
+            currentHarmonyModelPosition.y += height;
+            ImGui::PopID();
+        }
+    }
+
+    void UserInterface::renderTrackListItem(const State::TrackPointer& track, const ImVec2& currentPosition,
+                                            float availableWidth)
+    {
+        ImVec2 controlSize = ImVec2(availableWidth, track->height - keyLength - 10);
+        ImGui::SetCursorScreenPos(currentPosition);
+        if (ImGui::BeginChild("trackControls", controlSize, true,
+                              ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
+        {
+            renderMIDIInstrument(track->input);
+            if (ImGui::Button("Add Take"))
+                track->addTake();
+        }
+        ImGui::EndChild();
+
+        ImGui::SetCursorScreenPos(currentPosition + ImVec2(0, track->height - keyLength - 10));
+        ImGui::SetNextWindowContentSize(ImVec2(0, keyLength * 1.05f));
+        if (ImGui::BeginChild("trackPianoWindow", ImVec2(availableWidth, keyLength * 1.05f),
+                              false, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
+        {
+            pianoAction.push([=](const MIDI::MessagePointer& message)
+            {
+                track->incomingMIDIMessage(std::make_pair(message, track->input));
+                director->inputMIDIMessage(std::make_pair(message, track->input));
+            });
+            keyPressed.push([=](int noteValue){ return track->soundingNotes[noteValue] > 0; });
+            // Keep track of which notes have been colored to be able to remove the color later
+            std::map<Music::HarmonyPointer, std::set<int>> harmonyNotes;
+            for (const Music::HarmonyPointer& harmony: track->harmonies)
+            {
+                harmony->getSoundingNotes(harmonyNotes[harmony]);
+                pushKeyColors(harmonyNotes[harmony], harmonyColors[harmony->type]);
+            }
+            renderOctaves(11, 0, "trackPiano");
+            for (const Music::HarmonyPointer& harmony: track->harmonies)
+                popKeyColors(harmonyNotes[harmony]);
+            keyPressed.pop();
+            pianoAction.pop();
+        }
+        ImGui::EndChild();
+    }
+
+    float UserInterface::renderTrackSequencer(const State::TrackPointer& track, const ImVec2& currentPosition,
+                                              float sequencerWidth)
+    {
+        ImVec2 takeSize = ImVec2(mainAreaSize.x, track->height);
+        ImVec2 takePosition = currentPosition;
+
+        renderTakeSequencer(track, track->mainTake, sequencerWidth, takePosition, takeSize);
+        for (const State::TakePointer& take: track->takes)
+            renderTakeSequencer(track, take, sequencerWidth, takePosition, takeSize);
+        return takePosition.y - currentPosition.y;
+    }
+
+    void UserInterface::renderTakeSequencer(const State::TrackPointer& track, const State::TakePointer& take,
+                                            float sequencerWidth, ImVec2& takePosition, const ImVec2& takeSize)
+    {
+        bool noteClicked = renderNotes(take, takePosition, takeSize);
+        if (ImGui::IsItemClicked() || noteClicked)
+        {
+//            std::cout << "take button clicked\n";
+            if (!noteClicked && track->recordingTake == take)
+                take->selectedNotes.clear();
+            track->recordingTake = take;
+        }
+//        if (ImGui::IsItemHovered() || ImGui::IsItemActive())
+//        {
+//            ImGui::SetCursorScreenPos(takePosition);
+//            if (ImGui::Button(" " ICON_FA_TRASH_CAN " "))
+//            {
+//                std::cout << "delete button clicked\n";
+//                track->takes.erase(std::find(track->takes.begin(), track->takes.end(), take));
+//            }
+//        }
+
+        drawList->AddLine(takePosition + ImVec2(0, track->height),
+                          takePosition + ImVec2(sequencerWidth, track->height),
+                          mainBorder);
+        if (take == track->recordingTake)
+            drawList->AddRect(takePosition,
+                              takePosition + ImVec2(sequencerWidth + 1, track->height + 1),
+                              selectedTakeColor);
+        takePosition.y += track->height;
     }
 
     void UserInterface::renderPiano()
@@ -988,7 +1086,7 @@ namespace UI
     int UserInterface::renderPianoKeys(int numberOfKeys, int keyIndex)
     {
         int playedKey = -1;
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
+        ImDrawList* windowDrawList = ImGui::GetWindowDrawList();
         ImGuiButtonFlags buttonFlags = ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight |
                                        ImGuiButtonFlags_AllowItemOverlap;
         for (int i = 0; i < numberOfKeys; ++i)
@@ -1002,16 +1100,16 @@ namespace UI
             if (ImGui::IsItemActivated() && ImGui::IsItemHovered())   playNote(noteValue);
             if (ImGui::IsItemDeactivated())                           stopNote(noteValue);
             if (ImGui::IsItemClicked())                               playedKey = noteValue;
-            bool active = ImGui::IsItemActive() || pressedKeys.find(noteValue) != pressedKeys.end();
+            bool active = ImGui::IsItemActive() || keyPressed.top()(noteValue);
 
             KeyColorPointer keyColor = keyColors[noteValue].top();
             ImU32 currentColor = active ? keyColor->pressed : keyColor->key;
             ImVec2 currentKeySize = active ? keySize + ImVec2(0, keySize.y / 20) : keySize;
             ImVec2 keyBottomRight = keyTopLeft + currentKeySize;
 
-            drawList->AddRectFilled(keyTopLeft, keyBottomRight, currentColor);
-            drawList->AddLine(keyTopLeft, keyTopLeft + ImVec2(0, currentKeySize.y), keyColor->border);
-            drawList->AddLine(keyTopLeft + ImVec2(currentKeySize.x, 0), keyBottomRight, keyColor->border);
+            windowDrawList->AddRectFilled(keyTopLeft, keyBottomRight, currentColor);
+            windowDrawList->AddLine(keyTopLeft, keyTopLeft + ImVec2(0, currentKeySize.y), keyColor->border);
+            windowDrawList->AddLine(keyTopLeft + ImVec2(currentKeySize.x, 0), keyBottomRight, keyColor->border);
 
             updateKeyTopLeft(keyWidth);
             ImGui::PopID();
@@ -1034,15 +1132,19 @@ namespace UI
     void UserInterface::playNote(int noteValue)
     {
         MIDI::NoteOnPointer noteOnMessage = std::make_shared<MIDI::NoteOn>(Music::Note::getInstance(noteValue), 64);
-        pianoPlayer.processMIDIMessage(noteOnMessage->rawMessage(pianoOutput->channel));
-//        MIDI::IOManager::getInstance()->sendMIDIOut(std::make_pair(noteOnMessage, pianoOutput));
+        pianoAction.top()(noteOnMessage);
     }
 
     void UserInterface::stopNote(int noteValue)
     {
         MIDI::NoteOffPointer noteOffMessage = std::make_shared<MIDI::NoteOff>(Music::Note::getInstance(noteValue), 64);
-        pianoPlayer.processMIDIMessage(noteOffMessage->rawMessage(pianoOutput->channel));
-//        MIDI::IOManager::getInstance()->sendMIDIOut(std::make_pair(noteOffMessage, pianoOutput));
+        pianoAction.top()(noteOffMessage);
+    }
+
+    void UserInterface::playPianoMessage(const MIDI::MessagePointer& message)
+    {
+        pianoPlayer.processMIDIMessage(message->rawMessage(pianoOutput->channel));
+        MIDI::IOManager::getInstance()->sendMIDIOut(std::make_pair(message, pianoOutput));
     }
 
     void UserInterface::play()
@@ -1089,7 +1191,7 @@ namespace UI
             keyColors[value].pop();
     }
 
-    void UserInterface::renderMIDIInstrument(const MIDI::InstrumentPointer& instrument, float availableWidth)
+    void UserInterface::renderMIDIInstrument(const MIDI::InstrumentPointer& instrument)
     {
         ImGui::Button(ICON_FA_ARROW_RIGHT_TO_BRACKET " ");
         ImGui::SameLine();
@@ -1127,7 +1229,6 @@ namespace UI
 
         ImGui::Spacing();
         ImGui::Spacing();
-        if (availableWidth != 0) ImGui::SetNextItemWidth(availableWidth / 2);
         if (ImGui::BeginCombo("Preset", "Piano"))
         {
             ImGui::EndCombo();

@@ -17,7 +17,7 @@ namespace Music
         SingleHarmony(Type type, const MIDI::InstrumentPointer& output);
 
         virtual NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) = 0;
-        MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) override;
+        void generate(const MIDI::NoteMessagePointer& noteMessage) override;
         MIDI::NoteMessagePointer handleNoteOn(const MIDI::NoteOnPointer& noteOn);
         MIDI::NoteMessagePointer handleNoteOff(const MIDI::NoteOffPointer& noteOff);
     };

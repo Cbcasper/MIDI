@@ -12,24 +12,30 @@ namespace Music
                      type(type), output(output), selected(false)
     {
         audioPlayer = MIDI::AudioPlayer();
-        noteFilter = NoteFilter();
+        inputRange = NoteFilter();
         name = harmonyName(type);
     }
 
     void Harmony::processMessage(const MIDI::NoteMessagePointer& noteMessage)
     {
-        if (noteFilter(noteMessage->note))
-        {
-            MIDI::NoteMessagePointer generatedNoteMessage = generate(noteMessage);
-            if (chainedHarmony) chainedHarmony->processMessage(generatedNoteMessage);
-        }
+        if (inputRange(noteMessage->note))
+            generate(noteMessage);
     }
 
-    void Harmony::play(const MIDI::NoteMessagePointer& original, const MIDI::NoteMessagePointer& generated)
+    void Harmony::play(const MIDI::NoteMessagePointer& generated)
     {
         MIDI::IOManagerPointer ioManager = MIDI::IOManager::getInstance();
         ioManager->sendMIDIOut(std::make_pair(generated, output));
         audioPlayer.processMIDIMessage(generated->rawMessage(output->channel));
+
+        if (chainedHarmony) chainedHarmony->processMessage(generated);
+    }
+
+    void Harmony::getSoundingNotes(std::set<int>& soundingNotes)
+    {
+        std::unique_lock<std::mutex> lock(mutex);
+        for (const auto& [note, generatedNote]: generatedNotes)
+            soundingNotes.insert(generatedNote->value);
     }
 
     std::string Harmony::harmonyName(Harmony::Type type)

@@ -33,7 +33,7 @@ namespace Music
 
         void timerThread();
         void processScheduledMessages();
-        MIDI::NoteMessagePointer generate(const MIDI::NoteMessagePointer& noteMessage) override;
+        void generate(const MIDI::NoteMessagePointer& noteMessage) override;
     };
 
     using CanonHarmonyPointer = std::shared_ptr<CanonHarmony>;

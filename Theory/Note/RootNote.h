@@ -33,6 +33,7 @@ namespace Music
         static std::pair<Name, bool> convert(int value);
         static int convert(Name name, bool sharp);
 
+        int computeOffset(const RootNotePointer& rootNote) const;
         RootNotePointer operator+(int semitones) const;
         bool operator==(const RootNote& rootNote);
 

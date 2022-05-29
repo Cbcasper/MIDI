@@ -10,7 +10,7 @@ namespace Music
     SingleHarmony::SingleHarmony(Type type, const MIDI::InstrumentPointer& output): Harmony(type, output)
     {}
 
-    MIDI::NoteMessagePointer SingleHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
+    void SingleHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
     {
         MIDI::NoteMessagePointer generatedMessage;
         if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(noteMessage))
@@ -19,8 +19,7 @@ namespace Music
             generatedMessage = handleNoteOff(noteOff);
 
         if (generatedMessage)
-            play(noteMessage, generatedMessage);
-        return generatedMessage;
+            play(generatedMessage);
     }
 
     MIDI::NoteMessagePointer SingleHarmony::handleNoteOn(const MIDI::NoteOnPointer& noteOn)
@@ -31,7 +30,8 @@ namespace Music
         Music::NotePointer generatedNote = generateNote(noteOn);
         if (generatedNote)
         {
-            soundingNotes[noteOn->note] = generatedNote;
+            std::unique_lock<std::mutex> lock(mutex);
+            generatedNotes[noteOn->note] = generatedNote;
             return std::make_shared<MIDI::NoteOn>(generatedNote, noteOn->velocity);
         }
         return nullptr;
@@ -39,8 +39,9 @@ namespace Music
 
     MIDI::NoteMessagePointer SingleHarmony::handleNoteOff(const MIDI::NoteOffPointer& noteOff)
     {
-        Music::NotePointer generatedNote = soundingNotes[noteOff->note];
-        soundingNotes.erase(noteOff->note);
+        std::unique_lock<std::mutex> lock(mutex);
+        Music::NotePointer generatedNote = generatedNotes[noteOff->note];
+        generatedNotes.erase(noteOff->note);
         if (generatedNote)
             return std::make_shared<MIDI::NoteOff>(generatedNote, noteOff->velocity);
         return nullptr;

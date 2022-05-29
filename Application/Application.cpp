@@ -4,6 +4,8 @@
 
 #include "Application.h"
 
+#include <iostream>
+
 namespace State
 {
     Application::Application()

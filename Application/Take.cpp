@@ -84,4 +84,59 @@ namespace State
             return tick - tickOffset;
         return tick - tickOffset + divisionLength;
     }
+
+    std::set<MIDI::NoteOnPointer> Take::allNotes()
+    {
+        std::set<MIDI::NoteOnPointer> allNotes;
+        std::unique_lock<std::mutex> lock(mutex);
+        for (const auto& [tick, messages]: midiMessages)
+            for (const MIDI::MessagePointer& message: messages)
+                if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
+                    allNotes.insert(noteOn);
+        return allNotes;
+    }
+
+    bool Take::noteSelected(const MIDI::NoteOnPointer& noteOn)
+    {
+        return selectedNotes.find(noteOn) != selectedNotes.end();
+    }
+
+    void Take::selectAllNotes()
+    {
+        selectedNotes = allNotes();
+    }
+
+    void Take::selectNote(const MIDI::NoteOnPointer& noteOn, bool shifting)
+    {
+        if (shifting)
+        {
+            if (noteSelected(noteOn)) selectedNotes.erase(noteOn);
+            else                      selectedNotes.insert(noteOn);
+        }
+        else
+        {
+            if (noteSelected(noteOn)) selectedNotes.clear();
+            else                      selectedNotes = {noteOn};
+        }
+    }
+
+    void Take::deleteSelectedNotes()
+    {
+        for (const MIDI::NoteOnPointer& noteOn: selectedNotes)
+        {
+            midiMessages[noteOn->tick].erase(noteOn);
+            midiMessages[noteOn->noteEnd->tick].erase(noteOn->noteEnd);
+        }
+    }
+
+    NoteSequences Take::noteSequences()
+    {
+        NoteSequences noteSequences;
+        std::unique_lock<std::mutex> lock(mutex);
+        for (const auto& [tick, messages]: midiMessages)
+            for (const MIDI::MessagePointer& message: messages)
+                if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
+                    noteSequences[noteOn->note->value].insert(noteOn);
+        return noteSequences;
+    }
 }

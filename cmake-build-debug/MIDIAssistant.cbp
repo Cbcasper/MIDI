@@ -118,6 +118,18 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/CanonHarmony.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ChoralHarmony/ChoralHarmony.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ChoralHarmony/Tessiture.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/ChoralHarmony/Tessiture.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/Harmony.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
@@ -281,6 +293,18 @@
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Sequencer/Timer.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Chord/Chord.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Chord/Chord.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Chord/ChordNote.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Chord/ChordNote.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Key/IntervalSequence.cpp">

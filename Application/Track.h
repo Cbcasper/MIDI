@@ -34,7 +34,7 @@ namespace State
         TakePointer recordingTake;
         std::vector<TakePointer> takes;
 
-        std::map<Music::NotePointer, int> soundingNotes;
+        std::map<int, int> soundingNotes;
 
         float height;
 
@@ -49,6 +49,11 @@ namespace State
 
         bool hasSelectedHarmonies();
         void clearSelectedHarmonies();
+
+        void addTake();
+
+        bool equalTakes(std::vector<NoteSequences>& takeNoteSequences);
+        void quantize();
     };
 
     using TrackPointer = std::shared_ptr<Track>;

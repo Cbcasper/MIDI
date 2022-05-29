@@ -43,6 +43,7 @@ namespace MIDI
         for (int portNumber = 0; portNumber < systemMIDIOut.portCount(); ++portNumber)
             constructPort(portNumber, systemMIDIOut.portName(portNumber), IOType::Output);
         processor->updatePorts(Utilities::keyList(inputPorts), Utilities::keyList(outputPorts));
+//        constructVirtualPort();
     }
 
     void IOManager::constructPort(int portNumber, const std::string& portName, IOType ioType)
@@ -138,9 +139,20 @@ namespace MIDI
     void IOManager::sendMIDIOut(const MessageOnInstrument& messageOnInstrument)
     {
         const auto& [message, instrument] = messageOnInstrument;
-        OutputPortPointer port = std::static_pointer_cast<OutputPort>(outputPorts[instrument->port]);
+        PortMap usedPorts;
+        if (instrument->allPorts)       usedPorts = outputPorts;
+        else if (instrument->noPorts)   usedPorts = PortMap();
+        else                            usedPorts = {{instrument->port, outputPorts[instrument->port]}};
 
-        libremidi::message rawMessage = message->rawMessage(instrument->channel);
-        port->sendMessage(rawMessage);
+        for (const auto& [portName, port]: usedPorts)
+        {
+            OutputPortPointer outputPort = std::static_pointer_cast<OutputPort>(port);
+
+            if (instrument->allChannels())
+                for (int i = 0; i < 16; ++i)
+                    outputPort->sendMessage(message->rawMessage(i + 1));
+            else if (!instrument->noChannels())
+                outputPort->sendMessage(message->rawMessage(instrument->channel));
+        }
     }
 }

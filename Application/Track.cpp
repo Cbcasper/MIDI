@@ -41,15 +41,15 @@ namespace State
     void Track::updateSoundingNotes(const MIDI::MessagePointer& message)
     {
         if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
-            soundingNotes[noteOn->note]++;
+            soundingNotes[noteOn->note->value]++;
         else if (MIDI::NoteOffPointer noteOff = std::dynamic_pointer_cast<MIDI::NoteOff>(message))
-            soundingNotes[noteOff->note]--;
+            soundingNotes[noteOff->note->value]--;
     }
 
     void Track::stopRecording()
     {
         recordingTake->cleanupNotes(application->currentTime);
-        soundingNotes = std::map<Music::NotePointer, int>();
+        soundingNotes = std::map<int, int>();
     }
 
     bool Track::hasSelectedHarmonies()
@@ -64,5 +64,32 @@ namespace State
     {
         for (const Music::HarmonyPointer& harmony: harmonies)
             harmony->selected = false;
+    }
+
+    void Track::addTake()
+    {
+        TakePointer take = std::make_shared<Take>(application);
+        takes.emplace_back(take);
+        recordingTake = take;
+    }
+
+    bool Track::equalTakes(std::vector<NoteSequences>& takeNoteSequences)
+    {
+        for (int i = 0; i < takes.size() - 1; ++i)
+            for (int j = 0; j < 128; ++j)
+                if (takeNoteSequences[i][j].size() != takeNoteSequences[i + 1][j].size())
+                    return false;
+        return true;
+    }
+
+    void Track::quantize()
+    {
+        std::vector<NoteSequences> takeNoteSequences;
+        for (const TakePointer& take: takes)
+            takeNoteSequences.push_back(take->noteSequences());
+        if (equalTakes(takeNoteSequences))
+            std::cout << "Quantizable\n";
+        else
+            std::cout << "Not quantizable\n";
     }
 }

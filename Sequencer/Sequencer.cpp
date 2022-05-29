@@ -61,7 +61,7 @@ namespace System
         tracksCV.wait(lock, [&]{ return status; });
         while (running)
         {
-            State::TakePointer take = track->mainTake;
+            State::TakePointer take = track->recordingTake;
             take->mutex.lock();
             for (const MIDI::MessagePointer& message: take->midiMessages[applicationState->currentTime])
             {
