@@ -16,9 +16,9 @@ namespace Music
         ChordPointer chord;
 
         int octave;
-        IntervalSequence::Modulation modulation;
+        Key::Degree degree;
 
-        ChordNote(const ChordPointer& chord, IntervalSequence::Modulation modulation, int octave);
+        ChordNote(const ChordPointer& chord, Key::Degree degree, int octave);
 
         void operator++();
         void operator--();
@@ -26,8 +26,8 @@ namespace Music
         void operator-(int offset);
         void operator+=(int offset);
         void operator-=(int offset);
-        IntervalSequence::Modulation getNextModulation();
-        IntervalSequence::Modulation getPreviousModulation();
+        Key::Degree getNextModulation();
+        Key::Degree getPreviousModulation();
 
         NotePointer getNote();
     };

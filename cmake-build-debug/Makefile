@@ -321,6 +321,30 @@ Director/Harmonies/ChoralHarmony/Tessiture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Tessiture.cpp.s
 .PHONY : Director/Harmonies/ChoralHarmony/Tessiture.cpp.s
 
+Director/Harmonies/ChoralHarmony/Voices.o: Director/Harmonies/ChoralHarmony/Voices.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.o
+
+# target to build an object file
+Director/Harmonies/ChoralHarmony/Voices.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Voices.cpp.o
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.cpp.o
+
+Director/Harmonies/ChoralHarmony/Voices.i: Director/Harmonies/ChoralHarmony/Voices.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.i
+
+# target to preprocess a source file
+Director/Harmonies/ChoralHarmony/Voices.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Voices.cpp.i
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.cpp.i
+
+Director/Harmonies/ChoralHarmony/Voices.s: Director/Harmonies/ChoralHarmony/Voices.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.s
+
+# target to generate assembly for a file
+Director/Harmonies/ChoralHarmony/Voices.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Director/Harmonies/ChoralHarmony/Voices.cpp.s
+.PHONY : Director/Harmonies/ChoralHarmony/Voices.cpp.s
+
 Director/Harmonies/Harmony.o: Director/Harmonies/Harmony.cpp.o
 .PHONY : Director/Harmonies/Harmony.o
 
@@ -1305,6 +1329,30 @@ UI/UserInterface.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/UserInterface.cpp.s
 .PHONY : UI/UserInterface.cpp.s
 
+Utilities/Average.o: Utilities/Average.cpp.o
+.PHONY : Utilities/Average.o
+
+# target to build an object file
+Utilities/Average.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Utilities/Average.cpp.o
+.PHONY : Utilities/Average.cpp.o
+
+Utilities/Average.i: Utilities/Average.cpp.i
+.PHONY : Utilities/Average.i
+
+# target to preprocess a source file
+Utilities/Average.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Utilities/Average.cpp.i
+.PHONY : Utilities/Average.cpp.i
+
+Utilities/Average.s: Utilities/Average.cpp.s
+.PHONY : Utilities/Average.s
+
+# target to generate assembly for a file
+Utilities/Average.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Utilities/Average.cpp.s
+.PHONY : Utilities/Average.cpp.s
+
 Utilities/Utilities.o: Utilities/Utilities.cpp.o
 .PHONY : Utilities/Utilities.o
 
@@ -1578,6 +1626,9 @@ help:
 	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.o"
 	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.i"
 	@echo "... Director/Harmonies/ChoralHarmony/Tessiture.s"
+	@echo "... Director/Harmonies/ChoralHarmony/Voices.o"
+	@echo "... Director/Harmonies/ChoralHarmony/Voices.i"
+	@echo "... Director/Harmonies/ChoralHarmony/Voices.s"
 	@echo "... Director/Harmonies/Harmony.o"
 	@echo "... Director/Harmonies/Harmony.i"
 	@echo "... Director/Harmonies/Harmony.s"
@@ -1701,6 +1752,9 @@ help:
 	@echo "... UI/UserInterface.o"
 	@echo "... UI/UserInterface.i"
 	@echo "... UI/UserInterface.s"
+	@echo "... Utilities/Average.o"
+	@echo "... Utilities/Average.i"
+	@echo "... Utilities/Average.s"
 	@echo "... Utilities/Utilities.o"
 	@echo "... Utilities/Utilities.i"
 	@echo "... Utilities/Utilities.s"

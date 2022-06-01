@@ -54,6 +54,7 @@ namespace MIDI
         bool checkPorts(PortMap& ports, Port& systemPort, IOType ioType);
         void addPorts(const std::map<std::string, int>& newPorts, IOType ioType);
         void removePorts(PortMap& ports, const std::list<std::string>& removedPorts);
+        static std::vector<std::string> keyList(const MIDI::PortMap& map);
 
         void input(const libremidi::message& message, const std::string& portName);
 

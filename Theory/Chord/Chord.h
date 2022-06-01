@@ -6,24 +6,30 @@
 #define MIDIASSISTANT_CHORD_H
 
 #include "../Note/RootNote.h"
-#include "../Key/IntervalSequence.h"
+#include "../Key/Key.h"
 
 namespace Music
 {
+    class Chord;
+    using ChordPointer = std::shared_ptr<Chord>;
+
     class Chord
     {
     public:
-        RootNotePointer rootNote;
+        KeyPointer key;
+
+        RootNotePointer first;
         RootNotePointer third;
         RootNotePointer fifth;
 
-        IntervalSequence::Modulation rollOverModulation;
+        Key::Degree rollOverDegree;
 
-        Chord(const ISPointer& intervalSequence, const RootNotePointer& rootNote);
+        Chord(const KeyPointer& key, const RootNotePointer& rootNote);
 
-        RootNotePointer operator()(IntervalSequence::Modulation modulation);
+        bool chordNote(const RootNotePointer& rootNote);
+        RootNotePointer operator()(Key::Degree modulation);
+        Key::Degree intersect(const ChordPointer& chord);
     };
-    using ChordPointer = std::shared_ptr<Chord>;
 }
 
 #endif //MIDIASSISTANT_CHORD_H

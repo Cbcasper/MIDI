@@ -6,20 +6,20 @@
 
 namespace Music
 {
-    ChordNote::ChordNote(const ChordPointer& chord, IntervalSequence::Modulation modulation, int octave):
-                         chord(chord), modulation(modulation), octave(octave)
+    ChordNote::ChordNote(const ChordPointer& chord, Key::Degree degree, int octave):
+            chord(chord), degree(degree), octave(octave)
     {}
 
     void ChordNote::operator++()
     {
-        modulation = getNextModulation();
-        octave += (int) modulation == chord->rollOverModulation;
+        degree = getNextModulation();
+        octave += (int) degree == chord->rollOverDegree;
     }
 
     void ChordNote::operator--()
     {
-        octave -= (int) modulation == chord->rollOverModulation;
-        modulation = getPreviousModulation();
+        octave -= (int) degree == chord->rollOverDegree;
+        degree = getPreviousModulation();
     }
 
     void ChordNote::operator+(int offset)
@@ -46,31 +46,31 @@ namespace Music
             --*this;
     }
 
-    IntervalSequence::Modulation ChordNote::getNextModulation()
+    Key::Degree ChordNote::getNextModulation()
     {
-        switch (modulation)
+        switch (degree)
         {
-            default:                      return IntervalSequence::First;
-            case IntervalSequence::First: return IntervalSequence::Third;
-            case IntervalSequence::Third: return IntervalSequence::Fifth;
-            case IntervalSequence::Fifth: return IntervalSequence::First;
+            default:         return Key::First;
+            case Key::First: return Key::Third;
+            case Key::Third: return Key::Fifth;
+            case Key::Fifth: return Key::First;
         }
     }
 
-    IntervalSequence::Modulation ChordNote::getPreviousModulation()
+    Key::Degree ChordNote::getPreviousModulation()
     {
-        switch (modulation)
+        switch (degree)
         {
-            case IntervalSequence::First: return IntervalSequence::Fifth;
-            case IntervalSequence::Third: return IntervalSequence::First;
-            case IntervalSequence::Fifth: return IntervalSequence::Third;
-            default:                      return IntervalSequence::First;
+            case Key::First: return Key::Fifth;
+            case Key::Third: return Key::First;
+            case Key::Fifth: return Key::Third;
+            default:         return Key::First;
         }
     }
 
     NotePointer ChordNote::getNote()
     {
-        RootNotePointer note = (*chord)(modulation);
+        RootNotePointer note = (*chord)(degree);
         return Note::getInstance(octave * 12 + RootNote::convert(note->name, note->sharp));
     }
 }

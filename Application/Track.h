@@ -15,11 +15,13 @@
 #include "../MIDI/Messages/Messages/NoteOn.h"
 #include "../Theory/TimeDivision.h"
 #include "../MIDI/MessageFilter.h"
+#include "../Utilities/Zip.h"
 
 namespace State
 {
     class Application;
     using ApplicationPointer = std::shared_ptr<Application>;
+    using ChronologicNotesZip = Utilities::Zip<MIDI::ChronologicNotes, MIDI::NoteOnPointer>;
 
     class Track
     {
@@ -30,15 +32,16 @@ namespace State
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayer audioPlayer;
 
-        TakePointer mainTake;
         TakePointer recordingTake;
-        std::vector<TakePointer> takes;
+        std::list<TakePointer> takes;
 
         std::map<int, int> soundingNotes;
 
         float height;
 
         std::vector<Music::HarmonyPointer> harmonies;
+
+        int timeWindow;
 
         Track(const ApplicationPointer& application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output);
 
@@ -51,9 +54,14 @@ namespace State
         void clearSelectedHarmonies();
 
         void addTake();
+        void deleteTake();
 
         bool equalTakes(std::vector<NoteSequences>& takeNoteSequences);
-        void quantize();
+        void orderedQuantize();
+        void timeWindowQuantize();
+        int getLastMessage();
+
+        void average(const TakePointer& take, const MIDI::ChronologicNotes& notes, int noteValue);
     };
 
     using TrackPointer = std::shared_ptr<Track>;

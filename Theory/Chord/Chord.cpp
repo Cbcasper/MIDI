@@ -6,25 +6,38 @@
 
 namespace Music
 {
-    Chord::Chord(const ISPointer& intervalSequence, const RootNotePointer& rootNote): rootNote(rootNote)
+    Chord::Chord(const KeyPointer& key, const RootNotePointer& rootNote): key(key), first(rootNote)
     {
-        std::tie(third, std::ignore) = intervalSequence->modulate(rootNote, IntervalSequence::Third);
-        std::tie(fifth, std::ignore) = intervalSequence->modulate(rootNote, IntervalSequence::Fifth);
+        std::tie(third, std::ignore) = key->modulate(rootNote, Key::Third);
+        std::tie(fifth, std::ignore) = key->modulate(rootNote, Key::Fifth);
 
         RootNote::Name lowestChordNote = (RootNote::Name) std::min({rootNote->name, third->name, fifth->name});
-        if (lowestChordNote == rootNote->name)       rollOverModulation = IntervalSequence::First;
-        else if (lowestChordNote == third->name)     rollOverModulation = IntervalSequence::Third;
-        else if (lowestChordNote == fifth->name)     rollOverModulation = IntervalSequence::Fifth;
+        if (lowestChordNote == rootNote->name)      rollOverDegree = Key::First;
+        else if (lowestChordNote == third->name)    rollOverDegree = Key::Third;
+        else if (lowestChordNote == fifth->name)    rollOverDegree = Key::Fifth;
     }
 
-    RootNotePointer Chord::operator()(IntervalSequence::Modulation modulation)
+    bool Chord::chordNote(const RootNotePointer& rootNote)
+    {
+        return rootNote && (*rootNote == *first || *rootNote == *third || *rootNote == *fifth);
+    }
+
+    RootNotePointer Chord::operator()(Key::Degree modulation)
     {
         switch (modulation)
         {
-            case IntervalSequence::First: return rootNote;
-            case IntervalSequence::Third: return third;
-            case IntervalSequence::Fifth: return fifth;
-            default:                      return nullptr;
+            case Key::First: return first;
+            case Key::Third: return third;
+            case Key::Fifth: return fifth;
+            default:         return nullptr;
         }
+    }
+
+    Key::Degree Chord::intersect(const ChordPointer& chord)
+    {
+        for (const RootNotePointer& note: {first, third, fifth})
+            if (chord->chordNote(note))
+                return key->getDegree(note);
+        return Key::Invalid;
     }
 }

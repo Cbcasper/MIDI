@@ -17,7 +17,7 @@ namespace Music
         MelodicMinor();
 
         void apply(const RootNotePointer& rootNote) override;
-        RootNotePointer getModulatedNote(int offset, int newIndex) override;
+        RootNotePointer getModulatedNote(int index, bool up) override;
         std::string toString() override;
     };
 }

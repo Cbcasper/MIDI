@@ -31,12 +31,13 @@ namespace System
         std::vector<bool*> statusFlags;
 
         std::future<void> timerFuture;
-        std::chrono::nanoseconds tickLength;
+        double tickLength;
 
         static TimerPointer getInstance();
 
         void initialize(const State::ApplicationPointer& givenApplication);
 
+        void preciseSleep(double seconds);
         void timerThread();
         void subscribe(bool* status);
         void unsubscribe(bool* status);

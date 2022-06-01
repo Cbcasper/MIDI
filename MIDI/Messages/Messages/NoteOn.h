@@ -36,7 +36,7 @@ namespace MIDI
         }
     };
 
-    using ChronologicNotes = std::set<NoteOnPointer, NoteOnComparator>;
+    using ChronologicNotes = std::multiset<NoteOnPointer, NoteOnComparator>;
 }
 
 #endif //MIDIASSISTANT_NOTEON_H

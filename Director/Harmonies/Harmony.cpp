@@ -25,8 +25,8 @@ namespace Music
     void Harmony::play(const MIDI::NoteMessagePointer& generated)
     {
         MIDI::IOManagerPointer ioManager = MIDI::IOManager::getInstance();
+        audioPlayer.processMIDIMessage(generated->rawMessage());
         ioManager->sendMIDIOut(std::make_pair(generated, output));
-        audioPlayer.processMIDIMessage(generated->rawMessage(output->channel));
 
         if (chainedHarmony) chainedHarmony->processMessage(generated);
     }
@@ -42,7 +42,7 @@ namespace Music
     {
         static std::map<Type, std::string> harmonyNames = {{Random, "Random"},
                                                            {Transposition, "Transposition"},
-                                                           {Modulation, "Modulation"},
+                                                           {Modulation, "Degree"},
                                                            {Canon, "Canon"},
                                                            {Choral, "Choral"}};
         return harmonyNames[type];

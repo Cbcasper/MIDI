@@ -8,6 +8,7 @@
 #include <map>
 #include <set>
 #include <list>
+#include <array>
 #include <unordered_map>
 
 #include "../MIDI/Processor.h"
@@ -19,8 +20,8 @@ namespace State
 {
     class Application;
     using ApplicationPointer = std::shared_ptr<Application>;
-    using UnfinishedNotes = std::map<int, MIDI::NoteOnPointer>;
-    using NoteSequences = std::map<int, MIDI::ChronologicNotes>;
+    using UnfinishedNotes = std::array<MIDI::NoteOnPointer, 128>;
+    using NoteSequences = std::array<MIDI::ChronologicNotes, 128>;
 
     class Take
     {
@@ -51,7 +52,7 @@ namespace State
         void selectNote(const MIDI::NoteOnPointer& noteOn, bool shifting);
         void deleteSelectedNotes();
 
-        NoteSequences noteSequences();
+        void getNoteSequences(NoteSequences& noteSequences);
     };
     using TakePointer = std::shared_ptr<Take>;
 }

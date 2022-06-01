@@ -17,12 +17,10 @@ namespace Music
         fillSequence(downwardSequence, rootNote, {2, 1, 2, 2, 1, 2});
     }
 
-    RootNotePointer MelodicMinor::getModulatedNote(int offset, int newIndex)
+    RootNotePointer MelodicMinor::getModulatedNote(int index, bool up)
     {
-        if (offset < 0)
-            return downwardSequence[newIndex];
-        else
-            return intervalSequence[newIndex];
+        if (up)  return intervalSequence[index];
+        else     return downwardSequence[index];
     }
 
     std::string MelodicMinor::toString()

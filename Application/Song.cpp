@@ -12,9 +12,9 @@ namespace State
         key = std::make_shared<Music::Key>();
     }
 
-    void Song::setTempo(int microseconds)
+    void Song::setTempo(float newTempo)
     {
-        tempo = microseconds;
+        tempo = static_cast<int>(round(60.f * 1000.f * 1000.f / newTempo));;
         System::Timer::getInstance()->setTempo(tempo);
     }
 

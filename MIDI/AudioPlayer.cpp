@@ -4,6 +4,8 @@
 
 #include "AudioPlayer.h"
 
+#include <iostream>
+
 namespace MIDI
 {
     AudioPlayer::AudioPlayer()

@@ -67,7 +67,17 @@ set(SOURCES
         UI/KeyColor.cpp UI/KeyColor.h
         MIDI/IO/IOType.h
         Sequencer/Metronome.cpp Sequencer/Metronome.h
-        MIDI/Messages/Instrument.cpp MIDI/Messages/Instrument.h UI/Font.cpp UI/Font.h Director/Harmonies/CanonHarmony.cpp Director/Harmonies/CanonHarmony.h Sequencer/Cycle.cpp Sequencer/Cycle.h Application/Take.cpp Application/Take.h Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp Director/Harmonies/ChoralHarmony/ChoralHarmony.h Director/Harmonies/ChoralHarmony/Tessiture.cpp Director/Harmonies/ChoralHarmony/Tessiture.h Theory/Chord/Chord.cpp Theory/Chord/Chord.h Theory/Chord/ChordNote.cpp Theory/Chord/ChordNote.h)
+        MIDI/Messages/Instrument.cpp MIDI/Messages/Instrument.h
+        UI/Font.cpp UI/Font.h
+        Director/Harmonies/CanonHarmony.cpp Director/Harmonies/CanonHarmony.h
+        Sequencer/Cycle.cpp Sequencer/Cycle.h
+        Application/Take.cpp Application/Take.h
+        Director/Harmonies/ChoralHarmony/ChoralHarmony.cpp Director/Harmonies/ChoralHarmony/ChoralHarmony.h
+        Director/Harmonies/ChoralHarmony/Tessiture.cpp Director/Harmonies/ChoralHarmony/Tessiture.h
+        Theory/Chord/Chord.cpp Theory/Chord/Chord.h
+        Theory/Chord/ChordNote.cpp Theory/Chord/ChordNote.h
+        Director/Harmonies/ChoralHarmony/Voices.cpp Director/Harmonies/ChoralHarmony/Voices.h
+        Utilities/Zip.h Utilities/Average.cpp Utilities/Average.h)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h

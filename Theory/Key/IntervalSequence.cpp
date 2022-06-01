@@ -45,28 +45,17 @@ namespace Music
         return intervals[type];
     }
 
-    RootNotePointer IntervalSequence::getModulatedNote(int offset, int newIndex)
+    int IntervalSequence::getDegree(const RootNotePointer& note)
     {
-        return intervalSequence[newIndex];
+        for (int i = 0; i < 7; ++i)
+            if (*intervalSequence[i] == *note)
+                return i;
+        return -1;
     }
 
-    std::pair<RootNotePointer, int>
-    IntervalSequence::modulate(const RootNotePointer& note, Modulation modulation, bool up)
+    RootNotePointer IntervalSequence::getModulatedNote(int index, bool up)
     {
-        int offset = (int) modulation * (up ? 1 : -1);
-        int index = 0;
-        for (const RootNotePointer& diatonicNote: intervalSequence)
-        {
-            if (*diatonicNote == *note)
-            {
-                int offsetIndex = index + offset;
-                int newIndex = Utilities::positiveModulo(offsetIndex % 7, 7);
-                RootNotePointer modulatedNote = getModulatedNote(offset, newIndex);
-                return std::make_pair(modulatedNote, static_cast<int>(floor(static_cast<float>(offsetIndex) / 7.0f)));
-            }
-            index++;
-        }
-        return std::make_pair(nullptr, 0);
+        return intervalSequence[index];
     }
 
     std::string IntervalSequence::toString()
@@ -81,16 +70,16 @@ namespace Music
     std::string IntervalSequence::sequenceName(IntervalSequence::Type sequenceType)
     {
         static std::map<Type, std::string> sequenceNames = {{Ionian,          "Ionian"},
-                                                           {Dorian,          "Dorian"},
-                                                           {Phrygian,        "Phrygian"},
-                                                           {Lydian,          "Lydian"},
-                                                           {Mixolydian,      "Mixolydian"},
-                                                           {Aeolian,         "Aeolian"},
-                                                           {Locrian,         "Locrian"},
-                                                           {Major,           "Major"},
-                                                           {NaturalMinor,    "Natural Minor"},
-                                                           {HarmonicMinor,   "Harmonic Minor"},
-                                                           {MelodicMinor,    "Melodic Minor"}};
+                                                            {Dorian,          "Dorian"},
+                                                            {Phrygian,        "Phrygian"},
+                                                            {Lydian,          "Lydian"},
+                                                            {Mixolydian,      "Mixolydian"},
+                                                            {Aeolian,         "Aeolian"},
+                                                            {Locrian,         "Locrian"},
+                                                            {Major,           "Major"},
+                                                            {NaturalMinor,    "Natural Minor"},
+                                                            {HarmonicMinor,   "Harmonic Minor"},
+                                                            {MelodicMinor,    "Melodic Minor"}};
         return sequenceNames[sequenceType];
     }
 
@@ -104,20 +93,14 @@ namespace Music
         return {Major, NaturalMinor, HarmonicMinor, MelodicMinor};
     }
 
-    std::map<IntervalSequence::Type, IntervalSequence::Type> IntervalSequence::getTypeMap()
+    IntervalSequence::Type IntervalSequence::mapType(Type type)
     {
-        std::map<Type, Type> typeMap;
-        for (Mode::Type mode: allModes())
-            typeMap[mode] = mode;
-        for (Scale::Type scale: allScales())
-            typeMap[scale] = scale;
-        typeMap[Major] = Ionian;
-        typeMap[NaturalMinor] = Aeolian;
-        return typeMap;
+        if (type == Major)              return Ionian;
+        else if (type == NaturalMinor)  return Aeolian;
+        else                            return type;
     }
 
     bool IntervalSequence::ofType(IntervalSequence::Type otherType) {
-        static std::map<Type, Type> typeMap = getTypeMap();
-        return typeMap[type] == typeMap[otherType];
+        return mapType(type) == mapType(otherType);
     }
 }

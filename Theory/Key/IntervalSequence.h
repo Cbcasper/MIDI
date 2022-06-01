@@ -36,17 +36,6 @@ namespace Music
             MelodicMinor
         };
 
-        enum Modulation
-        {
-            First = 0,
-            Second = 1,
-            Third = 2,
-            Fourth = 3,
-            Fifth = 4,
-            Sixth = 5,
-            Seventh = 6
-        };
-
         Type type;
         std::vector<RootNotePointer> intervalSequence;
 
@@ -57,8 +46,8 @@ namespace Music
         virtual void apply(const RootNotePointer& rootNote);
         virtual std::vector<int> getIntervals();
 
-        virtual RootNotePointer getModulatedNote(int offset, int newIndex);
-        std::pair<RootNotePointer, int> modulate(const RootNotePointer& note, Modulation modulation, bool up = true);
+        virtual int getDegree(const RootNotePointer& note);
+        virtual RootNotePointer getModulatedNote(int index, bool up);
 
         virtual std::string toString();
         static std::string sequenceName(Type type);
@@ -66,7 +55,7 @@ namespace Music
         static std::vector<Type> allModes();
         static std::vector<Type> allScales();
 
-        std::map<Type, Type> getTypeMap();
+        static Type mapType(Type type);
         bool ofType(Type otherType);
     };
 

@@ -8,16 +8,19 @@
 
 namespace Music
 {
-    ModulationHarmony::ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key, int modulationOffset):
-                       SingleHarmony(Modulation, output), modulationOffset(modulationOffset), key(key)
+    ModulationHarmony::ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key):
+                       SingleHarmony(Modulation, output), key(key),
+                       modulation(Key::First), octaves(0), up(true)
     {}
 
     NotePointer ModulationHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)
     {
-        const auto& [modulatedNote, octaveOffset] = key->intervalSequence->modulate(noteOn->note,
-                                                                                    IntervalSequence::Sixth, true);
+        auto [modulatedNote, octaveOffset] = key->modulate(noteOn->note, modulation, up);
         if (modulatedNote)
-            return Note::getInstance(modulatedNote, noteOn->note->octave + octaveOffset);
+        {
+            int modulatedOctave = noteOn->note->octave + (up ? octaves : -octaves) + octaveOffset;
+            return Note::getInstance(modulatedNote, modulatedOctave);
+        }
         return nullptr;
     }
 }

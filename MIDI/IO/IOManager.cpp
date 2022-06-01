@@ -42,7 +42,7 @@ namespace MIDI
             constructPort(portNumber, systemMIDIIn.portName(portNumber), IOType::Input);
         for (int portNumber = 0; portNumber < systemMIDIOut.portCount(); ++portNumber)
             constructPort(portNumber, systemMIDIOut.portName(portNumber), IOType::Output);
-        processor->updatePorts(Utilities::keyList(inputPorts), Utilities::keyList(outputPorts));
+        processor->updatePorts(keyList(inputPorts), keyList(outputPorts));
 //        constructVirtualPort();
     }
 
@@ -80,11 +80,18 @@ namespace MIDI
                 bool inputsChanged = checkPorts(inputPorts, systemMIDIIn, IOType::Input);
                 bool outputsChanged = checkPorts(outputPorts, systemMIDIOut, IOType::Output);
                 if (inputsChanged || outputsChanged)
-                    processor->updatePorts(Utilities::keyList(inputPorts),
-                                           Utilities::keyList(outputPorts));
+                    processor->updatePorts(keyList(inputPorts), keyList(outputPorts));
                 observerCV.wait_for(lock, std::chrono::seconds(1));
             }
         });
+    }
+
+    std::vector<std::string> IOManager::keyList(const MIDI::PortMap& map)
+    {
+        std::vector<std::string> keys;
+        for (const auto& [key, value]: map)
+            keys.emplace_back(key);
+        return keys;
     }
 
     std::function<bool(const std::pair<std::string, int>&)> IOManager::equals(const std::string& portName)
@@ -150,9 +157,9 @@ namespace MIDI
 
             if (instrument->allChannels())
                 for (int i = 0; i < 16; ++i)
-                    outputPort->sendMessage(message->rawMessage(i + 1));
+                    outputPort->sendMessage(message->rawMessage());
             else if (!instrument->noChannels())
-                outputPort->sendMessage(message->rawMessage(instrument->channel));
+                outputPort->sendMessage(message->rawMessage());
         }
     }
 }

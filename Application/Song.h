@@ -28,7 +28,7 @@ namespace State
 
         Song();
 
-        void setTempo(int microseconds);
+        void setTempo(float newTempo);
         void computeMeasureLength(float& divisionsPerBeat, float& ticksPerBeat, float& ticksPerMeasure);
     };
 }

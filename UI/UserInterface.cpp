@@ -99,7 +99,7 @@ namespace UI
 //        renderPiano();
 
 //        ImGui::ShowDemoWindow();
-//        ImGui::ShowMetricsWindow();
+        ImGui::ShowMetricsWindow();
 //        ImGui::ShowStackToolWindow();
     }
 
@@ -227,7 +227,7 @@ namespace UI
             renderTimeDivisionSelect(quantizeDivision);
             ImGui::SameLine();
             if (ImGui::Button("Quantize"))
-                applicationState->tracks[0]->quantize();
+                applicationState->tracks[0]->orderedQuantize();
         }
         ImGui::EndChild();
     }
@@ -235,7 +235,7 @@ namespace UI
     void UserInterface::renderControlBar(const ImVec2& controlBarPosition, const ImVec2& controlBarSize)
     {
         ImGui::SetCursorScreenPos(controlBarPosition);
-        if (ImGui::BeginChild("innerControl", ImVec2(402.5, 102), true,
+        if (ImGui::BeginChild("innerControl", ImVec2(controlBarSize.x, 102), true,
                               ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar))
         {
             ImGui::PushFont(*largeFont);
@@ -374,7 +374,7 @@ namespace UI
             ImGui::Separator();
             ImGui::InputDouble("##tempo", &tempo);
             if (ImGui::IsItemDeactivatedAfterEdit())
-                applicationState->song->setTempo(static_cast<int>(round(60.f * 1000.f * 1000.f / tempo)));
+                applicationState->song->setTempo(tempo);
 
             ImGui::EndPopup();
         }
@@ -716,7 +716,10 @@ namespace UI
 
     void UserInterface::deleteItems()
     {
-        selectedTrack->recordingTake->deleteSelectedNotes();
+        if (!selectedTrack->recordingTake->selectedNotes.empty())
+            selectedTrack->recordingTake->deleteSelectedNotes();
+        else if (selectedTrack->takes.size() > 1)
+            selectedTrack->deleteTake();
     }
 
     void UserInterface::renderHarmonyModel(const ImVec2& harmonyPosition, const ImVec2& harmonyModelSize)
@@ -901,8 +904,8 @@ namespace UI
     void UserInterface::renderModulationHarmony(const Music::HarmonyPointer& harmony)
     {
         Music::ModulationHarmonyPointer modulationHarmony = std::static_pointer_cast<Music::ModulationHarmony>(harmony);
-        ImGui::DragInt("Offset", &modulationHarmony->modulationOffset, 1, -90,
-                       90, "%d", ImGuiSliderFlags_AlwaysClamp);
+//        ImGui::DragInt("Offset", &modulationHarmony->modulationOffset, 1, -90,
+//                       90, "%d", ImGuiSliderFlags_AlwaysClamp);
     }
 
     void UserInterface::renderCanonHarmony(const Music::HarmonyPointer& harmony)
@@ -1008,7 +1011,6 @@ namespace UI
         ImVec2 takeSize = ImVec2(mainAreaSize.x, track->height);
         ImVec2 takePosition = currentPosition;
 
-        renderTakeSequencer(track, track->mainTake, sequencerWidth, takePosition, takeSize);
         for (const State::TakePointer& take: track->takes)
             renderTakeSequencer(track, take, sequencerWidth, takePosition, takeSize);
         return takePosition.y - currentPosition.y;
@@ -1143,7 +1145,7 @@ namespace UI
 
     void UserInterface::playPianoMessage(const MIDI::MessagePointer& message)
     {
-        pianoPlayer.processMIDIMessage(message->rawMessage(pianoOutput->channel));
+        pianoPlayer.processMIDIMessage(message->rawMessage());
         MIDI::IOManager::getInstance()->sendMIDIOut(std::make_pair(message, pianoOutput));
     }
 
@@ -1220,9 +1222,9 @@ namespace UI
 //        if (availableWidth != 0)
             ImGui::SetNextItemWidth(availableWidthContent * .5f - itemSpacing / 2);
         ImGuiSliderFlags sliderFlags = ImGuiSliderFlags_AlwaysClamp;
-        const char* format = "%d";
-        if (instrument->allChannels()) format = "All";
-        if (instrument->noChannels())  format = "None";
+        const char* format = "Channel %d";
+        if (instrument->allChannels()) format = "All Channels";
+        if (instrument->noChannels())  format = "No Channels";
         ImGui::SliderInt("##Channel", &instrument->channel, 1, CHANNELS_NONE, format, sliderFlags);
 //        ImGui::EndGroup();
 //        ImVec2 size = ImGui::GetItemRectSize();

@@ -8,15 +8,6 @@
 
 namespace Utilities
 {
-
-    std::vector<std::string> keyList(const MIDI::PortMap& map)
-    {
-        std::vector<std::string> keys;
-        for (const auto& [key, value]: map)
-            keys.emplace_back(key);
-        return keys;
-    }
-
     std::future<void> makeThread(const std::function<void()>& threadFunction)
     {
         std::packaged_task<void()> task(threadFunction);

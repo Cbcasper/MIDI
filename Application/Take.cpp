@@ -37,7 +37,7 @@ namespace State
             int value = noteOff->note->value;
             if (unfinishedNotes[value])
                 unfinishedNotes[value]->noteEnd = noteOff;
-            unfinishedNotes.erase(value);
+            unfinishedNotes[value] = nullptr;
         }
     }
 
@@ -46,15 +46,15 @@ namespace State
         int currentTick = currentTime;
         std::unique_lock<std::mutex> lock(mutex);
         for (const auto& [instrument, unfinishedNotes]: instrumentUnfinishedNotes)
-            for (const auto& [noteValue, noteOn]: unfinishedNotes)
-            {
-                Music::NotePointer note = Music::Note::getInstance(noteValue);
-                MIDI::NoteOffPointer noteOff = std::make_shared<MIDI::NoteOff>(note, 127);
-                noteOff->tick = currentTick;
+            for (const MIDI::NoteOnPointer& noteOn: unfinishedNotes)
+                if (noteOn)
+                {
+                    MIDI::NoteOffPointer noteOff = std::make_shared<MIDI::NoteOff>(noteOn->note, 127);
+                    noteOff->tick = currentTick;
 
-                noteOn->noteEnd = noteOff;
-                midiMessages[currentTick].insert(noteOff);
-            }
+                    noteOn->noteEnd = noteOff;
+                    midiMessages[currentTick].insert(noteOff);
+                }
         instrumentUnfinishedNotes = std::unordered_map<MIDI::InstrumentPointer, UnfinishedNotes>();
     }
 
@@ -129,14 +129,12 @@ namespace State
         }
     }
 
-    NoteSequences Take::noteSequences()
+    void Take::getNoteSequences(NoteSequences& noteSequences)
     {
-        NoteSequences noteSequences;
         std::unique_lock<std::mutex> lock(mutex);
         for (const auto& [tick, messages]: midiMessages)
             for (const MIDI::MessagePointer& message: messages)
                 if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
                     noteSequences[noteOn->note->value].insert(noteOn);
-        return noteSequences;
     }
 }

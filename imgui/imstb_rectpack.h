@@ -245,10 +245,10 @@ STBRP_DEF void stbrp_setup_allow_out_of_mem(stbrp_context *context, int allow_ou
       // if it's ok to run out of memory, then don't bother aligning them;
       // this gives better packing, but may fail due to OOM (even though
       // the rectangles easily fit). @TODO a smarter approach would be to only
-      // quantize once we've hit OOM, then we could get rid of this parameter.
+      // orderedQuantize once we've hit OOM, then we could get rid of this parameter.
       context->align = 1;
    else {
-      // if it's not ok to run out of memory, then quantize the widths
+      // if it's not ok to run out of memory, then orderedQuantize the widths
       // so that num_nodes is always enough nodes.
       //
       // I.e. num_nodes * align >= width

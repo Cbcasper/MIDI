@@ -4,6 +4,8 @@
 
 #include "Key.h"
 
+#include <cmath>
+
 #include "MelodicMinor.h"
 
 namespace Music
@@ -13,6 +15,33 @@ namespace Music
         rootNote = std::make_shared<RootNote>(RootNote::C, false);
         intervalSequence = std::make_shared<IntervalSequence>(Scale::Major);
         intervalSequence->apply(rootNote);
+    }
+
+    Key::Degree Key::getDegree(const RootNotePointer& note)
+    {
+        return (Degree) intervalSequence->getDegree(note);
+    }
+
+    std::pair<RootNotePointer, int> Key::modulate(const RootNotePointer& note, Key::Degree modulation, bool up)
+    {
+        int offset = ((int) modulation) * (up ? 1 : -1);
+        int index = intervalSequence->getDegree(note);
+
+        if ((Degree) index != Invalid)
+        {
+            int offsetIndex = index + offset;
+            int newIndex = Utilities::positiveModulo(offsetIndex, 7);
+
+            RootNotePointer modulatedNote = intervalSequence->getModulatedNote(newIndex, up);
+            return std::make_pair(modulatedNote, getOctaveOffset(index, newIndex, up));
+        }
+        return std::make_pair(nullptr, 0);
+    }
+
+    int Key::getOctaveOffset(int index, int newIndex, bool up)
+    {
+        if (up) return newIndex < index ? 1 : 0;
+        else    return index < newIndex ? -1 : 0;
     }
 
     void Key::setRootNote(RootNote::Name name, bool sharp)
@@ -29,15 +58,8 @@ namespace Music
 
     void Key::setIntervalSequence(IntervalSequence::Type type)
     {
-        switch (type)
-        {
-            case Scale::MelodicMinor:
-                intervalSequence = std::make_shared<MelodicMinor>();
-                break;
-            default:
-                intervalSequence = std::make_shared<IntervalSequence>(type);
-                break;
-        }
+        if (type == Scale::MelodicMinor) intervalSequence = std::make_shared<MelodicMinor>();
+        else                             intervalSequence = std::make_shared<IntervalSequence>(type);
         intervalSequence->apply(rootNote);
     }
 }

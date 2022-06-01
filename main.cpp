@@ -9,7 +9,27 @@ int main()
 {
     std::shared_ptr<State::Application> applicationState = std::make_shared<State::Application>();
 
-    System::Timer::getInstance()->initialize(applicationState);
+    System::TimerPointer timer = System::Timer::getInstance();
+    timer->initialize(applicationState);
+
+//    unsigned long currentTicks = 0;
+//    unsigned long startTicks = timer->ticks;
+//    auto start = std::chrono::system_clock::now();
+//
+//    std::shared_lock<std::shared_mutex> lock(timer->signalMutex);
+//    bool status = false;
+//    timer->subscribe(&status);
+//    timer->signalCV.wait(lock, [&]{ return status; });
+//    while (currentTicks != 1200)
+//    {
+//        currentTicks++;
+//        status = false;
+//        timer->signalCV.wait(lock, [&]{ return status; });
+//    }
+//    auto end = std::chrono::system_clock::now();
+//    std::chrono::duration<double> diff = end - start;
+//    std::cout << diff.count() << "\n";
+//    timer->unsubscribe(&status);
 
     std::shared_ptr<Music::Director> director = std::make_shared<Music::Director>(applicationState);
     std::shared_ptr<MIDI::Processor> midiProcessor = std::make_shared<MIDI::Processor>(applicationState, director);

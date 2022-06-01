@@ -14,9 +14,11 @@ namespace Music
     {
     public:
         KeyPointer key;
-        int modulationOffset;
+        Key::Degree modulation;
+        int octaves;
+        bool up;
 
-        ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key, int modulationOffset = 0);
+        ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key);
 
         NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };
