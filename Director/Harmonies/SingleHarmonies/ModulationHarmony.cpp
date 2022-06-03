@@ -6,11 +6,13 @@
 
 #include <iostream>
 
+#include "../../../Application/Application.h"
+
 namespace Music
 {
-    ModulationHarmony::ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key):
-                       SingleHarmony(Modulation, output), key(key),
-                       modulation(Key::First), octaves(0), up(true)
+    ModulationHarmony::ModulationHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application):
+            SingleHarmony(application, Modulation, "Modulation", output), key(application->song->key),
+            modulation(Key::First), octaves(0), up(true)
     {}
 
     NotePointer ModulationHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)

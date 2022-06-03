@@ -6,20 +6,20 @@
 
 namespace MIDI
 {
-    Instrument::Instrument(): allPorts(true), noPorts(false), port(std::string()), channel(CHANNELS_ALL)
+    Instrument::Instrument(): portSpecificity(All), channelSpecificity(All), port(std::string()), channel(17)
     {}
 
     Instrument::Instrument(const std::string& port, int channel):
-                           allPorts(false), noPorts(false), port(port), channel(channel)
+                           portSpecificity(Specific), channelSpecificity(Specific), port(port), channel(channel)
     {}
 
     bool Instrument::operator==(const Instrument& instrument) const
     {
-        bool portsEqual = equal(allPorts || instrument.allPorts,
-                                noPorts || instrument.noPorts,
+        bool portsEqual = equal(portSpecificity == All || instrument.portSpecificity == All,
+                                portSpecificity == None || instrument.portSpecificity == None,
                                 port == instrument.port);
-        bool channelsEqual = equal(allChannels() || instrument.allChannels(),
-                                   noChannels() || instrument.noChannels(),
+        bool channelsEqual = equal(channelSpecificity == All || instrument.channelSpecificity == All,
+                                   channelSpecificity == None || instrument.channelSpecificity == None,
                                    channel == instrument.channel);
         return portsEqual && channelsEqual;
     }
@@ -29,41 +29,5 @@ namespace MIDI
         if (all)    return true;
         if (none)   return false;
         else        return equal;
-    }
-
-    bool Instrument::allChannels() const
-    {
-        return channel == CHANNELS_ALL;
-    }
-
-    bool Instrument::noChannels() const
-    {
-        return channel == CHANNELS_NONE;
-    }
-
-    void Instrument::setAllPorts()
-    {
-        allPorts = true;
-        noPorts = false;
-        port = "";
-    }
-
-    void Instrument::setNoPorts()
-    {
-        allPorts = false;
-        noPorts = true;
-        port = "";
-    }
-
-    void Instrument::setPort(const std::string& newPort)
-    {
-        allPorts = false;
-        noPorts = false;
-        port = newPort;
-    }
-
-    bool Instrument::specificPort()
-    {
-        return !allPorts && !noPorts;
     }
 }

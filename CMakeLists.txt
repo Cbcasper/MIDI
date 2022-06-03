@@ -64,7 +64,7 @@ set(SOURCES
         Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp Director/Harmonies/SingleHarmonies/ModulationHarmony.h
         Director/Harmonies/SingleHarmonies/SingleHarmony.cpp Director/Harmonies/SingleHarmonies/SingleHarmony.h
         Director/Harmonies/SingleHarmonies/RandomHarmony.cpp Director/Harmonies/SingleHarmonies/RandomHarmony.h
-        UI/KeyColor.cpp UI/KeyColor.h
+        UI/ColorRange.cpp UI/ColorRange.h
         MIDI/IO/IOType.h
         Sequencer/Metronome.cpp Sequencer/Metronome.h
         MIDI/Messages/Instrument.cpp MIDI/Messages/Instrument.h
@@ -77,7 +77,8 @@ set(SOURCES
         Theory/Chord/Chord.cpp Theory/Chord/Chord.h
         Theory/Chord/ChordNote.cpp Theory/Chord/ChordNote.h
         Director/Harmonies/ChoralHarmony/Voices.cpp Director/Harmonies/ChoralHarmony/Voices.h
-        Utilities/Zip.h Utilities/Average.cpp Utilities/Average.h)
+        Utilities/Zip.h
+        Utilities/Average.cpp Utilities/Average.h)
 
 set(IMGUI
         imgui/imgui.cpp imgui/imgui.h

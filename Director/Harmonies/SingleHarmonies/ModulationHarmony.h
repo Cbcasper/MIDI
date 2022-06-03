@@ -18,7 +18,7 @@ namespace Music
         int octaves;
         bool up;
 
-        ModulationHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key);
+        ModulationHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application);
 
         NotePointer generateNote(const MIDI::NoteOnPointer& noteOn) override;
     };

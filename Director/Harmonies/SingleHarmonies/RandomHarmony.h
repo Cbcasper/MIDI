@@ -22,7 +22,7 @@ namespace Music
         int high;
         bool absolute;
 
-        explicit RandomHarmony(const MIDI::InstrumentPointer& output);
+        explicit RandomHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application);
 
         void setAbsolute(bool newAbsolute);
         void reinitialize();

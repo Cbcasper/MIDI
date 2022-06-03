@@ -30,21 +30,22 @@ namespace Music
         };
 
         Type type;
-        std::string name;
+        std::string typeName;
 
         bool selected;
 
         std::mutex mutex;
 
         MIDI::InstrumentPointer output;
-        MIDI::AudioPlayer audioPlayer;
+        MIDI::AudioPlayerPointer audioPlayer;
 
         HarmonyPointer chainedHarmony;
 
         NoteFilter inputRange;
         std::map<NotePointer, NotePointer> generatedNotes;
 
-        Harmony(Type type, const MIDI::InstrumentPointer& output);
+        Harmony(const State::ApplicationPointer& application, Type type,
+                const std::string& typeName, const MIDI::InstrumentPointer& output);
 
         void processMessage(const MIDI::NoteMessagePointer& noteMessage);
         virtual void generate(const MIDI::NoteMessagePointer& noteMessage) = 0;

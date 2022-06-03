@@ -5,9 +5,6 @@
 #ifndef MIDIASSISTANT_INSTRUMENT_H
 #define MIDIASSISTANT_INSTRUMENT_H
 
-#define CHANNELS_ALL 17
-#define CHANNELS_NONE (CHANNELS_ALL + 1)
-
 #include <string>
 
 namespace MIDI
@@ -15,8 +12,14 @@ namespace MIDI
     class Instrument
     {
     public:
-        bool allPorts;
-        bool noPorts;
+        enum Specificity
+        {
+            All,
+            None,
+            Specific
+        };
+        Specificity portSpecificity;
+        Specificity channelSpecificity;
         std::string port;
         int channel;
 
@@ -25,14 +28,6 @@ namespace MIDI
 
         bool operator==(const Instrument& instrument) const;
         static bool equal(bool all, bool none, bool equal);
-
-        bool allChannels() const;
-        bool noChannels() const;
-
-        void setAllPorts();
-        void setNoPorts();
-        void setPort(const std::string& newPort);
-        bool specificPort();
     };
 
     using InstrumentPointer = std::shared_ptr<Instrument>;

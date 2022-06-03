@@ -321,7 +321,7 @@ struct meta_events
     return {0xff, 0x58, 0x04, (uint8_t)numerator, (uint8_t)powTwo, 1, 96};
   }
 
-  // Where key index goes from -7 (7 flats, C♭ Major) to +7 (7 sharps, C♯
+  // Where defaultColor index goes from -7 (7 flats, C♭ Major) to +7 (7 sharps, C♯
   // Major)
   static message key_signature(int keyIndex, bool isMinor)
   {

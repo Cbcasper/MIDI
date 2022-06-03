@@ -15,8 +15,8 @@ namespace System
     class Metronome
     {
     public:
-        MIDI::AudioPlayer audioPlayer;
-        State::SongPointer song;
+        MIDI::AudioPlayerPointer audioPlayer;
+        State::ApplicationPointer application;
 
         bool clicking;
 
@@ -28,7 +28,7 @@ namespace System
         int measureTimer;
         int beatTimer;
 
-        explicit Metronome(const State::SongPointer& song);
+        explicit Metronome(const State::ApplicationPointer& application);
 
         void clickOnTick(int tick);
     };

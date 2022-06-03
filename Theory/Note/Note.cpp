@@ -12,7 +12,7 @@ namespace Music
     std::map<unsigned char, NotePointer> Note::notes;
     std::mutex Note::mutex;
 
-    Note::Note(Name name, bool sharp, int octave, int value) : RootNote(name, sharp), octave(octave), value(value)
+    Note::Note(Name name, bool sharp, int octave, int value): RootNote(name, sharp), octave(octave), value(value)
     {}
 
     NotePointer Note::getInstance(unsigned char value, Name name, bool sharp, int octave)

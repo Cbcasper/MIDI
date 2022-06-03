@@ -62,4 +62,16 @@ namespace Music
         else                             intervalSequence = std::make_shared<IntervalSequence>(type);
         intervalSequence->apply(rootNote);
     }
+
+    std::string Key::degreeName(Key::Degree degree)
+    {
+        static std::map<Degree, std::string> names = {{First,   "First"},
+                                                      {Second,  "Second"},
+                                                      {Third,   "Third"},
+                                                      {Fourth,  "Fourth"},
+                                                      {Fifth,   "Fifth"},
+                                                      {Sixth,   "Sixth"},
+                                                      {Seventh, "Seventh"}};
+        return names[degree];
+    }
 }

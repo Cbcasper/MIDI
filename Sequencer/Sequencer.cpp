@@ -19,7 +19,7 @@ namespace System
         applicationState->song->computeMeasureLength(divisionsPerBeat, ticksPerBeat, ticksPerMeasure);
 
         running = false;
-        metronome = std::make_shared<Metronome>(applicationState->song);
+        metronome = std::make_shared<Metronome>(applicationState);
         cycle = std::make_shared<Cycle>(0, ticksPerMeasure * 1);
     }
 

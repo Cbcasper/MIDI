@@ -40,9 +40,10 @@ int main()
 
     MIDI::InstrumentPointer input = applicationState->selectInstrument(MIDI::Input);
     MIDI::InstrumentPointer output = applicationState->selectInstrument(MIDI::Output);
-    applicationState->tracks.emplace_back(std::make_shared<State::Track>(applicationState, input, output));
+    State::TrackPointer initialTrack = std::make_shared<State::Track>(applicationState, input, output);
+    applicationState->tracks.emplace_back(initialTrack);
 
-    std::shared_ptr<UI::UserInterface> ui = std::make_shared<UI::UserInterface>(applicationState, director, sequencer);
+    std::shared_ptr<UI::UserInterface> ui = std::make_shared<UI::UserInterface>(applicationState, initialTrack, director, sequencer);
     ui->start();
 
     return 0;

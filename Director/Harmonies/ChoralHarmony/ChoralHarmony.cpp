@@ -9,10 +9,10 @@
 
 namespace Music
 {
-    ChoralHarmony::ChoralHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key):
-                   Harmony(Choral, output), key(key), sopranoTessiture(Tessiture(60, 81)),
-                   altoTessiture(Tessiture(55, 74)), tenorTessiture(Tessiture(48, 67)),
-                   bassTessiture(Tessiture(41, 62))
+    ChoralHarmony::ChoralHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application):
+            Harmony(application, Choral, "Choral", output), key(application->song->key),
+            sopranoTessiture(Tessiture(60, 81)), altoTessiture(Tessiture(55, 74)),
+            tenorTessiture(Tessiture(48, 67)), bassTessiture(Tessiture(41, 62))
     {
         position = Narrow;
         inputRange = NoteFilter(bassTessiture.low, bassTessiture.high);
@@ -20,6 +20,7 @@ namespace Music
 
     void ChoralHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
     {
+        std::cout << noteMessage->note->toString() << "\n";
         if (key->getDegree(noteMessage->note) == Key::Invalid)
             return;
 

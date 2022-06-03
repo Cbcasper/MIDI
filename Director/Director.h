@@ -43,6 +43,7 @@ namespace Music
         void processMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
     };
+    using DirectorPointer = std::shared_ptr<Director>;
 }
 
 

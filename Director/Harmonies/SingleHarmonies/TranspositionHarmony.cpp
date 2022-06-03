@@ -7,8 +7,9 @@
 
 namespace Music
 {
-    TranspositionHarmony::TranspositionHarmony(const MIDI::InstrumentPointer& output, int transpositionOffset):
-                          SingleHarmony(Transposition, output), transpositionOffset(transpositionOffset)
+    TranspositionHarmony::TranspositionHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application):
+                          SingleHarmony(application, Transposition, "Transposition", output),
+                          transpositionOffset(0)
     {}
 
     NotePointer TranspositionHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)

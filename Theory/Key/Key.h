@@ -40,6 +40,8 @@ namespace Music
         void setRootNote(RootNote::Name name, bool sharp);
         void setRootNote(const std::pair<RootNote::Name, bool>& note);
         void setIntervalSequence(IntervalSequence::Type type);
+
+        static std::string degreeName(Degree degree);
     };
 }
 

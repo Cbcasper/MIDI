@@ -6,8 +6,8 @@
 
 namespace Music
 {
-    CanonHarmony::CanonHarmony(const MIDI::InstrumentPointer& output, const State::SongPointer& song) :
-                  Harmony(Canon, output), song(song)
+    CanonHarmony::CanonHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application):
+                  Harmony(application, Canon, "Canon", output), song(application->song)
     {
         running = true;
         timer = System::Timer::getInstance();

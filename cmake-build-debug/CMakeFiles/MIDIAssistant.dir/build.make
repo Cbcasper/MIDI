@@ -629,19 +629,19 @@ CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp" -o CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.s
 
-CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
-CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o: ../UI/KeyColor.cpp
-CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o: CMakeFiles/MIDIAssistant.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o -MF CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o.d -o CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/KeyColor.cpp"
+CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
+CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o: ../UI/ColorRange.cpp
+CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o: CMakeFiles/MIDIAssistant.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o -MF CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o.d -o CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o -c "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/ColorRange.cpp"
 
-CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/KeyColor.cpp" > CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.i
+CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/ColorRange.cpp" > CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.i
 
-CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/KeyColor.cpp" -o CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.s
+CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/ColorRange.cpp" -o CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.s
 
 CMakeFiles/MIDIAssistant.dir/Sequencer/Metronome.cpp.o: CMakeFiles/MIDIAssistant.dir/flags.make
 CMakeFiles/MIDIAssistant.dir/Sequencer/Metronome.cpp.o: ../Sequencer/Metronome.cpp
@@ -965,7 +965,7 @@ MIDIAssistant_OBJECTS = \
 "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o" \
-"CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o" \
+"CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/Sequencer/Metronome.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o" \
 "CMakeFiles/MIDIAssistant.dir/UI/Font.cpp.o" \
@@ -1030,7 +1030,7 @@ MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Theory/Key/MelodicMinor.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/ModulationHarmony.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/SingleHarmony.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Director/Harmonies/SingleHarmonies/RandomHarmony.cpp.o
-MIDIAssistant: CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o
+MIDIAssistant: CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/Sequencer/Metronome.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/MIDI/Messages/Instrument.cpp.o
 MIDIAssistant: CMakeFiles/MIDIAssistant.dir/UI/Font.cpp.o

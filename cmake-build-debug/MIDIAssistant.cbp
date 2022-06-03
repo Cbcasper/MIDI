@@ -361,16 +361,16 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/TimeDivision.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/ColorRange.cpp">
+			<Option target="MIDIAssistant"/>
+		</Unit>
+		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/ColorRange.h">
+			<Option target="MIDIAssistant"/>
+		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/Font.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/Font.h">
-			<Option target="MIDIAssistant"/>
-		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/KeyColor.cpp">
-			<Option target="MIDIAssistant"/>
-		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/KeyColor.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/UI/MessageFilterCheckboxes.cpp">

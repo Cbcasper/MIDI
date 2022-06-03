@@ -9,13 +9,14 @@
 #include "./Application.h"
 #include "../MIDI/Messages/Messages/NoteOn.h"
 #include "../Utilities/Average.h"
+#include "../MIDI/Messages/Messages/ProgramChange.h"
 
 namespace State
 {
     Track::Track(const ApplicationPointer& application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output):
-                 application(application), input(input), output(output), height(150)
+                 application(application), preset(0), input(input), output(output), height(150)
     {
-        audioPlayer = MIDI::AudioPlayer();
+        audioPlayer = std::make_shared<MIDI::AudioPlayer>(application);
 
         TakePointer initialTake = std::make_shared<Take>(application);
         recordingTake = initialTake;
@@ -26,6 +27,9 @@ namespace State
         float ticksPerMeasure;
         application->song->computeMeasureLength(divisionsPerBeat, ticksPerBeat, ticksPerMeasure);
         timeWindow = static_cast<int>(round(ticksPerMeasure));
+
+        quantization = Simple;
+        quantizeDivision = Music::Eighth;
     }
 
     void Track::incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
@@ -42,7 +46,7 @@ namespace State
     void Track::playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
         const auto& [message, instrument] = messageOnInstrument;
-        audioPlayer.processMIDIMessage(message->rawMessage());
+        audioPlayer->processMIDIMessage(std::make_pair(message, output));
         updateSoundingNotes(message);
     }
 
@@ -58,6 +62,11 @@ namespace State
     {
         recordingTake->cleanupNotes(application->currentTime);
         soundingNotes = std::map<int, int>();
+    }
+
+    void Track::deleteHarmony(const Music::HarmonyPointer& harmony)
+    {
+        harmonies.erase(std::find(harmonies.begin(), harmonies.end(), harmony));
     }
 
     bool Track::hasSelectedHarmonies()
@@ -83,7 +92,23 @@ namespace State
 
     void Track::deleteTake()
     {
-        recordingTake = *--takes.erase(std::find(takes.begin(), takes.end(), recordingTake));
+        if (takes.size() > 1)
+        {
+            auto position = std::find(takes.begin(), takes.end(), recordingTake);
+            auto nextPosition = takes.erase(position);
+            if (nextPosition == takes.end())    recordingTake = *--nextPosition;
+            else                                recordingTake = *nextPosition;
+        }
+    }
+
+    void Track::quantize()
+    {
+        switch (quantization)
+        {
+            case Simple:     recordingTake->quantize(quantizeDivision); break;
+            case Structured: structuredQuantize();                      break;
+            case TimeWindow: timeWindowQuantize();                      break;
+        }
     }
 
     bool Track::equalTakes(std::vector<NoteSequences>& takeNoteSequences)
@@ -96,7 +121,7 @@ namespace State
         return true;
     }
 
-    void Track::orderedQuantize()
+    void Track::structuredQuantize()
     {
         int takeIndex = 0;
         std::vector<NoteSequences> takeNoteSequences = std::vector<NoteSequences>(takes.size());
@@ -170,5 +195,13 @@ namespace State
         MIDI::NoteOffPointer noteOff = std::make_shared<MIDI::NoteOff>(note, offVelocity.get());
         take->record(std::make_pair(noteOn, input), start.get());
         take->record(std::make_pair(noteOff, input), end.get());
+    }
+
+    std::string Track::quantizationName(Track::Quantization quantization)
+    {
+        static std::map<Quantization, std::string> names = {{Simple,     "Simple"},
+                                                            {Structured, "Structured"},
+                                                            {TimeWindow, "Time Window"}};
+        return names[quantization];
     }
 }

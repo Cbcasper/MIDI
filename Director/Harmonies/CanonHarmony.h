@@ -28,7 +28,7 @@ namespace Music
 
         bool running;
 
-        CanonHarmony(const MIDI::InstrumentPointer& output, const State::SongPointer& song);
+        CanonHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application);
         virtual ~CanonHarmony();
 
         void timerThread();

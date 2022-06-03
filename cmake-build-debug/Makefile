@@ -1233,6 +1233,30 @@ Theory/TimeDivision.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.s
 .PHONY : Theory/TimeDivision.cpp.s
 
+UI/ColorRange.o: UI/ColorRange.cpp.o
+.PHONY : UI/ColorRange.o
+
+# target to build an object file
+UI/ColorRange.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o
+.PHONY : UI/ColorRange.cpp.o
+
+UI/ColorRange.i: UI/ColorRange.cpp.i
+.PHONY : UI/ColorRange.i
+
+# target to preprocess a source file
+UI/ColorRange.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.i
+.PHONY : UI/ColorRange.cpp.i
+
+UI/ColorRange.s: UI/ColorRange.cpp.s
+.PHONY : UI/ColorRange.s
+
+# target to generate assembly for a file
+UI/ColorRange.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.s
+.PHONY : UI/ColorRange.cpp.s
+
 UI/Font.o: UI/Font.cpp.o
 .PHONY : UI/Font.o
 
@@ -1256,30 +1280,6 @@ UI/Font.s: UI/Font.cpp.s
 UI/Font.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/Font.cpp.s
 .PHONY : UI/Font.cpp.s
-
-UI/KeyColor.o: UI/KeyColor.cpp.o
-.PHONY : UI/KeyColor.o
-
-# target to build an object file
-UI/KeyColor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.o
-.PHONY : UI/KeyColor.cpp.o
-
-UI/KeyColor.i: UI/KeyColor.cpp.i
-.PHONY : UI/KeyColor.i
-
-# target to preprocess a source file
-UI/KeyColor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.i
-.PHONY : UI/KeyColor.cpp.i
-
-UI/KeyColor.s: UI/KeyColor.cpp.s
-.PHONY : UI/KeyColor.s
-
-# target to generate assembly for a file
-UI/KeyColor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/UI/KeyColor.cpp.s
-.PHONY : UI/KeyColor.cpp.s
 
 UI/MessageFilterCheckboxes.o: UI/MessageFilterCheckboxes.cpp.o
 .PHONY : UI/MessageFilterCheckboxes.o
@@ -1740,12 +1740,12 @@ help:
 	@echo "... Theory/TimeDivision.o"
 	@echo "... Theory/TimeDivision.i"
 	@echo "... Theory/TimeDivision.s"
+	@echo "... UI/ColorRange.o"
+	@echo "... UI/ColorRange.i"
+	@echo "... UI/ColorRange.s"
 	@echo "... UI/Font.o"
 	@echo "... UI/Font.i"
 	@echo "... UI/Font.s"
-	@echo "... UI/KeyColor.o"
-	@echo "... UI/KeyColor.i"
-	@echo "... UI/KeyColor.s"
 	@echo "... UI/MessageFilterCheckboxes.o"
 	@echo "... UI/MessageFilterCheckboxes.i"
 	@echo "... UI/MessageFilterCheckboxes.s"

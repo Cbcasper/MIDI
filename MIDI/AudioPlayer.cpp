@@ -4,12 +4,16 @@
 
 #include "AudioPlayer.h"
 
-#include <iostream>
+#include "../Application/Application.h"
 
 namespace MIDI
 {
-    AudioPlayer::AudioPlayer()
+    AudioPlayer::AudioPlayer(const State::ApplicationPointer& application): application(application)
     {
+        preset = 0;
+        muted = false;
+        solo = false;
+
         NewAUGraph(&auGraph);
         AudioComponentDescription outputDescription;
         outputDescription.componentType = kAudioUnitType_Output;
@@ -37,8 +41,32 @@ namespace MIDI
             processMIDIMessage(libremidi::message::control_change(i + 1, 91, 10));
     }
 
+    void AudioPlayer::setPreset(int newPreset)
+    {
+        preset = newPreset;
+        for (int i = 0; i < 16; ++i)
+            processMIDIMessage(libremidi::message::program_change(i + 1, preset));
+    }
+
     void AudioPlayer::processMIDIMessage(const libremidi::message& message) const
     {
-        MusicDeviceMIDIEvent(audioUnit, message[0], message[1], message[2], 0);
+        if (!muted && (solo || application->soloAudioPlayers.empty()))
+            MusicDeviceMIDIEvent(audioUnit, message[0], message[1], message[2], 0);
+    }
+
+    void AudioPlayer::processMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument) const
+    {
+        auto& [message, instrument] = messageOnInstrument;
+        switch (instrument->channelSpecificity)
+        {
+            case Instrument::All:
+                processMIDIMessage(message->rawMessage(0));
+                break;
+            case Instrument::None:
+                break;
+            case Instrument::Specific:
+                processMIDIMessage(message->rawMessage(instrument->channel));
+                break;
+        }
     }
 }

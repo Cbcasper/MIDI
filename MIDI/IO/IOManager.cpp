@@ -147,19 +147,29 @@ namespace MIDI
     {
         const auto& [message, instrument] = messageOnInstrument;
         PortMap usedPorts;
-        if (instrument->allPorts)       usedPorts = outputPorts;
-        else if (instrument->noPorts)   usedPorts = PortMap();
-        else                            usedPorts = {{instrument->port, outputPorts[instrument->port]}};
+        switch (instrument->portSpecificity)
+        {
+            case Instrument::All: usedPorts = outputPorts;                                                  break;
+            case Instrument::None: usedPorts = PortMap();                                                   break;
+            case Instrument::Specific: usedPorts = {{instrument->port, outputPorts[instrument->port]}};     break;
+        }
 
         for (const auto& [portName, port]: usedPorts)
         {
             OutputPortPointer outputPort = std::static_pointer_cast<OutputPort>(port);
 
-            if (instrument->allChannels())
-                for (int i = 0; i < 16; ++i)
+            switch (instrument->channelSpecificity)
+            {
+                case Instrument::All:
+                    for (int i = 0; i < 16; ++i)
+                        outputPort->sendMessage(message->rawMessage());
+                    break;
+                case Instrument::None:
+                    break;
+                case Instrument::Specific:
                     outputPort->sendMessage(message->rawMessage());
-            else if (!instrument->noChannels())
-                outputPort->sendMessage(message->rawMessage());
+                    break;
+            }
         }
     }
 }

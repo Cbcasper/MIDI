@@ -54,6 +54,7 @@ namespace System
         void stop();
         void reset();
     };
+    using SequencerPointer = std::shared_ptr<Sequencer>;
 }
 
 

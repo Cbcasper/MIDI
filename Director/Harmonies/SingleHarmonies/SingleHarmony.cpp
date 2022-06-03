@@ -7,7 +7,9 @@
 
 namespace Music
 {
-    SingleHarmony::SingleHarmony(Type type, const MIDI::InstrumentPointer& output): Harmony(type, output)
+    SingleHarmony::SingleHarmony(const State::ApplicationPointer& application, Type type,
+                                 const std::string& typeName, const MIDI::InstrumentPointer& output):
+                   Harmony(application, type, typeName, output)
     {}
 
     void SingleHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)

@@ -26,22 +26,31 @@ namespace State
     class Track
     {
     public:
+        enum Quantization
+        {
+            Simple,
+            Structured,
+            TimeWindow
+        };
+
         ApplicationPointer application;
 
+        int preset;
         MIDI::InstrumentPointer input;
         MIDI::InstrumentPointer output;
-        MIDI::AudioPlayer audioPlayer;
+        MIDI::AudioPlayerPointer audioPlayer;
 
         TakePointer recordingTake;
         std::list<TakePointer> takes;
-
         std::map<int, int> soundingNotes;
 
-        float height;
+        std::list<Music::HarmonyPointer> harmonies;
 
-        std::vector<Music::HarmonyPointer> harmonies;
-
+        Quantization quantization;
+        Music::TimeDivision quantizeDivision;
         int timeWindow;
+
+        float height;
 
         Track(const ApplicationPointer& application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output);
 
@@ -50,18 +59,22 @@ namespace State
         void updateSoundingNotes(const MIDI::MessagePointer& message);
         void stopRecording();
 
+        void deleteHarmony(const Music::HarmonyPointer& harmony);
         bool hasSelectedHarmonies();
         void clearSelectedHarmonies();
 
         void addTake();
         void deleteTake();
 
+        void quantize();
         bool equalTakes(std::vector<NoteSequences>& takeNoteSequences);
-        void orderedQuantize();
+        void structuredQuantize();
         void timeWindowQuantize();
         int getLastMessage();
 
         void average(const TakePointer& take, const MIDI::ChronologicNotes& notes, int noteValue);
+
+        static std::string quantizationName(Quantization quantization);
     };
 
     using TrackPointer = std::shared_ptr<Track>;

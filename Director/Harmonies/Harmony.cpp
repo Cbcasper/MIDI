@@ -8,16 +8,17 @@
 
 namespace Music
 {
-    Harmony::Harmony(Type type, const MIDI::InstrumentPointer& output):
-                     type(type), output(output), selected(false)
+    Harmony::Harmony(const State::ApplicationPointer& application, Type type,
+                     const std::string& typeName, const MIDI::InstrumentPointer& output):
+                     type(type), typeName(typeName), output(output), selected(false)
     {
-        audioPlayer = MIDI::AudioPlayer();
+        audioPlayer = std::make_shared<MIDI::AudioPlayer>(application);
         inputRange = NoteFilter();
-        name = harmonyName(type);
     }
 
     void Harmony::processMessage(const MIDI::NoteMessagePointer& noteMessage)
     {
+        std::cout << noteMessage->note->value << " <" << inputRange.low << ", " << inputRange.high << ">" << "\n";
         if (inputRange(noteMessage->note))
             generate(noteMessage);
     }
@@ -25,7 +26,7 @@ namespace Music
     void Harmony::play(const MIDI::NoteMessagePointer& generated)
     {
         MIDI::IOManagerPointer ioManager = MIDI::IOManager::getInstance();
-        audioPlayer.processMIDIMessage(generated->rawMessage());
+        audioPlayer->processMIDIMessage(std::make_pair(generated, output));
         ioManager->sendMIDIOut(std::make_pair(generated, output));
 
         if (chainedHarmony) chainedHarmony->processMessage(generated);
@@ -42,7 +43,7 @@ namespace Music
     {
         static std::map<Type, std::string> harmonyNames = {{Random, "Random"},
                                                            {Transposition, "Transposition"},
-                                                           {Modulation, "Degree"},
+                                                           {Modulation, "Modulation"},
                                                            {Canon, "Canon"},
                                                            {Choral, "Choral"}};
         return harmonyNames[type];

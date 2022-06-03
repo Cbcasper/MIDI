@@ -37,7 +37,7 @@ namespace Music
         VoicesPointer lastVoices;
         std::map<NotePointer, VoicesPointer> generatedNotes;
 
-        ChoralHarmony(const MIDI::InstrumentPointer& output, const KeyPointer& key);
+        ChoralHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application);
 
         void generate(const MIDI::NoteMessagePointer& noteMessage) override;
 

@@ -50,4 +50,16 @@ namespace State
         else
             return std::make_shared<MIDI::Instrument>(ports[0], 1);
     }
+
+    TrackPointer Application::deleteTrack(const TrackPointer& track)
+    {
+        if (tracks.size() > 1)
+        {
+            auto position = std::find(tracks.begin(), tracks.end(), track);
+            auto nextPosition = tracks.erase(position);
+            if (nextPosition == tracks.end()) return *--nextPosition;
+            else                              return *nextPosition;
+        }
+        return track;
+    }
 }

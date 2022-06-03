@@ -10,9 +10,8 @@
 
 namespace Music
 {
-    RandomHarmony::RandomHarmony(const MIDI::InstrumentPointer& output):
-                   SingleHarmony(Random, output),
-                   absolute(true), low(0), high(127)
+    RandomHarmony::RandomHarmony(const MIDI::InstrumentPointer& output, const State::ApplicationPointer& application):
+                   SingleHarmony(application, Random, "Random", output), absolute(true), low(0), high(127)
     {
         randomEngine = std::default_random_engine(randomDevice());
         uniformIntDistribution = std::uniform_int_distribution(low, high);

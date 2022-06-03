@@ -18,6 +18,8 @@
 #include "../Theory/Key/Key.h"
 #include "../MIDI/IO/IOType.h"
 
+
+
 namespace State
 {
     class Application
@@ -29,7 +31,8 @@ namespace State
         std::vector<std::string> outputPorts;
 
         std::list<MIDI::MessageOnInstrument> messages;
-        std::vector<TrackPointer> tracks;
+        std::list<TrackPointer> tracks;
+        std::set<MIDI::AudioPlayerPointer> soloAudioPlayers;
 
         SongPointer song;
 
@@ -42,10 +45,11 @@ namespace State
 
         void inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void clearMessages();
-
         void stopRecording();
 
         MIDI::InstrumentPointer selectInstrument(MIDI::IOType ioType);
+
+        TrackPointer deleteTrack(const TrackPointer& track);
     };
 
     using ApplicationPointer = std::shared_ptr<Application>;
