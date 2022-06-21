@@ -10,6 +10,7 @@
 #include "../MIDI/Messages/Messages/NoteOn.h"
 #include "../Utilities/Average.h"
 #include "../MIDI/Messages/Messages/ProgramChange.h"
+#include "../MIDI/Messages/Messages/Controller.h"
 
 namespace State
 {
@@ -60,6 +61,8 @@ namespace State
 
     void Track::stopRecording()
     {
+        MIDI::MessagePointer allSoundOff = std::make_shared<MIDI::Controller>(120, 0);
+        audioPlayer->processMIDIMessage(std::make_pair(allSoundOff, input));
         recordingTake->cleanupNotes(application->currentTime);
         soundingNotes = std::map<int, int>();
     }

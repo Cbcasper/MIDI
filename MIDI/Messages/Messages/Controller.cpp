@@ -13,6 +13,11 @@ namespace MIDI
         controllerValue = message[2];
     }
 
+    Controller::Controller(int number, int controllerValue):
+                Message(MIDI::MessageType::CONTROL_CHANGE, "Controller"),
+                number(number), controllerValue(controllerValue)
+    {}
+
     std::string Controller::message()
     {
         return Message::message() + ": " + std::to_string(number);

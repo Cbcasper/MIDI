@@ -33,7 +33,7 @@ namespace Music
             int newIndex = Utilities::positiveModulo(offsetIndex, 7);
 
             RootNotePointer modulatedNote = intervalSequence->getModulatedNote(newIndex, up);
-            return std::make_pair(modulatedNote, getOctaveOffset(index, newIndex, up));
+            return std::make_pair(modulatedNote, getOctaveOffset((int) note->name, (int) modulatedNote->name, up));
         }
         return std::make_pair(nullptr, 0);
     }

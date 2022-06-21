@@ -16,6 +16,7 @@ namespace MIDI
         int controllerValue;
 
         Controller(const libremidi::message& message);
+        Controller(int number, int controllerValue);
 
         std::string message() override;
         std::string value() override;

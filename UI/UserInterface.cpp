@@ -110,16 +110,6 @@ namespace UI
 //        ImGui::ShowDemoWindow();
 //        ImGui::ShowMetricsWindow();
 //        ImGui::ShowStackToolWindow();
-        if (ImGui::Begin("Test"))
-        {
-            static bool open;
-            if (ImGui::Begin("Sub", &open))
-            {
-                ImGui::TextUnformatted("Hello world");
-            }
-            ImGui::End();
-        }
-        ImGui::End();
     }
 
     void UserInterface::readPresets()
@@ -133,7 +123,10 @@ namespace UI
 
     void UserInterface::renderMessageMonitor()
     {
-        if (ImGui::Begin("MIDI Monitor", &showMessageMonitor))
+        if (!showMessageMonitor)
+            return;
+
+        if (ImGui::Begin("MIDI Monitor"))
         {
             midiMessageTableFlags = ImGuiTableFlags_Borders |
                                     ImGuiTableFlags_RowBg |
@@ -1061,6 +1054,7 @@ namespace UI
             ImGui::PushID((void*)track.get());
 
             float trackHeight = track->recordingTake == *track->takes.begin() ? track->height + keyHeight.top() : track->height;
+
             track->height += renderResizableBorder(currentTrackListPosition + ImVec2(0, trackHeight),
                                                    totalWidth, true);
 
@@ -1196,7 +1190,7 @@ namespace UI
                               takePosition + ImVec2(sequencerWidth, track->height),
                               mainBorder);
         takePosition.y += track->height;
-        return takeClicked;
+        return takeClicked || noteClicked;
     }
 
     void UserInterface::renderTrackPiano(const State::TrackPointer& track, const ImVec2& position, float sequencerWidth)

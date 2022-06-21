@@ -23,6 +23,7 @@ namespace Music
         std::cout << noteMessage->note->toString() << "\n";
         if (key->getDegree(noteMessage->note) == Key::Invalid)
             return;
+        std::cout << "Here\n";
 
         if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(noteMessage))
             handleNoteOn(noteOn);
