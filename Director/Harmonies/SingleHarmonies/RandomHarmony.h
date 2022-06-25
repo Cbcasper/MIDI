@@ -11,13 +11,16 @@
 
 namespace Music
 {
+    // Harmony that generates random notes
     class RandomHarmony: public SingleHarmony
     {
     public:
+        // Random generation
         std::random_device randomDevice;
         std::default_random_engine randomEngine;
         std::uniform_int_distribution<int> uniformIntDistribution;
 
+        // Parameters
         int low;
         int high;
         bool absolute;

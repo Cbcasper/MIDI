@@ -17,6 +17,7 @@ namespace MIDI
     class NoteOn: public NoteMessage
     {
     public:
+        // Link the start and end of a note
         NoteOffPointer noteEnd;
 
         NoteOn(const libremidi::message& message);
@@ -28,6 +29,7 @@ namespace MIDI
 
     using NoteOnPointer = std::shared_ptr<NoteOn>;
 
+    // Make the notes sortable on ticks
     struct NoteOnComparator
     {
         bool operator()(const NoteOnPointer& firstNoteOn, const NoteOnPointer& secondNoteOn) const

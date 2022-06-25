@@ -10,6 +10,7 @@
 
 namespace Music
 {
+    // Filters all notes outside a range
     class NoteFilter
     {
     public:
@@ -20,9 +21,11 @@ namespace Music
         NoteFilter();
         NoteFilter(int low, int high);
 
+        // Set the range via methods in order to update allowed notes
         void moveLow(int newLow);
         void moveHigh(int newHigh);
         void setRange(int newLow, int newHigh);
+        // Method that does the filtering
         bool operator()(const NotePointer& note);
     };
 }

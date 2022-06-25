@@ -13,9 +13,11 @@
 
 namespace Music
 {
+    // Harmony that plays the played note a number of time divisions later
     class CanonHarmony: public Harmony
     {
     public:
+        // Parameters
         State::SongPointer song;
 
         Music::TimeDivision timeDivision;
@@ -23,6 +25,7 @@ namespace Music
 
         std::map<unsigned int, MIDI::NoteMessagePointer> scheduledMessages;
 
+        // Listen to the timer in order to play the note at an offset
         System::TimerPointer timer;
         std::future<void> timerFuture;
 

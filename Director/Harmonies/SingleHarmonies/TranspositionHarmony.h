@@ -9,6 +9,7 @@
 
 namespace Music
 {
+    // Harmony that generates a note at an offset of a set number of semitones
     class TranspositionHarmony: public SingleHarmony
     {
     public:

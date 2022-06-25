@@ -13,6 +13,7 @@ namespace Music
     class Key;
     using KeyPointer = std::shared_ptr<Key>;
 
+    // Class that has a root note and a sequence of notes starting from that one
     class Key
     {
     public:
@@ -33,10 +34,12 @@ namespace Music
 
         Key();
 
+        // Query methods
         Degree getDegree(const RootNotePointer& note);
         std::pair<RootNotePointer, int> modulate(const RootNotePointer& note, Degree modulation, bool up = true);
         int getOctaveOffset(int index, int newIndex, bool up);
 
+        // Parameters need to be set, because the sequence has to be recalculated every time
         void setRootNote(RootNote::Name name, bool sharp);
         void setRootNote(const std::pair<RootNote::Name, bool>& note);
         void setIntervalSequence(IntervalSequence::Type type);

@@ -12,6 +12,7 @@
 
 namespace MIDI
 {
+    // Wrapper class for libremidi midi out object
     class OutputPort: public Port
     {
     public:
@@ -20,6 +21,7 @@ namespace MIDI
         OutputPort();
         explicit OutputPort(int portNumber);
 
+        // Wrapper methods
         void sendMessage(const libremidi::message& message);
 
         int portCount() override;

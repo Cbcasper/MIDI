@@ -7,6 +7,7 @@
 
 namespace Utilities
 {
+    // Dynamically computed average
     class Average
     {
     public:
@@ -15,7 +16,9 @@ namespace Utilities
 
         Average();
 
+        // Compute the actual average
         int get();
+        // Aggregate a new value
         void operator+=(int value);
     };
 }

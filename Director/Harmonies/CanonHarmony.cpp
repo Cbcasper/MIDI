@@ -16,6 +16,7 @@ namespace Music
         numberOfDivisions = 4;
     }
 
+    // Thread that wakes up every tick and checks if any scheduled notes have to be played
     void CanonHarmony::timerThread()
     {
         bool status = false;
@@ -33,10 +34,12 @@ namespace Music
         timer->unsubscribe(&status);
     }
 
+    // Check and play scheduled notes
     void CanonHarmony::processScheduledMessages()
     {
         if (MIDI::NoteMessagePointer noteMessage = scheduledMessages[timer->ticks])
         {
+            // Protect the data structure
             std::unique_lock<std::mutex> lock(mutex);
             play(noteMessage);
             if (noteMessage->type == MIDI::MessageType::NOTE_ON) generatedNotes[noteMessage->note] = noteMessage->note;
@@ -45,6 +48,7 @@ namespace Music
         scheduledMessages.erase(timer->ticks);
     }
 
+    // Compute the offset in ticks and schedule the note
     void CanonHarmony::generate(const MIDI::NoteMessagePointer& noteMessage)
     {
         float divisionRatio = static_cast<float>(Music::Sixteenth) / static_cast<float>(timeDivision);

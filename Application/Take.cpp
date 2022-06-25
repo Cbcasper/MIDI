@@ -12,6 +12,7 @@ namespace State
                application(application), lowestNote(128), highestNote(-1)
     {}
 
+    // Store incoming message at current time
     void Take::record(const MIDI::MessageOnInstrument& messageOnInstrument, int currentTime)
     {
         updateUnfinishedNotes(messageOnInstrument);
@@ -22,6 +23,7 @@ namespace State
         midiMessages[message->tick].insert(message);
     }
 
+    // Store note on messages and link note off messages to previously stored note on messages played on the same message
     void Take::updateUnfinishedNotes(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
         auto& [message, instrument] = messageOnInstrument;
@@ -41,6 +43,7 @@ namespace State
         }
     }
 
+    // End all note on messages that haven't received a note of message
     void Take::cleanupNotes(int currentTime)
     {
         int currentTick = currentTime;
@@ -58,6 +61,7 @@ namespace State
         instrumentUnfinishedNotes = std::unordered_map<MIDI::InstrumentPointer, UnfinishedNotes>();
     }
 
+    // Snap all note on messages and their note off message to the closest time division
     void Take::quantize(Music::TimeDivision quantizeDivision)
     {
         std::list<std::pair<MIDI::MessagePointer, int>> quantizedMessages;
@@ -75,6 +79,7 @@ namespace State
         }
     }
 
+    // Compute the closest tick belonging to the time division
     int Take::quantizeTick(int tick, Music::TimeDivision quantizeDivision)
     {
         float divisionRatio = static_cast<float>(Music::Sixteenth) / static_cast<float>(quantizeDivision);
@@ -129,6 +134,7 @@ namespace State
         }
     }
 
+    // Order the notes according to their note value
     void Take::getNoteSequences(NoteSequences& noteSequences)
     {
         std::unique_lock<std::mutex> lock(mutex);

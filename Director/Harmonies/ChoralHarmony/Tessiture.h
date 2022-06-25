@@ -9,6 +9,7 @@
 
 namespace Music
 {
+    // A range in which a voice can be played
     class Tessiture
     {
     public:
@@ -17,7 +18,9 @@ namespace Music
 
         Tessiture(int low, int high);
 
+        // Compute the intersection between two tessitures
         Tessiture intersect(const Tessiture& tessiture);
+        // Move a note up or down until it is inside the tessiture
         void operator()(const ChordNotePointer& chordNote);
     };
 }

@@ -24,6 +24,8 @@ namespace Music
 
 namespace System
 {
+    // Class that enables the sequencer.
+    // Advance the current time, play the metronome, use the cycle and play the recorded notes
     class Sequencer
     {
     public:
@@ -32,24 +34,30 @@ namespace System
         MetronomePointer metronome;
         CyclePointer cycle;
 
+        // Thread management
         std::future<void> masterFuture;
         std::vector<std::future<void>> trackFutures;
 
+        // Synchronization
         std::shared_mutex tracksMutex;
         std::condition_variable_any tracksCV;
         std::vector<bool*> trackStatuses;
 
+        // Cleanup
         bool running;
 
         explicit Sequencer(const State::ApplicationPointer& applicationState,
                            const std::shared_ptr<Music::Director>& director);
         ~Sequencer();
 
+        // Thread methods
         void masterThread();
         void trackThread(const State::TrackPointer& track);
 
+        // Synchronization
         void trackStatusOn();
 
+        // External interface
         void start();
         void stop();
         void reset();

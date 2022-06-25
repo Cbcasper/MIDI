@@ -15,6 +15,7 @@ namespace Music
     Note::Note(Name name, bool sharp, int octave, int value): RootNote(name, sharp), octave(octave), value(value)
     {}
 
+    // Base getInstance method, using the value as key
     NotePointer Note::getInstance(unsigned char value, Name name, bool sharp, int octave)
     {
         if (!notes[value])
@@ -27,6 +28,7 @@ namespace Music
         return notes[value];
     }
 
+    // All getInstance methods use the base version and thus compute the value, name, sharp and octave
     NotePointer Note::getInstance(const RootNotePointer& rootNote, int octave)
     {
         return getInstance(rootNote->name, rootNote->sharp, octave);

@@ -19,6 +19,7 @@ namespace Music
 
     NotePointer RandomHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)
     {
+        // Generate a random value and compute the new note
         int offset = uniformIntDistribution(randomEngine);
         int newNote = absolute ? offset : noteOn->note->value + offset;
         return Note::getInstance(Utilities::clamp(newNote, 0, 127));
@@ -26,6 +27,7 @@ namespace Music
 
     void RandomHarmony::setAbsolute(bool newAbsolute)
     {
+        // Reinitialize the boundaries of the range when setting absolute
         absolute = newAbsolute;
         if (absolute)
         {

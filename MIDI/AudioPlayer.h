@@ -23,10 +23,12 @@ namespace MIDI
     public:
         State::ApplicationPointer application;
 
+        // State
         int preset;
         bool muted;
         bool solo;
 
+        // Core audio specifics
         AUGraph auGraph{};
         AudioUnit audioUnit{};
 

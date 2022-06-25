@@ -25,8 +25,10 @@ namespace MIDI
 
     void Processor::processMIDIMessage(const libremidi::message& message, const std::string& port) const
     {
+        // Convert the message and build up the instrument
         MessagePointer convertedMessage = convertMIDIMessage(message);
         InstrumentPointer instrument = std::make_shared<Instrument>(port, message.get_channel());
+        // Distribute the message
         applicationState->inputMIDIMessage(std::make_pair(convertedMessage, instrument));
         director->inputMIDIMessage(std::make_pair(convertedMessage, instrument));
     }
@@ -48,6 +50,7 @@ namespace MIDI
 
     void Processor::updatePorts(const std::vector<std::string>& inputPorts, const std::vector<std::string>& outputPorts)
     {
+        // Set the ports of the application state
         applicationState->inputPorts = inputPorts;
         applicationState->outputPorts = outputPorts;
     }

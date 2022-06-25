@@ -12,6 +12,8 @@ namespace MIDI
     class Instrument
     {
     public:
+        // All will accept input from any other instrument and none will accept no input
+        // All has higher precedence than none
         enum Specificity
         {
             All,
@@ -26,6 +28,7 @@ namespace MIDI
         Instrument();
         Instrument(const std::string& port, int channel);
 
+        // Make instruments comparable, so that instruments can act as a filter for incoming messages
         bool operator==(const Instrument& instrument) const;
         static bool equal(bool all, bool none, bool equal);
     };
@@ -33,6 +36,7 @@ namespace MIDI
     using InstrumentPointer = std::shared_ptr<Instrument>;
 }
 
+// Make the instruments hashable and comparable
 namespace std
 {
     template <>

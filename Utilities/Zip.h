@@ -9,6 +9,7 @@
 
 namespace Utilities
 {
+    // Iterator for Zip class
     template <class Container, class ContainerIterator, class ContainerElement>
     class ZipIterator
     {
@@ -16,6 +17,7 @@ namespace Utilities
         std::vector<ContainerIterator> iterators;
         explicit ZipIterator(std::vector<ContainerIterator> containerIterators): iterators(containerIterators) {}
 
+        // Check all iterators pairwise
         bool operator!=(ZipIterator zipIterator)
         {
             for (int i = 0; i < iterators.size(); ++i)
@@ -24,6 +26,7 @@ namespace Utilities
             return true;
         }
 
+        // Increment all iterators separately
         void operator++()
         {
             std::vector<ContainerIterator> newIterators;
@@ -32,6 +35,7 @@ namespace Utilities
             iterators = newIterators;
         }
 
+        // Return the de-referenced iterators in a container, the same type as the original containers
         Container operator*()
         {
             Container elements;
@@ -42,6 +46,7 @@ namespace Utilities
         }
     };
 
+    // Class that takes a number of containers and makes it possible to iterate over them simultaneously
     template <class Container, class ContainerElement>
     class Zip
     {
@@ -49,6 +54,7 @@ namespace Utilities
         std::vector<Container> containers;
         Zip(std::vector<Container> containers): containers(containers) {}
 
+        // Return a ZipIterator containing all begin iterators of the containers
         ZipIterator<Container, typename Container::iterator, ContainerElement> begin()
         {
             std::vector<typename Container::iterator> iterators;
@@ -57,6 +63,7 @@ namespace Utilities
             return ZipIterator<Container, typename Container::iterator, ContainerElement>(iterators);
         }
 
+        // Return a ZipIterator containing all end iterators of the containers
         ZipIterator<Container, typename Container::iterator, ContainerElement> end()
         {
             std::vector<typename Container::iterator> iterators;
@@ -65,6 +72,7 @@ namespace Utilities
             return ZipIterator<Container, typename Container::iterator, ContainerElement>(iterators);
         }
 
+        // Return a ZipIterator containing all const begin iterators of the containers
         ZipIterator<Container, typename Container::const_iterator, ContainerElement> begin() const
         {
             std::vector<typename Container::const_iterator> iterators;
@@ -73,6 +81,7 @@ namespace Utilities
             return ZipIterator<Container, typename Container::const_iterator, ContainerElement>(iterators);
         }
 
+        // Return a ZipIterator containing all const end iterators of the containers
         ZipIterator<Container, typename Container::const_iterator, ContainerElement> end() const
         {
             std::vector<typename Container::const_iterator> iterators;

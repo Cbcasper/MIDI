@@ -16,6 +16,7 @@ namespace Music
     class IntervalSequence;
     using ISPointer = std::shared_ptr<IntervalSequence>;
 
+    // Class that encodes a sequence of notes that are spaced apart by a theoretical sequence of intervals
     class IntervalSequence
     {
     public:
@@ -41,14 +42,17 @@ namespace Music
 
         explicit IntervalSequence(Type type);
 
+        // Turning the theoretical intervals into a sequence of notes
         static void fillSequence(std::vector<RootNotePointer>& sequence, const RootNotePointer& rootNote,
                                  const std::vector<int>& intervals);
         virtual void apply(const RootNotePointer& rootNote);
         virtual std::vector<int> getIntervals();
 
+        // Query methods
         virtual int getDegree(const RootNotePointer& note);
         virtual RootNotePointer getModulatedNote(int index, bool up);
 
+        // Type information
         virtual std::string toString();
         static std::string sequenceName(Type type);
 

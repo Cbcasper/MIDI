@@ -35,43 +35,49 @@ namespace State
 
         ApplicationPointer application;
 
-        int preset;
+        // IO
         MIDI::InstrumentPointer input;
         MIDI::InstrumentPointer output;
         MIDI::AudioPlayerPointer audioPlayer;
 
+        // Takes
         TakePointer recordingTake;
         std::list<TakePointer> takes;
         std::map<int, int> soundingNotes;
 
         std::list<Music::HarmonyPointer> harmonies;
 
+        // Quantize parameters
         Quantization quantization;
         Music::TimeDivision quantizeDivision;
         int timeWindow;
 
+        // UI
         float height;
 
         Track(const ApplicationPointer& application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output);
 
+        // MIDI Message handling
         void incomingMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument);
         void updateSoundingNotes(const MIDI::MessagePointer& message);
         void stopRecording();
 
+        // Harmony management
         void deleteHarmony(const Music::HarmonyPointer& harmony);
         bool hasSelectedHarmonies();
         void clearSelectedHarmonies();
 
+        // Take management
         void addTake();
         void deleteTake();
 
+        // Natural quantization
         void quantize();
         bool equalTakes(std::vector<NoteSequences>& takeNoteSequences);
         void structuredQuantize();
         void timeWindowQuantize();
         int getLastMessage();
-
         void average(const TakePointer& take, const MIDI::ChronologicNotes& notes, int noteValue);
 
         static std::string quantizationName(Quantization quantization);

@@ -30,6 +30,7 @@ namespace Music
         KeyPointer key;
         ChordPointer chord;
 
+        // The generated notes
         NotePointer discard;
         NotePointer sopranoNote;
         NotePointer altoNote;
@@ -37,6 +38,7 @@ namespace Music
 
         explicit Voices(const KeyPointer& key, const ChordPointer& chord);
 
+        // Query functions
         Voice voice(const NotePointer& note);
         NotePointer& operator[](Voice voice);
         NotePointer& operator[](Key::Degree degree);
@@ -52,6 +54,7 @@ namespace Music
     }
 }
 
+// Support structured bindings
 namespace std
 {
     template<> struct tuple_size<Music::VoicesPointer>

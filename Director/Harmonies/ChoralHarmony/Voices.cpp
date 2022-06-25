@@ -9,6 +9,7 @@ namespace Music
     Voices::Voices(const KeyPointer& key, const ChordPointer& chord):  key(key), chord(chord), discard(nullptr)
     {}
 
+    // Get the voice that sings a given note
     Voice Voices::voice(const NotePointer& note)
     {
         if (sopranoNote == note)     return Soprano;
@@ -17,6 +18,7 @@ namespace Music
         return Invalid;
     }
 
+    // Get the note a voice sings
     NotePointer& Voices::operator[](Voice voice)
     {
         switch (voice)
@@ -29,6 +31,7 @@ namespace Music
         }
     }
 
+    // Get the note that is of the degree in the key
     NotePointer& Voices::operator[](Key::Degree degree)
     {
         if (degree == key->getDegree(sopranoNote))     return sopranoNote;

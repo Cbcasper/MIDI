@@ -10,6 +10,7 @@
 
 namespace Music
 {
+    // Harmony that modulates the played note by a set degree
     class ModulationHarmony: public SingleHarmony
     {
     public:

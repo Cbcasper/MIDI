@@ -9,6 +9,7 @@
 
 namespace Music
 {
+    // Subclass of interval sequence that keeps track of the sequence when the link between the notes is downward
     class MelodicMinor: public IntervalSequence
     {
     public:
@@ -16,6 +17,7 @@ namespace Music
 
         MelodicMinor();
 
+        // Inherit these methods in order to behave differently when going downwards
         void apply(const RootNotePointer& rootNote) override;
         RootNotePointer getModulatedNote(int index, bool up) override;
         std::string toString() override;

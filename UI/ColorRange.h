@@ -11,6 +11,7 @@
 
 namespace UI
 {
+    // Class that contains a range of colors based on a single color, used to color piano keys and harmonies
     class ColorRange
     {
     public:
@@ -20,18 +21,25 @@ namespace UI
             Normal,
             Dark
         };
+        // The color the range is based on
         ImU32 defaultColor;
+        // That color when pressed
         ImU32 defaultPressed;
+        // The same color, but with the opposite brightness
         ImU32 inverseColor;
+        // That color when pressed
         ImU32 inversePressed;
+        // Peripherals
         ImU32 border;
         ImU32 text;
 
+        // Multiple ways of passing the color the range is based on
         explicit ColorRange(ImU32 color, ColorBrightness brightness = Normal);
         explicit ColorRange(const ImVec4& color, ColorBrightness brightness = Normal);
         ColorRange(int red, int green, int blue, ColorBrightness brightness = Normal);
         ColorRange(ImU32 color, ImU32 pressedColor, ColorBrightness brightness = Normal);
 
+        // Make the color castable so that it can be used as the default color
         operator ImU32();
     };
 

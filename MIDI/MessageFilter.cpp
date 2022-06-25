@@ -35,6 +35,7 @@ namespace MIDI
             allowedTypes[messageType] = false;
     }
 
+    // Filter an actual message
     bool MessageFilter::operator()(const MessagePointer & message)
     {
         return allowedTypes[message->type];

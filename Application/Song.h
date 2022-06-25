@@ -15,6 +15,7 @@ namespace State
     class Song;
     using SongPointer = std::shared_ptr<Song>;
 
+    // Class containing the total length, tempo, signature and key
     class Song
     {
     public:

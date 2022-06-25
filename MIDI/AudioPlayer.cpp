@@ -14,6 +14,7 @@ namespace MIDI
         muted = false;
         solo = false;
 
+        // Set up core audio nodes and graphs and stuff
         NewAUGraph(&auGraph);
         AudioComponentDescription outputDescription;
         outputDescription.componentType = kAudioUnitType_Output;
@@ -37,12 +38,14 @@ namespace MIDI
         AUGraphInitialize(auGraph);
         AUGraphStart(auGraph);
 
+        // Limit the reverb on all channels
         for (int i = 0; i < 16; ++i)
             processMIDIMessage(libremidi::message::control_change(i + 1, 91, 10));
     }
 
     void AudioPlayer::setPreset(int newPreset)
     {
+        // Change the preset on all channels
         preset = newPreset;
         for (int i = 0; i < 16; ++i)
             processMIDIMessage(libremidi::message::program_change(i + 1, preset));
@@ -50,6 +53,7 @@ namespace MIDI
 
     void AudioPlayer::processMIDIMessage(const libremidi::message& message) const
     {
+        // Play if not muted and if not part of the solo audio players
         if (!muted && (solo || application->soloAudioPlayers.empty()))
             MusicDeviceMIDIEvent(audioUnit, message[0], message[1], message[2], 0);
     }
@@ -60,11 +64,14 @@ namespace MIDI
         switch (instrument->channelSpecificity)
         {
             case Instrument::All:
+                // Play on the first channel
                 processMIDIMessage(message->rawMessage(0));
                 break;
             case Instrument::None:
+                // Don't play
                 break;
             case Instrument::Specific:
+                // Play on the channel specified by the user, in the range 1-16
                 processMIDIMessage(message->rawMessage(instrument->channel));
                 break;
         }

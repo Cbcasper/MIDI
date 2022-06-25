@@ -12,17 +12,19 @@
 
 namespace MIDI
 {
-    class InputPort;
-
+    // Wrapper class for libremidi midi in object
     class InputPort: public Port
     {
     public:
+        // Use pointer in order to be able to move it around
         std::unique_ptr<libremidi::midi_in> midiIn{};
 
         InputPort();
         InputPort(int portNumber, const CallbackFunction& callbackFunction);
+        // Make a virtual port
         InputPort(const CallbackFunction& callbackFunction);
 
+        // Wrapped methods
         int portCount() override;
         std::string portName(int portNumber) override;
     };

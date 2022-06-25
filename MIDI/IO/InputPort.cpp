@@ -14,6 +14,7 @@ namespace MIDI
 
     InputPort::InputPort(int portNumber, const CallbackFunction& callbackFunction)
     {
+        // Open the given port number
         midiIn = std::make_unique<libremidi::midi_in>();
         name = midiIn->get_port_name(portNumber);
         midiIn->set_callback([=](const libremidi::message& message){ callbackFunction(message, name); });
@@ -22,6 +23,7 @@ namespace MIDI
 
     InputPort::InputPort(const CallbackFunction& callbackFunction)
     {
+        // Open a virtual port
         midiIn = std::make_unique<libremidi::midi_in>();
         name = "MIDI Assistant";
         midiIn->open_virtual_port(name);

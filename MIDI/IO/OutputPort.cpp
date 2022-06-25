@@ -13,6 +13,7 @@ namespace MIDI
 
     OutputPort::OutputPort(int portNumber)
     {
+        // Open the given port number
         midiOut = std::make_unique<libremidi::midi_out>();
         name = midiOut->get_port_name(portNumber);
         midiOut->open_port(portNumber);

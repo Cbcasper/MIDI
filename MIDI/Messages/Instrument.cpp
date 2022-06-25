@@ -15,6 +15,7 @@ namespace MIDI
 
     bool Instrument::operator==(const Instrument& instrument) const
     {
+        // Compare the ports and channels separately
         bool portsEqual = equal(portSpecificity == All || instrument.portSpecificity == All,
                                 portSpecificity == None || instrument.portSpecificity == None,
                                 port == instrument.port);
@@ -26,6 +27,7 @@ namespace MIDI
 
     bool Instrument::equal(bool all, bool none, bool equal)
     {
+        // All has higher precedence than none
         if (all)    return true;
         if (none)   return false;
         else        return equal;

@@ -9,9 +9,11 @@
 
 namespace UI
 {
+    // Class that inherits from the message filter but also renders some checkboxes to control the filter
     class MessageFilterCheckboxes: public MIDI::MessageFilter
     {
     public:
+        // Display
         int rowHeight;
         std::map<MIDI::MessageType, std::string> typeNames =
                   {{MIDI::MessageType::AFTERTOUCH,      "Aftertouch"},

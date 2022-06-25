@@ -10,6 +10,7 @@ namespace Music
             chord(chord), degree(degree), octave(octave)
     {}
 
+    // Move over the degree and keep track of the octave
     void ChordNote::operator++()
     {
         degree = getNextModulation();
@@ -22,6 +23,7 @@ namespace Music
         degree = getPreviousModulation();
     }
 
+    // Other operations are calculated using the pre increment operators
     void ChordNote::operator+(int offset)
     {
         for (int i = 0; i < offset; ++i)
@@ -46,6 +48,7 @@ namespace Music
             --*this;
     }
 
+    // Encode the order of the modulations
     Key::Degree ChordNote::getNextModulation()
     {
         switch (degree)
@@ -68,6 +71,7 @@ namespace Music
         }
     }
 
+    // Turn into a concrete note in the correct octave
     NotePointer ChordNote::getNote()
     {
         RootNotePointer note = (*chord)(degree);

@@ -17,6 +17,7 @@ namespace Music
 
     NotePointer ModulationHarmony::generateNote(const MIDI::NoteOnPointer& noteOn)
     {
+        // Get the modulated note from the key
         auto [modulatedNote, octaveOffset] = key->modulate(noteOn->note, modulation, up);
         if (modulatedNote)
         {

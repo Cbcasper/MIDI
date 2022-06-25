@@ -15,6 +15,7 @@ namespace Music
     void IntervalSequence::fillSequence(std::vector<RootNotePointer>& sequence, const RootNotePointer& rootNote,
                                         const std::vector<int>& intervals)
     {
+        // Start with the root note and move it up according to the intervals
         RootNotePointer previousNote = rootNote;
         sequence = {rootNote};
         for (int interval: intervals)
@@ -27,11 +28,13 @@ namespace Music
 
     void IntervalSequence::apply(const RootNotePointer& rootNote)
     {
+        // A general interval sequence is theoretically predefined and the same upwards as downwards
         fillSequence(intervalSequence, rootNote, getIntervals());
     }
 
     std::vector<int> IntervalSequence::getIntervals()
     {
+        // Theoretical sequences
         std::map<Type, std::vector<int>> intervals = {{Ionian,          {2, 2, 1, 2, 2, 2}},
                                                       {Dorian,          {2, 1, 2, 2, 2, 1}},
                                                       {Phrygian,        {1, 2, 2, 2, 1, 2}},
@@ -45,6 +48,7 @@ namespace Music
         return intervals[type];
     }
 
+    // Run through the notes until the correct one is found
     int IntervalSequence::getDegree(const RootNotePointer& note)
     {
         for (int i = 0; i < 7; ++i)
@@ -55,6 +59,7 @@ namespace Music
 
     RootNotePointer IntervalSequence::getModulatedNote(int index, bool up)
     {
+        // By default, the note is just the note at that index in the sequence, "up" is unnecessary in this case
         return intervalSequence[index];
     }
 
@@ -67,6 +72,7 @@ namespace Music
         return rep.str();
     }
 
+    // These methods are mostly for display purposes
     std::string IntervalSequence::sequenceName(IntervalSequence::Type sequenceType)
     {
         static std::map<Type, std::string> sequenceNames = {{Ionian,          "Ionian"},
@@ -93,6 +99,7 @@ namespace Music
         return {Major, NaturalMinor, HarmonicMinor, MelodicMinor};
     }
 
+    // There are some scales that are technically the same as a mode
     IntervalSequence::Type IntervalSequence::mapType(Type type)
     {
         if (type == Major)              return Ionian;

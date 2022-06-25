@@ -10,6 +10,8 @@
 
 namespace Music
 {
+    // Class that encodes one of the notes in the chord
+    // Can be used in calculations to get for instance the next note up in the chord
     class ChordNote
     {
     public:
@@ -20,6 +22,7 @@ namespace Music
 
         ChordNote(const ChordPointer& chord, Key::Degree degree, int octave);
 
+        // Arithmetics
         void operator++();
         void operator--();
         void operator+(int offset);
@@ -29,6 +32,7 @@ namespace Music
         Key::Degree getNextModulation();
         Key::Degree getPreviousModulation();
 
+        // Turn the chord note into a concrete note
         NotePointer getNote();
     };
 

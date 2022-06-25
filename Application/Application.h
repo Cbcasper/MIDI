@@ -18,28 +18,28 @@
 #include "../Theory/Key/Key.h"
 #include "../MIDI/IO/IOType.h"
 
-
-
 namespace State
 {
+    // Class containing all state off the application needed by the different components
     class Application
     {
     public:
+        // Guard the list of incoming messages
         std::mutex mutex;
+        std::list<MIDI::MessageOnInstrument> messages;
 
+        // Available input and output ports
         std::vector<std::string> inputPorts;
         std::vector<std::string> outputPorts;
 
-        std::list<MIDI::MessageOnInstrument> messages;
         std::list<TrackPointer> tracks;
         std::set<MIDI::AudioPlayerPointer> soloAudioPlayers;
 
+        // Song data: tempo, signature and key
         SongPointer song;
 
         int currentTime;
         bool recording;
-
-        MIDI::MessageFilter displayMessageFilter;
 
         Application();
 
@@ -47,6 +47,7 @@ namespace State
         void clearMessages();
         void stopRecording();
 
+        // Select a default available instrument or return an instrument accepting all inputs
         MIDI::InstrumentPointer selectInstrument(MIDI::IOType ioType);
 
         TrackPointer deleteTrack(const TrackPointer& track);

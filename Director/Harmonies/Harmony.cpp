@@ -18,22 +18,25 @@ namespace Music
 
     void Harmony::processMessage(const MIDI::NoteMessagePointer& noteMessage)
     {
-        std::cout << noteMessage->note->value << " <" << inputRange.low << ", " << inputRange.high << ">" << "\n";
+        // Process the message only if it is in range
         if (inputRange(noteMessage->note))
             generate(noteMessage);
     }
 
     void Harmony::play(const MIDI::NoteMessagePointer& generated)
     {
+        // Play the message and send MIDI Out
         MIDI::IOManagerPointer ioManager = MIDI::IOManager::getInstance();
         audioPlayer->processMIDIMessage(std::make_pair(generated, output));
         ioManager->sendMIDIOut(std::make_pair(generated, output));
 
+        // Pass the generated message to the next harmony
         if (chainedHarmony) chainedHarmony->processMessage(generated);
     }
 
     void Harmony::getSoundingNotes(std::set<int>& soundingNotes)
     {
+        // Get all notes that are currently playing
         std::unique_lock<std::mutex> lock(mutex);
         for (const auto& [note, generatedNote]: generatedNotes)
             soundingNotes.insert(generatedNote->value);

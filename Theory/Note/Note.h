@@ -16,12 +16,15 @@ namespace Music
     class Note;
     using NotePointer = std::shared_ptr<Note>;
 
+    // Class that represents a concrete note in a specific octave
+    // It is a multiton, meaning that for every note value, there is only one instance
     class Note: public RootNote
     {
     public:
         int octave;
         int value;
 
+        // Multiton logic, multiple ways of getting a note
         static NotePointer getInstance(unsigned char value, Name name, bool sharp, int octave);
         static NotePointer getInstance(const RootNotePointer& rootNote, int octave);
         static NotePointer getInstance(Name name, bool sharp, int octave);

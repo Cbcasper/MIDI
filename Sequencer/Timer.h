@@ -26,10 +26,12 @@ namespace System
         unsigned long ticks;
         bool running;
 
+        // Synchronisation
         std::shared_mutex signalMutex;
         std::condition_variable_any signalCV;
         std::vector<bool*> statusFlags;
 
+        // Track management
         std::future<void> timerFuture;
         double tickLength;
 
@@ -37,8 +39,11 @@ namespace System
 
         void initialize(const State::ApplicationPointer& givenApplication);
 
+        // Timing
         void preciseSleep(double seconds);
         void timerThread();
+
+        // Subscription
         void subscribe(bool* status);
         void unsubscribe(bool* status);
         void statusOn();
@@ -48,6 +53,7 @@ namespace System
         virtual ~Timer();
 
     private:
+        // Singleton logic
         static std::mutex instanceMutex;
         static TimerPointer instance;
 

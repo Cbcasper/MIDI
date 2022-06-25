@@ -18,21 +18,23 @@
 #include "../MIDI/Messages/Messages/NoteOff.h"
 #include "../MIDI/Messages/Messages/NoteOn.h"
 #include "../MIDI/IO/IOManager.h"
-#include "../Theory/Theory.h"
 
 namespace Music
 {
     class Director
     {
     public:
-        std::shared_ptr<State::Application> applicationState;
+        State::ApplicationPointer applicationState;
 
+        // Thread management
         bool running;
         std::thread directorThread;
 
+        // Coordination variable to wake up thread upon a new message
         std::mutex messageMutex;
         std::condition_variable messageCV;
 
+        // Messages
         MIDI::MessageFilter messageFilter;
         std::queue<MIDI::MessageOnInstrument> messageQueue;
 

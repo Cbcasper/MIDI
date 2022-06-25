@@ -12,6 +12,7 @@
 
 namespace UI
 {
+    // Class that contains a font and a version of the same font with equally spaced glyphs, both fonts containing icons
     class Font
     {
     public:
@@ -25,6 +26,7 @@ namespace UI
         Font(const std::string& fileName, float size, float advance, float iconSize);
 
         void addIcons(float iconSize);
+        // Castable so that the font can be used as the default font
         operator ImFont*() const;
     };
 

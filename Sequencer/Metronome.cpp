@@ -16,8 +16,10 @@ namespace System
         measureTimer = 0;
         beatTimer = 0;
 
+        // High woodblock
         measureSoundOn = std::make_shared<MIDI::NoteOn>(Music::Note::getInstance(76), 100);
         measureSoundOff = std::make_shared<MIDI::NoteOff>(Music::Note::getInstance(76), 100);
+        // Low woodblock
         beatSoundOn = std::make_shared<MIDI::NoteOn>(Music::Note::getInstance(77), 100);
         beatSoundOff = std::make_shared<MIDI::NoteOff>(Music::Note::getInstance(77), 100);
     }
@@ -31,11 +33,13 @@ namespace System
             float ticksPerMeasure;
             application->song->computeMeasureLength(divisionsPerBeat, ticksPerBeat, ticksPerMeasure);
 
+            // Use channel ten for the drum sounds
             if (--measureTimer == 0)
                 audioPlayer->processMIDIMessage(measureSoundOff->rawMessage(10));
             if (--beatTimer == 0)
                 audioPlayer->processMIDIMessage(beatSoundOff->rawMessage(10));
 
+            // High woodblock for measure sounds and low woodblock for beat sounds
             if (tick % static_cast<int>(ticksPerMeasure) == 0)
             {
                 audioPlayer->processMIDIMessage(measureSoundOff->rawMessage(10));

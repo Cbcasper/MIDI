@@ -12,6 +12,7 @@ namespace UI
     {
         rowHeight = 0;
         bool pressed = false;
+        // Render all checkboxes in a grid like pattern
         for (MIDI::MessageType messageType: supportedTypes)
         {
             manageGroups();
@@ -22,6 +23,7 @@ namespace UI
 
     void MessageFilterCheckboxes::manageGroups()
     {
+        // Wrap at the right time to get three rows
         if (rowHeight % 3 == 0)
         {
             if (rowHeight != 0)

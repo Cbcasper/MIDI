@@ -11,6 +11,7 @@ namespace Music
     Director::Director(const std::shared_ptr<State::Application>& applicationState): applicationState(applicationState)
     {
         running = true;
+        // Only react to note messages
         messageFilter.disallowAllTypes();
         messageFilter.allowTypes({MIDI::MessageType::NOTE_ON, MIDI::MessageType::NOTE_OFF});
         directorThread = std::thread([&]{ this->messageHandler(); });
@@ -25,10 +26,12 @@ namespace Music
 
     void Director::messageHandler()
     {
+        // Block thread until new message arrives
         std::unique_lock<std::mutex> lock(messageMutex);
         messageCV.wait(lock, [&]{ return !running || !messageQueue.empty(); });
         while (running)
         {
+            // Process one message at a time
             const MIDI::MessageOnInstrument messageOnInstrument = messageQueue.front();
             messageQueue.pop();
             processMessage(messageOnInstrument);
@@ -39,6 +42,7 @@ namespace Music
 
     void Director::processMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
+        // Pass the message to all harmonies of all tracks
         const auto& [message, instrument] = messageOnInstrument;
         for (const State::TrackPointer& track: applicationState->tracks)
             if (*instrument == *track->input)
@@ -48,6 +52,7 @@ namespace Music
 
     void Director::inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
+        // Save the message and wake up the processing thread
         if (!messageFilter(messageOnInstrument.first)) return;
 
         messageMutex.lock();

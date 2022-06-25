@@ -10,6 +10,7 @@
 
 namespace MIDI
 {
+    // Superclass for port wrapper classes
     class Port
     {
     public:
@@ -17,6 +18,7 @@ namespace MIDI
 
         Port() = default;
 
+        // Virtual wrapper methods
         virtual int portCount() = 0;
         virtual std::string portName(int portNumber) = 0;
     };

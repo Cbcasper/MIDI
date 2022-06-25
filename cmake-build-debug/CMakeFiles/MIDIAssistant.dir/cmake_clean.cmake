@@ -87,8 +87,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIDIAssistant.dir/Theory/Note/NoteFilter.cpp.o.d"
   "CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.o.d"
-  "CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o"
-  "CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o.d"
   "CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o"
   "CMakeFiles/MIDIAssistant.dir/Theory/TimeDivision.cpp.o.d"
   "CMakeFiles/MIDIAssistant.dir/UI/ColorRange.cpp.o"

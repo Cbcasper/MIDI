@@ -9,6 +9,7 @@
 
 namespace System
 {
+    // Class that implements a cycle in the sequencer
     class Cycle
     {
     public:
@@ -18,6 +19,7 @@ namespace System
 
         Cycle(int start, int end);
 
+        // Reset the ticks to the beginning if we are at the end
         int set(int ticks);
     };
 

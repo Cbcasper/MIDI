@@ -18,8 +18,10 @@ namespace Music
 
     std::pair<RootNote::Name, bool> RootNote::correct(RootNote::Name name, bool sharp)
     {
+        // B sharp is actually C
         if (name == B && sharp)
             return std::make_pair(C, false);
+        // E sharp is actually F
         else if (name == E && sharp)
             return std::make_pair(F, false);
         else

@@ -23,6 +23,7 @@ namespace UI
         iconConfig.GlyphMinAdvanceX = iconSize;
         iconConfig.PixelSnapH = true;
 
+        // Add the fonts with various configs
         font = io.Fonts->AddFontFromFileTTF(fileName.c_str(), size, &config);
         addIcons(iconSize);
         equalSpacedFont = io.Fonts->AddFontFromFileTTF(fileName.c_str(), size, &equalSpacedConfig);
@@ -31,6 +32,7 @@ namespace UI
 
     void Font::addIcons(float iconSize)
     {
+        // Add icons to the last font
         ImGuiIO& io = ImGui::GetIO();
         static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
         io.Fonts->AddFontFromFileTTF("./imgui/fonts/" FONT_ICON_FILE_NAME_FAS, iconSize, &iconConfig, icon_ranges);

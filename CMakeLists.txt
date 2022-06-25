@@ -29,7 +29,6 @@ set(SOURCES
         MIDI/Processor.cpp MIDI/Processor.h
         Director/Director.cpp Director/Director.h
         Sequencer/Sequencer.cpp Sequencer/Sequencer.h
-        Theory/Theory.cpp Theory/Theory.h
         UI/UserInterface.cpp UI/UserInterface.h
         MIDI/AudioPlayer.cpp MIDI/AudioPlayer.h
         MIDI/Messages/Message.cpp MIDI/Messages/Message.h

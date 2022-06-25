@@ -10,6 +10,7 @@
 #include <map>
 #include <future>
 
+// Some independent utility functions
 namespace Utilities
 {
     std::future<void> makeThread(const std::function<void()>& threadFunction);

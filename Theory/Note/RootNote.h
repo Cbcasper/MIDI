@@ -15,6 +15,8 @@ namespace Music
     class RootNote;
     using RootNotePointer = std::shared_ptr<RootNote>;
 
+    // Class that encodes a high level note that is not associated with a pitch or octave,
+    // but simply exists within a single octave
     class RootNote
     {
     public:
@@ -29,10 +31,13 @@ namespace Music
         RootNote(Name name, bool sharp);
         virtual ~RootNote() = default;
 
+        // Make sure the name-sharp combination is valid
         static std::pair<Name, bool> correct(Name name, bool sharp);
+        // Conversion
         static std::pair<Name, bool> convert(int value);
         static int convert(Name name, bool sharp);
 
+        // Arithmetic
         int computeOffset(const RootNotePointer& rootNote) const;
         RootNotePointer operator+(int semitones) const;
         bool operator==(const RootNote& rootNote);

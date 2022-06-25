@@ -13,6 +13,7 @@ namespace Music
     class Chord;
     using ChordPointer = std::shared_ptr<Chord>;
 
+    // Class that contains a root note, third and fifth within a given key
     class Chord
     {
     public:
@@ -22,10 +23,12 @@ namespace Music
         RootNotePointer third;
         RootNotePointer fifth;
 
+        // Degree for which the note is lowest in the octave C-B, to be able to decide whether a note is in the next octave
         Key::Degree rollOverDegree;
 
         Chord(const KeyPointer& key, const RootNotePointer& rootNote);
 
+        // Query methods
         bool chordNote(const RootNotePointer& rootNote);
         RootNotePointer operator()(Key::Degree modulation);
         Key::Degree intersect(const ChordPointer& chord);

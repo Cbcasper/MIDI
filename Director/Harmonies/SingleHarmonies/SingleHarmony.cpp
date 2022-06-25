@@ -3,7 +3,6 @@
 //
 
 #include "SingleHarmony.h"
-#include "../../../Theory/Theory.h"
 
 namespace Music
 {
@@ -26,6 +25,7 @@ namespace Music
 
     MIDI::NoteMessagePointer SingleHarmony::handleNoteOn(const MIDI::NoteOnPointer& noteOn)
     {
+        // A note off could also be encoded as a note on with velocity 0
         if (noteOn->velocity == 0)
             return handleNoteOff(std::make_shared<MIDI::NoteOff>(noteOn->note, 64));
 
@@ -39,6 +39,7 @@ namespace Music
         return nullptr;
     }
 
+    // Finish playing notes
     MIDI::NoteMessagePointer SingleHarmony::handleNoteOff(const MIDI::NoteOffPointer& noteOff)
     {
         std::unique_lock<std::mutex> lock(mutex);

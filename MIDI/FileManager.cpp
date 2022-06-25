@@ -9,11 +9,13 @@ namespace MIDI
     std::mutex FileManager::instanceMutex;
     FileManagerPointer FileManager::instance;
 
+    // Link the processor, needed because it is a singleton
     void FileManager::initialize(const std::shared_ptr<Processor>& givenProcessor)
     {
         processor = givenProcessor;
     }
 
+    // Singleton logic
     FileManagerPointer FileManager::getInstance()
     {
         if (!instance)

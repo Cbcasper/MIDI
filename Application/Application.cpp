@@ -12,18 +12,17 @@ namespace State
     {
         song = std::make_shared<Song>();
 
-        displayMessageFilter = MIDI::MessageFilter();
-        displayMessageFilter.allowTypes({MIDI::MessageType::NOTE_ON, MIDI::MessageType::NOTE_OFF});
-
         recording = false;
         currentTime = -1;
     }
 
     void Application::inputMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
+        // Pass the incoming messages to the tracks
         for (const TrackPointer& track: tracks)
             track->incomingMIDIMessage(messageOnInstrument);
 
+        // Store the up to 10000 last incoming messages
         std::unique_lock<std::mutex> lock(mutex);
         messages.emplace_back(messageOnInstrument);
         if (messages.size() > 10000) messages.pop_front();
@@ -53,6 +52,7 @@ namespace State
 
     TrackPointer Application::deleteTrack(const TrackPointer& track)
     {
+        // Only delete a track if enough tracks exists and select a nearby track
         if (tracks.size() > 1)
         {
             auto position = std::find(tracks.begin(), tracks.end(), track);

@@ -15,7 +15,7 @@
 namespace State
 {
     Track::Track(const ApplicationPointer& application, const MIDI::InstrumentPointer& input, const MIDI::InstrumentPointer& output):
-                 application(application), preset(0), input(input), output(output), height(150)
+                 application(application), input(input), output(output), height(150)
     {
         audioPlayer = std::make_shared<MIDI::AudioPlayer>(application);
 
@@ -44,6 +44,7 @@ namespace State
         }
     }
 
+    // Play the message in audio
     void Track::playMIDIMessage(const MIDI::MessageOnInstrument& messageOnInstrument)
     {
         const auto& [message, instrument] = messageOnInstrument;
@@ -51,6 +52,7 @@ namespace State
         updateSoundingNotes(message);
     }
 
+    // Keep track of which notes are on
     void Track::updateSoundingNotes(const MIDI::MessagePointer& message)
     {
         if (MIDI::NoteOnPointer noteOn = std::dynamic_pointer_cast<MIDI::NoteOn>(message))
@@ -59,6 +61,7 @@ namespace State
             soundingNotes[noteOff->note->value]--;
     }
 
+    // Clean up
     void Track::stopRecording()
     {
         MIDI::MessagePointer allSoundOff = std::make_shared<MIDI::Controller>(120, 0);
@@ -95,6 +98,7 @@ namespace State
 
     void Track::deleteTake()
     {
+        // Delete a take if enough takes exist and select a nearby take
         if (takes.size() > 1)
         {
             auto position = std::find(takes.begin(), takes.end(), recordingTake);
@@ -114,6 +118,7 @@ namespace State
         }
     }
 
+    // Check whether the structure
     bool Track::equalTakes(std::vector<NoteSequences>& takeNoteSequences)
     {
         if (takes.size() < 2) return true;
@@ -124,6 +129,7 @@ namespace State
         return true;
     }
 
+    // Quantize, using the structure of the takes, which has to match across takes
     void Track::structuredQuantize()
     {
         int takeIndex = 0;
@@ -132,6 +138,7 @@ namespace State
             take->getNoteSequences(takeNoteSequences[takeIndex++]);
         if (equalTakes(takeNoteSequences))
         {
+            // Create a new take of the same structure consisting of the averages of the takes
             TakePointer newTake = std::make_shared<Take>(application);
             for (int i = 0; i < 128; ++i)
             {
@@ -145,12 +152,14 @@ namespace State
         }
     }
 
+    // Average all notes in every time window
     void Track::timeWindowQuantize()
     {
         TakePointer newTake = std::make_shared<Take>(application);
         int lastMessage = getLastMessage();
         for (int i = 0; i < lastMessage + timeWindow; i += timeWindow)
         {
+            // Gather all notes in the current time window
             NoteSequences noteSequences;
             for (int j = i; j < i + timeWindow; ++j)
                 for (const TakePointer& take: takes)
@@ -162,6 +171,7 @@ namespace State
                         take->midiMessages.erase(i);
                 }
             int noteValue = 0;
+            // Average the notes
             for (const MIDI::ChronologicNotes& chronologicNotes: noteSequences)
             {
                 if (!chronologicNotes.empty())
@@ -180,6 +190,7 @@ namespace State
         return *std::max_element(lastMessages.begin(), lastMessages.end());
     }
 
+    // Take the average of the start, end, start velocity and end velocity of some notes
     void Track::average(const TakePointer& take, const MIDI::ChronologicNotes& notes, int noteValue)
     {
         Utilities::Average start;

@@ -349,12 +349,6 @@
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Note/RootNote.h">
 			<Option target="MIDIAssistant"/>
 		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Theory.cpp">
-			<Option target="MIDIAssistant"/>
-		</Unit>
-		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/Theory.h">
-			<Option target="MIDIAssistant"/>
-		</Unit>
 		<Unit filename="/Users/casperdesmet/Dropbox/ThirdYear/SecondSemester/IndividueelProject/MIDI Assistant/Theory/TimeDivision.cpp">
 			<Option target="MIDIAssistant"/>
 		</Unit>

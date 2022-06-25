@@ -13,12 +13,14 @@ namespace Music
 
     void MelodicMinor::apply(const RootNotePointer& rootNote)
     {
+        // Compute the two sequences
         fillSequence(intervalSequence, rootNote, {2, 1, 2, 2, 2, 2});
         fillSequence(downwardSequence, rootNote, {2, 1, 2, 2, 1, 2});
     }
 
     RootNotePointer MelodicMinor::getModulatedNote(int index, bool up)
     {
+        // Different behaviour when going downwards
         if (up)  return intervalSequence[index];
         else     return downwardSequence[index];
     }

@@ -30,6 +30,7 @@ namespace Utilities
         else                    return value;
     }
 
+    // Clamp only with a min value
     int bottomClamp(int value, int min)
     {
         if (value < min)    return min;
@@ -44,6 +45,7 @@ namespace Utilities
         return sum;
     }
 
+    // Take the modulo of the value and make sure it is in the range 0-modulo
     int positiveModulo(int value, int modulo)
     {
         return (value + modulo) % modulo;

@@ -3,7 +3,6 @@
 //
 
 #include "TranspositionHarmony.h"
-#include "../../../Theory/Theory.h"
 
 namespace Music
 {

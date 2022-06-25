@@ -1185,30 +1185,6 @@ Theory/Note/RootNote.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Note/RootNote.cpp.s
 .PHONY : Theory/Note/RootNote.cpp.s
 
-Theory/Theory.o: Theory/Theory.cpp.o
-.PHONY : Theory/Theory.o
-
-# target to build an object file
-Theory/Theory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.o
-.PHONY : Theory/Theory.cpp.o
-
-Theory/Theory.i: Theory/Theory.cpp.i
-.PHONY : Theory/Theory.i
-
-# target to preprocess a source file
-Theory/Theory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.i
-.PHONY : Theory/Theory.cpp.i
-
-Theory/Theory.s: Theory/Theory.cpp.s
-.PHONY : Theory/Theory.s
-
-# target to generate assembly for a file
-Theory/Theory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIDIAssistant.dir/build.make CMakeFiles/MIDIAssistant.dir/Theory/Theory.cpp.s
-.PHONY : Theory/Theory.cpp.s
-
 Theory/TimeDivision.o: Theory/TimeDivision.cpp.o
 .PHONY : Theory/TimeDivision.o
 
@@ -1734,9 +1710,6 @@ help:
 	@echo "... Theory/Note/RootNote.o"
 	@echo "... Theory/Note/RootNote.i"
 	@echo "... Theory/Note/RootNote.s"
-	@echo "... Theory/Theory.o"
-	@echo "... Theory/Theory.i"
-	@echo "... Theory/Theory.s"
 	@echo "... Theory/TimeDivision.o"
 	@echo "... Theory/TimeDivision.i"
 	@echo "... Theory/TimeDivision.s"

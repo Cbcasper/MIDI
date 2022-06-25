@@ -13,6 +13,7 @@ namespace MIDI
     class MessageFilter
     {
     public:
+        // The system only supports these types, any other types will be disallowed no matter what
         std::vector<MessageType> supportedTypes = {MessageType::AFTERTOUCH,
                                                    MessageType::POLY_PRESSURE,
                                                    MessageType::CONTROL_CHANGE,
@@ -24,6 +25,7 @@ namespace MIDI
 
         MessageFilter();
 
+        // Filter setup logic
         void allowAllTypes();
         void disallowAllTypes();
         void allowTypes(const std::vector<MessageType>& types);
